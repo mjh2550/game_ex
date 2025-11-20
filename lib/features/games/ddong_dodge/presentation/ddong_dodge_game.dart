@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:game_ex/features/games/ddong_dodge/data/difficulty_system.dart';
@@ -41,10 +41,34 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection {
   late DifficultySystem difficultySystem;
   
   bool isGameOver = false;
+  
+  // 터치 상태 추적
+  bool isLeftPressed = false;
+  bool isRightPressed = false;
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+  }
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+    
+    print('🎮 DdongDodgeGame.onLoad() started');
+    print('Game size: $size');
+
+    // 배경색을 흰색으로 설정
+    final whitePaint = Paint()..color = Colors.white;
+    add(
+      RectangleComponent(
+        size: Vector2(size.x, size.y),
+        position: Vector2.zero(),
+        paint: whitePaint,
+        priority: -100, // 맨 뒤에 렌더링
+      ),
+    );
+    print('✅ White background added');
 
     // 게임 초기화
     scoreSystem = ScoreSystem();
@@ -53,13 +77,18 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection {
     // 컴포넌트 추가
     // world.add(Background());
     
+    print('🎮 Creating Player...');
     player = Player();
-    world.add(player);
+    add(player); // 게임에 직접 추가
+    print('✅ Player added to game');
     
     world.add(DdongSpawner(difficultySystem));
+    print('✅ DdongSpawner added');
 
     // HUD 오버레이 표시
     overlays.add('hud');
+    print('✅ HUD overlay added');
+    print('🎮 DdongDodgeGame.onLoad() completed');
   }
 
   @override
@@ -69,6 +98,15 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection {
     if (!paused && !isGameOver) {
       scoreSystem.update(dt);
       difficultySystem.update(dt);
+      
+      // 터치 입력에 따른 플레이어 이동
+      if (isLeftPressed) {
+        player.moveLeft();
+      } else if (isRightPressed) {
+        player.moveRight();
+      } else {
+        player.stopMoving();
+      }
     }
   }
 

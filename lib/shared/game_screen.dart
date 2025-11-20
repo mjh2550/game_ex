@@ -2,6 +2,8 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
+import 'package:game_ex/features/games/ddong_dodge/presentation/game_hud.dart';
+import 'package:game_ex/features/games/ddong_dodge/presentation/game_over_screen.dart';
 import 'package:game_ex/shared/game_provider.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,13 +21,22 @@ class GameScreen extends ConsumerStatefulWidget {
 
 class _GameScreenState extends ConsumerState<GameScreen> {
   late final FlameGame game;
+  bool _isGameInitialized = false;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     
-    // 🎮 게임
-    game = ref.watch(gameManagerProvider).getGameById(widget.gameId)!;
+    // didChangeDependencies에서 ref 사용 가능
+    if (!_isGameInitialized) {
+      final gameManager = ref.read(gameManagerProvider);
+      game = gameManager.createGame(
+        widget.gameId,
+        onGameOver: _handleGameOver,
+        onPause: _handlePause,
+      );
+      _isGameInitialized = true;
+    }
   }
 
   // FlameGame _createGame(String gameId) {
@@ -99,44 +110,52 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 🎮 GameWidget으로 Flame 게임 렌더링
-      body: GameWidget(
-        game: game,
-        overlayBuilderMap: {
-          // HUD (점수, 시간 등)
-          'hud': (context, game) {
-            return Text('HUD Overlay');
-            // return GameHUD(game: game as dynamic);
-          },
-          
-          // // 일시정지 메뉴
-          // 'pause': (context, game) {
-          //   return PauseMenu(
-          //     onResume: () {
-          //       game.overlays.remove('pause');
-          //       game.resumeEngine();
-          //     },
-          //     onQuit: () {
-          //       context.go('/home');
-          //     },
-          //   );
-          // },
-          
-          // // 게임 오버 화면
-          // 'game_over': (context, game) {
-          //   return GameOverOverlay(
-          //     game: game as dynamic,
-          //     onRetry: () {
-          //       game.overlays.remove('game_over');
-          //       (game as dynamic).resetGame();
-          //     },
-          //     onHome: () {
-          //       context.go('/home');
-          //     },
-          //   );
-          // },
+      body: GestureDetector(
+        onTapDown: (details) {
+          // 터치 위치 감지
+          if (game is DdongDodgeGame) {
+            final ddongGame = game as DdongDodgeGame;
+            final tapX = details.globalPosition.dx;
+            final screenWidth = MediaQuery.of(context).size.width;
+            
+            if (tapX < screenWidth / 2) {
+              ddongGame.isLeftPressed = true;
+            } else {
+              ddongGame.isRightPressed = true;
+            }
+          }
         },
-        initialActiveOverlays: const ['hud'],
+        onTapUp: (details) {
+          // 터치 종료
+          if (game is DdongDodgeGame) {
+            final ddongGame = game as DdongDodgeGame;
+            final tapX = details.globalPosition.dx;
+            final screenWidth = MediaQuery.of(context).size.width;
+            
+            if (tapX < screenWidth / 2) {
+              ddongGame.isLeftPressed = false;
+            } else {
+              ddongGame.isRightPressed = false;
+            }
+          }
+        },
+        onTapCancel: () {
+          // 터치 취소
+          if (game is DdongDodgeGame) {
+            final ddongGame = game as DdongDodgeGame;
+            ddongGame.isLeftPressed = false;
+            ddongGame.isRightPressed = false;
+          }
+        },
+        child: GameWidget(
+          game: game,
+          overlayBuilderMap: {
+            'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+            // 'pause': (context, game) => PauseMenu(game: game),
+            'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+          },
+          initialActiveOverlays: const ['hud'],
+        ),
       ),
     );
   }

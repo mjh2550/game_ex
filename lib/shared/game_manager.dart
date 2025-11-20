@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:game_ex/core/utils/flame_game_extension.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
@@ -29,29 +28,27 @@ class GameManager {
     return _games.firstWhere((game) => game.gameInfo?.id == id);
   }
 
-  // void updateBestScore(String id, int newScore) {
-  //   final game = getGameById(id);
-  //   if (game != null && newScore > game.bestScore) {
-  //     // game.bestScore = newScore;
-  //   }
-  // }
-
-  // FlameGame createGame(GameInfo gameInfo, Function(GameResult) _handleGameOver, VoidCallback _handlePause) {
-  //   // 게임 팩토리 패턴
-  //   switch (gameInfo.id) {
-  //     case 'ddong_dodge':
-  //       return DdongDodgeGame(onGameOver: _handleGameOver, onPause: _handlePause, userId: 'test_user', gameInfo: gameInfo);
-
-  //     // case 'game_2':
-  //     //   return Game2(
-  //     //     onGameOver: _handleGameOver,
-  //     //     onPause: _handlePause,
-  //     //     userId: ref.read(currentUserProvider).id,
-  //     //   );
-
-  //     default:
-  //       throw Exception('Unknown game: ${gameInfo.id}');
-  //   }
-  //   // }
-  // }
+  FlameGame createGame(
+    String gameId, {
+    required Function(GameResult) onGameOver,
+    required VoidCallback onPause,
+  }) {
+    switch (gameId) {
+      case 'g001':
+        return DdongDodgeGame(
+          gameInfo: GameInfo(
+            id: 'g001',
+            name: 'ddong_dodge',
+            description: 'dodge ddong game',
+            routeName: '/ddong_dodge',
+            isUnlocked: true,
+          ),
+          onGameOver: onGameOver,
+          onPause: onPause,
+          userId: 'test_user',
+        );
+      default:
+        throw Exception('Unknown game: $gameId');
+    }
+  }
 }

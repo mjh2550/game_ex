@@ -1,5 +1,7 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:game_ex/core/utils/flame_game_extension.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
 
 class GameHUD extends StatelessWidget {
@@ -8,7 +10,7 @@ class GameHUD extends StatelessWidget {
     required this.game,
   }) : super(key: key);
   
-  final DdongDodgeGame game;
+  final FlameGame game;
   
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class GameHUD extends StatelessWidget {
                       style: TextStyle(fontSize: 14, color: Colors.white70),
                     ),
                     Text(
-                      '${game.scoreSystem.score}',
+                      'score',//'${game.gameInfo?.scoreSystem.score}',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
@@ -46,7 +48,7 @@ class GameHUD extends StatelessWidget {
                       style: TextStyle(fontSize: 14, color: Colors.white70),
                     ),
                     Text(
-                      '${game.scoreSystem.survivalTime.toStringAsFixed(1)}s',
+                     'time',//'${game.scoreSystem.survivalTime.toStringAsFixed(1)}s',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -61,33 +63,33 @@ class GameHUD extends StatelessWidget {
             SizedBox(height: 8),
             
             // 콤보 표시
-            if (game.scoreSystem.combo > 0)
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  'Combo x${game.scoreSystem.combo}',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+            // if (game.scoreSystem.combo > 0)
+            //   Container(
+            //     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            //     decoration: BoxDecoration(
+            //       color: Colors.orange,
+            //       borderRadius: BorderRadius.circular(20),
+            //     ),
+            //     child: Text(
+            //       'Combo x${game.scoreSystem.combo}',
+            //       style: TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold,
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
             
-            Spacer(),
+            // Spacer(),
             
-            // 일시정지 버튼
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: Icon(Icons.pause, color: Colors.white, size: 32),
-                onPressed: () => game.pauseGame(),
-              ),
-            ),
+            // // 일시정지 버튼
+            // Align(
+            //   alignment: Alignment.topRight,
+            //   child: IconButton(
+            //     icon: Icon(Icons.pause, color: Colors.white, size: 32),
+            //     onPressed: () => game.pauseGame(),
+            //   ),
+            // ),
           ],
         ),
       ),

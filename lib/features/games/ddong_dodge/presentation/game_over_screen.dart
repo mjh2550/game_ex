@@ -1,3 +1,4 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
@@ -6,7 +7,7 @@ import 'package:go_router/go_router.dart';
 class GameOverScreen extends StatelessWidget {
   GameOverScreen({required this.game});
 
-  final DdongDodgeGame game;
+  final FlameGame game;
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +33,16 @@ class GameOverScreen extends StatelessWidget {
                   Text('Final Score', style: TextStyle(fontSize: 18, color: Colors.white70)),
                   SizedBox(height: 8),
                   Text(
-                    '${game.scoreSystem.score}',
+                    '${(game as DdongDodgeGame).scoreSystem.score}',
                     style: TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Colors.amber),
                   ),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _StatItem(label: 'Time', value: '${game.scoreSystem.survivalTime.toStringAsFixed(1)}s'),
-                      _StatItem(label: 'Near Miss', value: '${game.scoreSystem.nearMissCount}'),
-                      _StatItem(label: 'Best Combo', value: 'x${game.scoreSystem.combo}'),
+                      _StatItem(label: 'Time', value: '${(game as DdongDodgeGame).scoreSystem.survivalTime.toStringAsFixed(1)}s'),
+                      _StatItem(label: 'Near Miss', value: '${(game as DdongDodgeGame).scoreSystem.nearMissCount}'),
+                      _StatItem(label: 'Best Combo', value: 'x${(game as DdongDodgeGame).scoreSystem.combo}'),
                     ],
                   ),
                 ],
@@ -58,7 +59,7 @@ class GameOverScreen extends StatelessWidget {
                   icon: Icon(Icons.replay),
                   label: Text('Retry'),
                   onPressed: () {
-                    game.resetGame();
+                    (game as DdongDodgeGame).resetGame();
                     game.overlays.remove('game_over');
                   },
                   style: ElevatedButton.styleFrom(padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16)),

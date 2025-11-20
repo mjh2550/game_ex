@@ -38,7 +38,7 @@ class DdongSpawner extends Component with HasGameRef {
       speed: speed,
     );
     
-    gameRef.world.add(ddong);
+    gameRef.add(ddong); // 게임에 직접 추가
   }
   
   void spawnMultipleDdongs(int count) {
