@@ -6,53 +6,50 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/core/router/navigation_state.dart';
+import 'package:game_ex/features/games/ddong_dodge/presentation/leader_board.dart';
+import 'package:game_ex/features/home/presentation/home_screen.dart';
+import 'package:game_ex/features/profile/presentation/profile_screen.dart';
+import 'package:game_ex/shared/game_result_screen.dart';
+import 'package:game_ex/shared/game_screen.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
-
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/home',
     routes: [
       // 홈 화면 (Flutter UI)
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => SizedBox.shrink()//const HomeScreen(),
-      ),
-      
+      GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+
       // 게임 화면 (Flame Game)
       GoRoute(
         path: '/game/:gameId',
         builder: (context, state) {
           final gameId = state.pathParameters['gameId']!;
-          return SizedBox.shrink();//GameScreen(gameId: gameId);
+          return GameScreen(gameId: gameId);
         },
       ),
-      
+
       // 게임 오버 후 결과 화면 (Flutter UI)
       GoRoute(
         path: '/game-result',
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
-          return SizedBox.shrink();//GameResultScreen(
-          //  gameId: extra['gameId'],
-          //  score: extra['score'],
-          //  stats: extra['stats'],
-          //);
+          return GameResultScreen(gameId: extra['gameId'], score: extra['score'], stats: extra['stats']);
         },
       ),
-      
+
       // 리더보드
       GoRoute(
         path: '/leaderboard',
-        builder: (context, state) => SizedBox.shrink()//const LeaderboardScreen(),
+        builder: (context, state) => LeaderboardScreen(),
       ),
-      
+
       // 프로필
       GoRoute(
         path: '/profile',
-        builder: (context, state) => SizedBox.shrink()// const ProfileScreen(),
+        builder: (context, state) => ProfileScreen(),
       ),
     ],
   );
