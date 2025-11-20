@@ -5,10 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "game_ex",
+            "name": "game_ex (chrome)",
             "request": "launch",
             "type": "dart",
             "deviceId": "chrome"
+        },
+        {
+            "name": "game_ex (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
         },
         {
             "name": "game_ex (profile mode)",

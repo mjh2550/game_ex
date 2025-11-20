@@ -28,14 +28,14 @@ class GameHUD extends StatelessWidget {
                   children: [
                     Text(
                       'Score',
-                      style: TextStyle(fontSize: 14, color: Colors.white70),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                     Text(
                       'score',//'${game.gameInfo?.scoreSystem.score}',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -45,14 +45,14 @@ class GameHUD extends StatelessWidget {
                   children: [
                     Text(
                       'Time',
-                      style: TextStyle(fontSize: 14, color: Colors.white70),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                     Text(
                      'time',//'${game.scoreSystem.survivalTime.toStringAsFixed(1)}s',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ],
