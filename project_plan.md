@@ -4,7 +4,7 @@
 
 **목표**: 하나의 계정으로 여러 미니게임을 즐기고 기록을 경쟁하는 종합 게임 플랫폼
 
-**첫 번째 게임**: 총알 피하기 게임 (Bullet Dodge)
+**첫 번째 게임**: 똥 피하기 게임 (Ddong Dodge)
 
 ---
 
@@ -82,7 +82,7 @@ Local Storage:
 │  ┌──────────────────────────────────────────────┐  │
 │  │         Individual Games                     │  │
 │  │  ┌─────────────────┐  ┌─────────────────┐   │  │
-│  │  │ Bullet Dodge    │  │  Game 2 (예정)  │   │  │
+│  │  │ Ddong Dodge    │  │  Game 2 (예정)  │   │  │
 │  │  │ (FlameGame)     │  │  (FlameGame)    │   │  │
 │  │  └─────────────────┘  └─────────────────┘   │  │
 │  │  ┌─────────────────┐  ┌─────────────────┐   │  │
@@ -145,7 +145,7 @@ lib/
 │       │   ├── game_score_manager.dart
 │       │   └── game_ui_overlay.dart
 │       │
-│       ├── bullet_dodge/   # 총알 피하기 게임
+│       ├── ddong_dodge/   # 똥 피하기 게임
 │       │   ├── data/
 │       │   │   ├── models/
 │       │   │   └── repositories/
@@ -154,11 +154,11 @@ lib/
 │       │   │   └── usecases/
 │       │   └── presentation/
 │       │       ├── game/
-│       │       │   ├── bullet_dodge_game.dart
+│       │       │   ├── ddong_dodge_game.dart
 │       │       │   ├── components/
 │       │       │   │   ├── player.dart
-│       │       │   │   ├── bullet.dart
-│       │       │   │   ├── bullet_spawner.dart
+│       │       │   │   ├── ddong.dart
+│       │       │   │   ├── ddong_spawner.dart
 │       │       │   │   └── world.dart
 │       │       │   └── systems/
 │       │       │       ├── collision_system.dart
@@ -473,15 +473,15 @@ class GameScoreManager {
 
 ---
 
-### Phase 5: 총알 피하기 게임 구현 (5-7일)
+### Phase 5: 똥 피하기 게임 구현 (5-7일)
 
 #### 5.1 게임 기획 상세
 ```
-게임명: Bullet Dodge (총알 피하기)
+게임명: Ddong Dodge (똥 피하기)
 
 목표: 
-  - 위에서 떨어지는 총알을 피해 최대한 오래 살아남기
-  - 시간이 지날수록 총알 속도와 개수 증가
+  - 위에서 떨어지는 똥을 피해 최대한 오래 살아남기
+  - 시간이 지날수록 똥 속도와 개수 증가
 
 조작:
   - 좌우 드래그/터치로 플레이어 이동
@@ -489,17 +489,17 @@ class GameScoreManager {
 
 점수 시스템:
   - 생존 시간: 1초당 10점
-  - 근접 회피: 총알과 아슬아슬하게 피하면 보너스 (+50점)
+  - 근접 회피: 똥과 아슬아슬하게 피하면 보너스 (+50점)
   - 콤보: 연속 근접 회피시 점수 배율 증가
 
 난이도:
-  - 0-30초: 총알 2-3개, 느린 속도
-  - 30-60초: 총알 4-5개, 중간 속도
-  - 60-90초: 총알 6-8개, 빠른 속도
-  - 90초+: 총알 10개+, 매우 빠른 속도
+  - 0-30초: 똥 2-3개, 느린 속도
+  - 30-60초: 똥 4-5개, 중간 속도
+  - 60-90초: 똥 6-8개, 빠른 속도
+  - 90초+: 똥 10개+, 매우 빠른 속도
 
 게임 종료:
-  - 총알에 맞으면 즉시 게임 오버
+  - 똥에 맞으면 즉시 게임 오버
   - 최종 점수 표시 및 순위 확인
 ```
 
@@ -507,7 +507,7 @@ class GameScoreManager {
 
 ##### Player Component
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/components/player.dart
+// lib/features/games/ddong_dodge/presentation/game/components/player.dart
 class Player extends SpriteComponent 
     with HasGameRef, CollisionCallbacks, DragCallbacks {
   
@@ -545,7 +545,7 @@ class Player extends SpriteComponent
   
   @override
   void onCollision(Set<Vector2> points, PositionComponent other) {
-    if (other is Bullet && !isInvulnerable) {
+    if (other is Ddong && !isInvulnerable) {
       gameRef.gameOver();
     }
   }
@@ -559,16 +559,16 @@ class Player extends SpriteComponent
 }
 ```
 
-##### Bullet Component
+##### Ddong Component
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/components/bullet.dart
-class Bullet extends SpriteComponent 
+// lib/features/games/ddong_dodge/presentation/game/components/ddong.dart
+class Ddong extends SpriteComponent 
     with HasGameRef, CollisionCallbacks {
   
   final double speed;
   final double radius;
   
-  Bullet({
+  Ddong({
     required Vector2 position,
     this.speed = 200.0,
     this.radius = 15.0,
@@ -576,7 +576,7 @@ class Bullet extends SpriteComponent
   
   @override
   Future<void> onLoad() async {
-    sprite = await Sprite.load('bullet.png');
+    sprite = await Sprite.load('ddong.png');
     size = Vector2.all(radius * 2);
     anchor = Anchor.center;
     
@@ -606,17 +606,17 @@ class Bullet extends SpriteComponent
 }
 ```
 
-##### Bullet Spawner System
+##### Ddong Spawner System
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/components/bullet_spawner.dart
-class BulletSpawner extends Component with HasGameRef {
+// lib/features/games/ddong_dodge/presentation/game/components/ddong_spawner.dart
+class DdongSpawner extends Component with HasGameRef {
   
   double spawnTimer = 0;
   double spawnInterval = 1.5; // 초기 1.5초마다 생성
   
   final DifficultySystem difficultySystem;
   
-  BulletSpawner(this.difficultySystem);
+  DdongSpawner(this.difficultySystem);
   
   @override
   void update(double dt) {
@@ -625,31 +625,31 @@ class BulletSpawner extends Component with HasGameRef {
     spawnTimer += dt;
     
     if (spawnTimer >= spawnInterval) {
-      spawnBullet();
+      spawnDdong();
       spawnTimer = 0;
       
       // 난이도에 따라 간격 조정
-      spawnInterval = difficultySystem.getBulletSpawnInterval();
+      spawnInterval = difficultySystem.getDdongSpawnInterval();
     }
   }
   
-  void spawnBullet() {
+  void spawnDdong() {
     final random = Random();
     final x = random.nextDouble() * gameRef.size.x;
-    final speed = difficultySystem.getBulletSpeed();
+    final speed = difficultySystem.getDdongSpeed();
     
-    final bullet = Bullet(
+    final ddong = Ddong(
       position: Vector2(x, -20),
       speed: speed,
     );
     
-    gameRef.world.add(bullet);
+    gameRef.world.add(ddong);
   }
   
-  void spawnMultipleBullets(int count) {
+  void spawnMultipleDdongs(int count) {
     for (int i = 0; i < count; i++) {
       Future.delayed(Duration(milliseconds: i * 100), () {
-        spawnBullet();
+        spawnDdong();
       });
     }
   }
@@ -660,7 +660,7 @@ class BulletSpawner extends Component with HasGameRef {
 
 ##### Difficulty System
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/systems/difficulty_system.dart
+// lib/features/games/ddong_dodge/presentation/game/systems/difficulty_system.dart
 class DifficultySystem {
   double gameTime = 0;
   
@@ -675,7 +675,7 @@ class DifficultySystem {
     return 4;
   }
   
-  double getBulletSpeed() {
+  double getDdongSpeed() {
     switch (getDifficultyLevel()) {
       case 1: return 150.0;
       case 2: return 250.0;
@@ -685,7 +685,7 @@ class DifficultySystem {
     }
   }
   
-  double getBulletSpawnInterval() {
+  double getDdongSpawnInterval() {
     switch (getDifficultyLevel()) {
       case 1: return 1.5;
       case 2: return 1.0;
@@ -695,7 +695,7 @@ class DifficultySystem {
     }
   }
   
-  int getBulletsPerSpawn() {
+  int getDdongsPerSpawn() {
     switch (getDifficultyLevel()) {
       case 1: return 1;
       case 2: return 2;
@@ -709,7 +709,7 @@ class DifficultySystem {
 
 ##### Score System
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/systems/score_system.dart
+// lib/features/games/ddong_dodge/presentation/game/systems/score_system.dart
 class ScoreSystem {
   int score = 0;
   int combo = 0;
@@ -746,42 +746,42 @@ class ScoreSystem {
 
 ##### Collision System
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/systems/collision_system.dart
+// lib/features/games/ddong_dodge/presentation/game/systems/collision_system.dart
 class CollisionSystem extends Component with HasGameRef {
   
   final Player player;
-  final List<Bullet> bullets;
+  final List<Ddong> ddongs;
   
   CollisionSystem({
     required this.player,
-    required this.bullets,
+    required this.ddongs,
   });
   
   @override
   void update(double dt) {
     super.update(dt);
     
-    for (final bullet in bullets) {
-      checkCollision(player, bullet);
-      checkNearMiss(player, bullet);
+    for (final ddong in ddongs) {
+      checkCollision(player, ddong);
+      checkNearMiss(player, ddong);
     }
   }
   
-  void checkCollision(Player player, Bullet bullet) {
-    final distance = player.position.distanceTo(bullet.position);
-    final minDistance = (player.size.x / 2) + (bullet.size.x / 2);
+  void checkCollision(Player player, Ddong ddong) {
+    final distance = player.position.distanceTo(ddong.position);
+    final minDistance = (player.size.x / 2) + (ddong.size.x / 2);
     
     if (distance < minDistance) {
       player.takeDamage();
     }
   }
   
-  void checkNearMiss(Player player, Bullet bullet) {
-    final distance = player.position.distanceTo(bullet.position);
+  void checkNearMiss(Player player, Ddong ddong) {
+    final distance = player.position.distanceTo(ddong.position);
     
     // 아슬아슬하게 피한 경우 (30-60 픽셀 사이)
     if (distance > 30 && distance < 60 && 
-        bullet.position.y > player.position.y) {
+        ddong.position.y > player.position.y) {
       gameRef.scoreSystem.addNearMissBonus();
     }
   }
@@ -790,16 +790,16 @@ class CollisionSystem extends Component with HasGameRef {
 
 #### 5.4 Main Game Class
 ```dart
-// lib/features/games/bullet_dodge/presentation/game/bullet_dodge_game.dart
-class BulletDodgeGame extends BaseGameHub with HasCollisionDetection {
+// lib/features/games/ddong_dodge/presentation/game/ddong_dodge_game.dart
+class DdongDodgeGame extends BaseGameHub with HasCollisionDetection {
   
   late Player player;
-  late BulletSpawner bulletSpawner;
+  late DdongSpawner ddongSpawner;
   late DifficultySystem difficultySystem;
   late ScoreSystem scoreSystem;
   
-  BulletDodgeGame() : super(
-    gameId: 'bullet_dodge',
+  DdongDodgeGame() : super(
+    gameId: 'ddong_dodge',
     scoreManager: GameScoreManager(),
   );
   
@@ -818,9 +818,9 @@ class BulletDodgeGame extends BaseGameHub with HasCollisionDetection {
     player = Player();
     world.add(player);
     
-    // 총알 생성 시스템
-    bulletSpawner = BulletSpawner(difficultySystem);
-    world.add(bulletSpawner);
+    // 똥 생성 시스템
+    ddongSpawner = DdongSpawner(difficultySystem);
+    world.add(ddongSpawner);
     
     // UI 오버레이
     overlays.add('game_hud');
@@ -882,9 +882,9 @@ class BulletDodgeGame extends BaseGameHub with HasCollisionDetection {
     scoreSystem = ScoreSystem();
     difficultySystem = DifficultySystem();
     
-    // 모든 총알 제거
-    world.children.whereType<Bullet>().forEach((bullet) {
-      bullet.removeFromParent();
+    // 모든 똥 제거
+    world.children.whereType<Ddong>().forEach((ddong) {
+      ddong.removeFromParent();
     });
     
     // 플레이어 위치 초기화
@@ -899,9 +899,9 @@ class BulletDodgeGame extends BaseGameHub with HasCollisionDetection {
 
 ##### Game HUD
 ```dart
-// lib/features/games/bullet_dodge/presentation/widgets/game_hud.dart
+// lib/features/games/ddong_dodge/presentation/widgets/game_hud.dart
 class GameHUD extends StatelessWidget {
-  final BulletDodgeGame game;
+  final DdongDodgeGame game;
   
   @override
   Widget build(BuildContext context) {
@@ -991,9 +991,9 @@ class GameHUD extends StatelessWidget {
 
 ##### Game Over Screen
 ```dart
-// lib/features/games/bullet_dodge/presentation/screens/game_over_screen.dart
+// lib/features/games/ddong_dodge/presentation/screens/game_over_screen.dart
 class GameOverScreen extends StatelessWidget {
-  final BulletDodgeGame game;
+  final DdongDodgeGame game;
   
   @override
   Widget build(BuildContext context) {
@@ -1097,7 +1097,7 @@ class GameOverScreen extends StatelessWidget {
             TextButton(
               child: Text('View Leaderboard'),
               onPressed: () {
-                context.push('/leaderboard?game=bullet_dodge');
+                context.push('/leaderboard?game=ddong_dodge');
               },
             ),
           ],
@@ -1248,10 +1248,10 @@ assets/
 │   ├── player/
 │   │   ├── player.png
 │   │   └── player_hit.png
-│   ├── bullets/
-│   │   ├── bullet_red.png
-│   │   ├── bullet_blue.png
-│   │   └── bullet_explosion.png
+│   ├── ddongs/
+│   │   ├── ddong_red.png
+│   │   ├── ddong_blue.png
+│   │   └── ddong_explosion.png
 │   ├── ui/
 │   │   ├── button_play.png
 │   │   ├── button_pause.png
@@ -1264,7 +1264,7 @@ assets/
 │   ├── music/
 │   │   └── game_bgm.mp3
 │   └── sfx/
-│       ├── bullet_fire.mp3
+│       ├── ddong_fire.mp3
 │       ├── explosion.mp3
 │       └── near_miss.mp3
 │
@@ -1288,7 +1288,7 @@ assets/
 | 2 | 인증 시스템 | 2-3일 | 필수 |
 | 3 | 네비게이션/홈 | 2-3일 | 필수 |
 | 4 | 게임 공통 시스템 | 2-3일 | 필수 |
-| 5 | 총알 피하기 게임 | 5-7일 | 필수 |
+| 5 | 똥 피하기 게임 | 5-7일 | 필수 |
 | 6 | 리더보드/프로필 | 2-3일 | 높음 |
 | 7 | 테스트/최적화 | 2-3일 | 높음 |
 | 8 | 배포 준비 | 1-2일 | 중간 |
@@ -1301,7 +1301,7 @@ assets/
 ### 첫 버전에 포함할 기능
 ✅ **필수 기능**
 - [ ] 이메일 로그인/회원가입
-- [ ] 총알 피하기 게임 1개
+- [ ] 똥 피하기 게임 1개
 - [ ] 점수 저장
 - [ ] 간단한 리더보드 (전체 순위)
 - [ ] 기본 프로필 화면
@@ -1328,7 +1328,7 @@ assets/
 ### 1. 확장성 고려
 ```dart
 // 나쁜 예
-if (gameId == 'bullet_dodge') {
+if (gameId == 'ddong_dodge') {
   // 게임별 로직 하드코딩
 }
 
@@ -1340,7 +1340,7 @@ abstract class BaseGame {
 
 class GameRegistry {
   Map<String, BaseGame Function()> games = {
-    'bullet_dodge': () => BulletDodgeGame(),
+    'ddong_dodge': () => DdongDodgeGame(),
     'game_2': () => Game2(),
   };
 }
@@ -1348,7 +1348,7 @@ class GameRegistry {
 
 ### 2. 성능 최적화
 - Flame의 `onGameResize` 주의 (불필요한 재생성 방지)
-- 오브젝트 풀링 사용 (총알 재사용)
+- 오브젝트 풀링 사용 (똥 재사용)
 - `removeFromParent()` 확실히 호출
 
 ### 3. 상태 관리
