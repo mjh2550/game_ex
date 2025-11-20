@@ -4,67 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/widgets.dart';
 
-// void main() {
-//   runApp(
-//     GameWidget(
-//       game: FlameGame(world: MyWorld()),
-//     ),
-//   );
-// }
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_ex/core/router/navigation_provider.dart';
 
 void main() {
   runApp(
-    GameWidget(
-      game: MyGame(),
-      backgroundBuilder: (context) => Container(
-        color: const Color(0xFF87CEEB),
-      ),
-      overlayBuilderMap: {
-        'PauseMenu': (context, game) {
-          return Container(
-            color: const Color(0xFF000000),
-            child: Text('A pause menu'),
-          );
-        },
-      },
+    const ProviderScope(
+      child: MyApp(),
     ),
   );
 }
 
-class MyGame extends FlameGame {
-  @override
-  Future<void> onLoad() async {
-    overlays.add('PauseMenu');
-    add(MyWorld());
-  }
-}
-
-class MyWorld extends World {
-  @override
-  Future<void> onLoad() async {
-    add(Player(position: Vector2(0, 0)));
-  }
-}
-
-
-
-class Player extends SpriteComponent with TapCallbacks {
-  Player({super.position}) :
-    super(size: Vector2.all(200), anchor: Anchor.center);
+class MyApp extends ConsumerWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  Future<void> onLoad() async {
-    sprite = await Sprite.load('player.png');
-  }
-  
-  @override
-  void onTapUp(TapUpEvent info) {
-    size += Vector2.all(50);
-  }
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
 
-  @override
-  void onTapDown(TapDownEvent event) {
-    // TODO: implement onLongTapDown
-    size -= Vector2.all(50);
+    return MaterialApp.router(
+      title: 'Game Hub',
+      theme: ThemeData.dark(),
+      routerConfig: router,
+    );
   }
 }

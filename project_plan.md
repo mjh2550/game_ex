@@ -275,7 +275,7 @@ flutter pub add --dev build_runner freezed json_serializable
 ```
 
 #### 1.2 폴더 구조 생성
-- [ ] Clean Architecture 폴더 구조 생성
+- [v] Clean Architecture 폴더 구조 생성
 - [ ] 각 feature별 기본 파일 생성
 - [ ] 공통 모듈 셋업
 
