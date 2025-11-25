@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/game.dart';
 import 'package:game_ex/core/utils/flame_game_extension.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
+import 'package:game_ex/features/games/ddong_dodge/presentation/game_state_provider.dart';
 import 'package:game_ex/shared/game_info.dart';
 
 class GameManager {
@@ -32,6 +33,7 @@ class GameManager {
     String gameId, {
     required Function(GameResult) onGameOver,
     required VoidCallback onPause,
+    Function(GameState)? onStateUpdate, // 추가
   }) {
     switch (gameId) {
       case 'g001':
@@ -45,6 +47,7 @@ class GameManager {
           ),
           onGameOver: onGameOver,
           onPause: onPause,
+          onStateUpdate: onStateUpdate,
           userId: 'test_user',
         );
       default:

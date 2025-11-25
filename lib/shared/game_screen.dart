@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/game_hud.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/game_over_screen.dart';
+import 'package:game_ex/features/games/ddong_dodge/presentation/game_state_provider.dart';
 import 'package:game_ex/shared/game_provider.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,7 +35,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         widget.gameId,
         onGameOver: _handleGameOver,
         onPause: _handlePause,
+        onStateUpdate: (gameState) {
+          // 게임 상태가 변경될 때마다 Provider 업데이트
+          ref.read(gameStateProvider.notifier).updateState(gameState);
+        },
       );
+      
       _isGameInitialized = true;
     }
   }
