@@ -47,6 +47,13 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection {
   bool isRightPressed = false;
 
   @override
+  Color backgroundColor() => const Color(0xFFFFFFFF);
+
+  // 디버그 모드 활성화 (히트박스 시각화)
+  @override
+  bool get debugMode => true;
+
+  @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
   }
@@ -82,7 +89,7 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection {
     add(player); // 게임에 직접 추가
     print('✅ Player added to game');
     
-    world.add(DdongSpawner(difficultySystem));
+    add(DdongSpawner(difficultySystem)); 
     print('✅ DdongSpawner added');
 
     // HUD 오버레이 표시

@@ -110,52 +110,85 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTapDown: (details) {
-          // 터치 위치 감지
-          if (game is DdongDodgeGame) {
-            final ddongGame = game as DdongDodgeGame;
-            final tapX = details.globalPosition.dx;
-            final screenWidth = MediaQuery.of(context).size.width;
-            
-            if (tapX < screenWidth / 2) {
-              ddongGame.isLeftPressed = true;
-            } else {
-              ddongGame.isRightPressed = true;
-            }
-          }
-        },
-        onTapUp: (details) {
-          // 터치 종료
-          if (game is DdongDodgeGame) {
-            final ddongGame = game as DdongDodgeGame;
-            final tapX = details.globalPosition.dx;
-            final screenWidth = MediaQuery.of(context).size.width;
-            
-            if (tapX < screenWidth / 2) {
-              ddongGame.isLeftPressed = false;
-            } else {
-              ddongGame.isRightPressed = false;
-            }
-          }
-        },
-        onTapCancel: () {
-          // 터치 취소
-          if (game is DdongDodgeGame) {
-            final ddongGame = game as DdongDodgeGame;
-            ddongGame.isLeftPressed = false;
-            ddongGame.isRightPressed = false;
-          }
-        },
-        child: GameWidget(
-          game: game,
-          overlayBuilderMap: {
-            'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-            // 'pause': (context, game) => PauseMenu(game: game),
-            'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-          },
-          initialActiveOverlays: const ['hud'],
-        ),
+      body: Stack(
+        children: [
+          // 게임 화면
+          GameWidget(
+            game: game,
+            overlayBuilderMap: {
+              'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+              'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+            },
+            initialActiveOverlays: const ['hud'],
+          ),
+          
+          // 좌우 이동 버튼
+          Positioned(
+            bottom: 10,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // 왼쪽 버튼
+                GestureDetector(
+                  onTapDown: (_) {
+                    if (game is DdongDodgeGame) {
+                      (game as DdongDodgeGame).isLeftPressed = true;
+                    }
+                  },
+                  onTapUp: (_) {
+                    if (game is DdongDodgeGame) {
+                      (game as DdongDodgeGame).isLeftPressed = false;
+                    }
+                  },
+                  onTapCancel: () {
+                    if (game is DdongDodgeGame) {
+                      (game as DdongDodgeGame).isLeftPressed = false;
+                    }
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
+                  ),
+                ),
+                
+                // 오른쪽 버튼
+                GestureDetector(
+                  onTapDown: (_) {
+                    if (game is DdongDodgeGame) {
+                      (game as DdongDodgeGame).isRightPressed = true;
+                    }
+                  },
+                  onTapUp: (_) {
+                    if (game is DdongDodgeGame) {
+                      (game as DdongDodgeGame).isRightPressed = false;
+                    }
+                  },
+                  onTapCancel: () {
+                    if (game is DdongDodgeGame) {
+                      (game as DdongDodgeGame).isRightPressed = false;
+                    }
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -14,12 +14,16 @@ class Ddong extends SpriteComponent with HasGameReference<DdongDodgeGame>, Colli
 
   @override
   Future<void> onLoad() async {
+    size = Vector2.all(radius * 2);
+    anchor = Anchor.center;
+    
     try {
       sprite = await Sprite.load('ddong2.jpeg');
-      size = Vector2.all(radius * 2);
-      anchor = Anchor.center;
-
-      add(CircleHitbox());
+      // 히트박스를 이미지의 60%로 설정 (균형잡힌 판정)
+      add(CircleHitbox(
+        radius: radius * 0.6,
+        anchor: Anchor.center,
+      ));
     } catch (e) {
       print('Failed to load ddong2.jpeg: $e');
       // 이미지 로드 실패 시 색상 원으로 대체
@@ -27,9 +31,10 @@ class Ddong extends SpriteComponent with HasGameReference<DdongDodgeGame>, Colli
         radius: radius,
         paint: Paint()..color = const Color.fromARGB(255, 139, 69, 19),
       ));
-      add(CircleHitbox());
-      size = Vector2.all(radius * 2);
-      anchor = Anchor.center;
+      add(CircleHitbox(
+        radius: radius * 0.6,
+        anchor: Anchor.center,
+      ));
     }
   }
 
@@ -46,11 +51,12 @@ class Ddong extends SpriteComponent with HasGameReference<DdongDodgeGame>, Colli
     }
   }
 
-  // 충돌 감지
+  // 충돌 감지 - Ddong은 충돌 처리하지 않음 (Player에서만 처리)
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
     
+    print('Collision points: $intersectionPoints');
     if (other is Player) {
       print('💥 Ddong collided with Player!');
       removeFromParent();

@@ -13,11 +13,12 @@ class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, Co
   double moveDirection = 0.0; // -1: 좌, 0: 정지, 1: 우
   bool isInvulnerable = false;
 
-  Player() : super(
-    size: Vector2.all(sizeD),
-    anchor: Anchor.center,
-    priority: 10, // 다른 컴포넌트보다 앞에 렌더링
-  );
+  Player()
+    : super(
+        size: Vector2.all(sizeD),
+        anchor: Anchor.center,
+        priority: 10, // 다른 컴포넌트보다 앞에 렌더링
+      );
 
   @override
   Future<void> onLoad() async {
@@ -25,37 +26,27 @@ class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, Co
     print('Game size: ${game.size}');
     print('Player size: $size');
     print('Player priority: $priority');
-    
+
     // 위치 설정 (world 좌표계에서 하단에 위치)
     position = Vector2(game.size.x / 2, game.size.y - bottomMargin);
     print('Player position set to: $position');
 
-    try {
-      // 이미지 로드 시도
-      final sprite = await Sprite.load('player.png');
-      print('✅ Player sprite loaded successfully');
-      final spriteComponent = SpriteComponent(
-        sprite: sprite, 
-        size: Vector2.all(sizeD), 
-        anchor: Anchor.center,
-      );
-      add(spriteComponent);
-      print('✅ SpriteComponent added with size: ${spriteComponent.size}');
-    } catch (e) {
-      print('❌ Failed to load player.png: $e');
-      // 이미지 로드 실패 시 파란색 원으로 대체
-      print('🔵 Adding blue circle as fallback');
+      print('🔵 Adding blue circle as player');
       final circleComponent = CircleComponent(
         radius: sizeD / 2,
         paint: Paint()..color = const Color.fromARGB(255, 0, 0, 255),
+        anchor: Anchor.center,
       );
       add(circleComponent);
       print('🔵 CircleComponent added with radius: ${circleComponent.radius}');
-    }
 
-    // 충돌 감지 hitbox
-    final hitbox = CircleHitbox(radius: sizeD / 2);
-    add(hitbox);
+      // 충돌 감지 hitbox - 이미지의 70%로 설정 (균형잡힌 판정)
+      add(
+        CircleHitbox(
+          radius: sizeD / 2 * 0.7,
+          anchor: Anchor.center,
+        ),
+      );
     print('✅ Player loaded successfully at $position with size $size');
     print('Player children count: ${children.length}');
   }
@@ -93,7 +84,9 @@ class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, Co
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
-    
+
+    ///충돌좌표
+    print('Collision points: $intersectionPoints');
     if (other is Ddong) {
       print('💥 Collision detected with Ddong!');
       takeDamage();
@@ -105,12 +98,7 @@ class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, Co
       print('💀 Player taking damage - Game Over!');
       // 게임 오버 처리
       game.onGameOver(
-        GameResult(
-          score: game.scoreSystem.score,
-          playTime: game.scoreSystem.survivalTime,
-          stats: game.scoreSystem.getGameStats(),
-          metadata: {},
-        ),
+        GameResult(score: game.scoreSystem.score, playTime: game.scoreSystem.survivalTime, stats: game.scoreSystem.getGameStats(), metadata: {}),
       );
     }
   }
