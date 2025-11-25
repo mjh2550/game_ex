@@ -1,4 +1,5 @@
 [build]
+  command = "bash netlify_build.sh"
   publish = "build/web"
 
 # SPA 설정: 모든 라우트를 index.html로 리다이렉트
