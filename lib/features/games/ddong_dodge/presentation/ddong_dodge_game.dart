@@ -56,7 +56,7 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection, KeyboardEvent
 
   // 디버그 모드 활성화 (히트박스 시각화)
   @override
-  bool get debugMode => true;
+  bool get debugMode => false;
 
   @override
   void onGameResize(Vector2 size) {

@@ -17,8 +17,14 @@ import 'package:logging/logging.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/', // 메인 경로로 변경
     routes: [
+      // 메인 화면 = 게임 (Flame Game)
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const GameScreen(gameId: 'g001'),
+      ),
+
       // 홈 화면 (Flutter UI)
       GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
 

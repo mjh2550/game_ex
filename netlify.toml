@@ -1,0 +1,20 @@
+[build]
+  command = "flutter build web --release"
+  publish = "build/web"
+
+# SPA 설정: 모든 라우트를 index.html로 리다이렉트
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 캐시 최적화
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.wasm"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
