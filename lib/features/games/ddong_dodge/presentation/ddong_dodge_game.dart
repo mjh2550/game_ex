@@ -47,9 +47,9 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection, KeyboardEvent
   
   bool isGameOver = false;
   
-  // 터치 상태 추적
-  bool isLeftPressed = false;
-  bool isRightPressed = false;
+  // 터치 상태 추적 (연속 입력 지원)
+  bool _touchLeftPressed = false;
+  bool _touchRightPressed = false;
 
   @override
   Color backgroundColor() => const Color(0xFFFFFFFF);
@@ -122,10 +122,18 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection, KeyboardEvent
         isGameOver: isGameOver,
       ));
       
-      // 터치 입력에 따른 플레이어 이동
-      if (isLeftPressed) {
+      // 현재 눌려 있는 키 확인 (키보드 + 터치)
+      final hasLeft = HardwareKeyboard.instance.logicalKeysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
+              HardwareKeyboard.instance.logicalKeysPressed.contains(LogicalKeyboardKey.keyA) ||
+              _touchLeftPressed;
+      final hasRight = HardwareKeyboard.instance.logicalKeysPressed.contains(LogicalKeyboardKey.arrowRight) ||
+               HardwareKeyboard.instance.logicalKeysPressed.contains(LogicalKeyboardKey.keyD) ||
+               _touchRightPressed;
+      
+      // 터치/키 입력에 따른 플레이어 이동
+      if (hasLeft && !hasRight) {
         player.moveLeft();
-      } else if (isRightPressed) {
+      } else if (hasRight && !hasLeft) {
         player.moveRight();
       } else {
         player.stopMoving();
@@ -139,23 +147,9 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection, KeyboardEvent
     KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
-    final isKeyDown = event is KeyDownEvent;
-
-    // 왼쪽 화살표 또는 A 키
-    if (event.logicalKey == LogicalKeyboardKey.arrowLeft ||
-        event.logicalKey == LogicalKeyboardKey.keyA) {
-      isLeftPressed = isKeyDown;
-      return KeyEventResult.handled;
-    }
-
-    // 오른쪽 화살표 또는 D 키
-    if (event.logicalKey == LogicalKeyboardKey.arrowRight ||
-        event.logicalKey == LogicalKeyboardKey.keyD) {
-      isRightPressed = isKeyDown;
-      return KeyEventResult.handled;
-    }
-
-    return KeyEventResult.ignored;
+    // 키 이벤트 로깅
+    print('🎮 Key event: ${event.logicalKey}, keysPressed: ${keysPressed.length}');
+    return KeyEventResult.handled; // 키 이벤트 처리 완료
   }
 
   // 🏁 게임 오버 처리
@@ -201,9 +195,18 @@ class DdongDodgeGame extends FlameGame with HasCollisionDetection, KeyboardEvent
       ddong.removeFromParent();
     });
     
-    // 플레이어 위치 초기화
-    player.reset();
+    // 터치 상태 초기화
+    _touchLeftPressed = false;
+    _touchRightPressed = false;
     
-    resumeEngine();
+  }
+
+  // 터치 입력 상태 업데이트
+  void setTouchInput(String direction, bool isPressed) {
+    if (direction == 'left') {
+      _touchLeftPressed = isPressed;
+    } else if (direction == 'right') {
+      _touchRightPressed = isPressed;
+    }
   }
 }

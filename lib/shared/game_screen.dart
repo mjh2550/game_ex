@@ -124,13 +124,13 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         children: [
           // 게임 화면
           GameWidget(
-            game: game,
-            overlayBuilderMap: {
-              'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-              'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-            },
-            initialActiveOverlays: const ['hud'],
-          ),
+              game: game,
+              overlayBuilderMap: {
+                'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+                'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+              },
+              initialActiveOverlays: const ['hud'],
+            ),
           
           // 좌우 이동 버튼
           Positioned(
@@ -144,17 +144,17 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 Listener(
                   onPointerDown: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isLeftPressed = true;
+                      (game as DdongDodgeGame).setTouchInput('left', true);
                     }
                   },
                   onPointerUp: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isLeftPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('left', false);
                     }
                   },
                   onPointerCancel: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isLeftPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('left', false);
                     }
                   },
                   child: Container(
@@ -172,17 +172,17 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 Listener(
                   onPointerDown: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isRightPressed = true;
+                      (game as DdongDodgeGame).setTouchInput('right', true);
                     }
                   },
                   onPointerUp: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isRightPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('right', false);
                     }
                   },
                   onPointerCancel: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isRightPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('right', false);
                     }
                   },
                   child: Container(
