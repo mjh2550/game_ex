@@ -17,11 +17,13 @@ class DifficultySystem {
   }
   
   double getDdongSpeed() {
-    switch (getDifficultyLevel()) {
+    final level = getDifficultyLevel();
+    print('Current Difficulty Level: $level');
+    switch (level) {
       case 1: return 500.0;
-      case 2: return 600.0;
-      case 3: return 700.0;
-      case 4: return 800.0;
+      case 2: return 650.0;
+      case 3: return 800.0;
+      case 4: return 1000.0;
       default: return 500.0;
     }
   }
@@ -38,11 +40,11 @@ class DifficultySystem {
   
   int getDdongsPerSpawn() {
     switch (getDifficultyLevel()) {
-      case 1: return 2;
-      case 2: return 3;
-      case 3: return 3;
-      case 4: return 4;
-      default: return 2;
+      case 1: return 5;
+      case 2: return 7;
+      case 3: return 10;
+      case 4: return 20;
+      default: return 5;
     }
   }
 }
