@@ -120,85 +120,119 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // 게임 화면
-          GameWidget(
-              game: game,
-              overlayBuilderMap: {
-                'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-                'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-              },
-              initialActiveOverlays: const ['hud'],
-            ),
-          
-          // 좌우 이동 버튼
-          Positioned(
-            bottom: 10,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // 왼쪽 버튼
-                Listener(
-                  onPointerDown: (_) {
-                    if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).setTouchInput('left', true);
-                    }
+      body: Center(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // 사용 가능한 공간
+            final maxWidth = constraints.maxWidth;
+            final maxHeight = constraints.maxHeight;
+            
+            // 게임 크기 결정 (500x1000 이하면 종횡비 유지, 그 이상은 고정)
+            late double gameWidth;
+            late double gameHeight;
+            
+            if (maxWidth <= 500 || maxHeight <= 1000) {
+              // 작은 화면: 종횡비 유지 (1:2)
+              gameWidth = maxWidth * 0.9;
+              gameHeight = gameWidth * 2;
+              
+              // 높이도 체크
+              if (gameHeight > maxHeight * 0.9) {
+                gameHeight = maxHeight * 0.9;
+                gameWidth = gameHeight / 2;
+              }
+            } else {
+              // 큰 화면: 고정 크기
+              gameWidth = 500;
+              gameHeight = 1000;
+            }
+            
+            return SizedBox(
+              width: gameWidth,
+              height: gameHeight,
+              child: Stack(
+            children: [
+              // 게임 화면
+              GameWidget(
+                  game: game,
+                  overlayBuilderMap: {
+                    'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+                    'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
                   },
-                  onPointerUp: (_) {
-                    if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).setTouchInput('left', false);
-                    }
-                  },
-                  onPointerCancel: (_) {
-                    if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).setTouchInput('left', false);
-                    }
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
-                  ),
+                  initialActiveOverlays: const ['hud'],
                 ),
-                
-                // 오른쪽 버튼
-                Listener(
-                  onPointerDown: (_) {
-                    if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).setTouchInput('right', true);
-                    }
-                  },
-                  onPointerUp: (_) {
-                    if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).setTouchInput('right', false);
-                    }
-                  },
-                  onPointerCancel: (_) {
-                    if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).setTouchInput('right', false);
-                    }
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      shape: BoxShape.circle,
+              
+              // 좌우 이동 버튼
+              Positioned(
+                bottom: 10,
+                left: 0,
+                right: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // 왼쪽 버튼
+                    Listener(
+                      onPointerDown: (_) {
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).setTouchInput('left', true);
+                        }
+                      },
+                      onPointerUp: (_) {
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).setTouchInput('left', false);
+                        }
+                      },
+                      onPointerCancel: (_) {
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).setTouchInput('left', false);
+                        }
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
+                      ),
                     ),
-                    child: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
-                  ),
+                    
+                    // 오른쪽 버튼
+                    Listener(
+                      onPointerDown: (_) {
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).setTouchInput('right', true);
+                        }
+                      },
+                      onPointerUp: (_) {
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).setTouchInput('right', false);
+                        }
+                      },
+                      onPointerCancel: (_) {
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).setTouchInput('right', false);
+                        }
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
+            ],
             ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }

@@ -7,8 +7,8 @@ import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game
 
 class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, CollisionCallbacks {
   static const double speed = 300.0;
-  static const double sizeD = 40.0;
-  static const double bottomMargin = 60.0;
+  static const double sizeD = 30.0;
+  static const double bottomMargin = 100.0;
 
   double moveDirection = 0.0; // -1: 좌, 0: 정지, 1: 우
   bool isInvulnerable = false;
@@ -16,7 +16,7 @@ class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, Co
   Player()
     : super(
         size: Vector2.all(sizeD),
-        anchor: Anchor.center,
+        anchor: Anchor.topLeft,
         priority: 10, // 다른 컴포넌트보다 앞에 렌더링
       );
 
