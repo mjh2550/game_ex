@@ -41,8 +41,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/game-result',
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
-          return GameResultScreen(gameId: extra['gameId'], score: extra['score'], stats: extra['stats']);
+          final extra = state.extra as Map<String, dynamic>?;
+          if (extra == null) {
+            // extra 데이터가 없으면 홈으로 리다이렉트
+            return const HomeScreen();
+          }
+          return GameResultScreen(
+            gameId: extra['gameId'] ?? 'unknown',
+            score: extra['score'] ?? 0,
+            stats: extra['stats'] ?? {},
+          );
         },
       ),
 

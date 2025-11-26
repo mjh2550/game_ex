@@ -36,8 +36,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         onGameOver: _handleGameOver,
         onPause: _handlePause,
         onStateUpdate: (gameState) {
-          // 게임 상태가 변경될 때마다 Provider 업데이트
-          ref.read(gameStateProvider.notifier).updateState(gameState);
+          // 다음 프레임에서 provider 업데이트 (widget 빌드 중 수정 방지)
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              ref.read(gameStateProvider.notifier).updateState(gameState);
+            }
+          });
         },
       );
       
@@ -120,13 +124,13 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         children: [
           // 게임 화면
           GameWidget(
-            game: game,
-            overlayBuilderMap: {
-              'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-              'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
-            },
-            initialActiveOverlays: const ['hud'],
-          ),
+              game: game,
+              overlayBuilderMap: {
+                'hud': (context, game) => GameHUD(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+                'game_over': (context, game) => GameOverScreen(game: game is FlameGame ? game : throw Exception('Invalid game type')),
+              },
+              initialActiveOverlays: const ['hud'],
+            ),
           
           // 좌우 이동 버튼
           Positioned(
@@ -137,20 +141,20 @@ class _GameScreenState extends ConsumerState<GameScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // 왼쪽 버튼
-                GestureDetector(
-                  onTapDown: (_) {
+                Listener(
+                  onPointerDown: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isLeftPressed = true;
+                      (game as DdongDodgeGame).setTouchInput('left', true);
                     }
                   },
-                  onTapUp: (_) {
+                  onPointerUp: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isLeftPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('left', false);
                     }
                   },
-                  onTapCancel: () {
+                  onPointerCancel: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isLeftPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('left', false);
                     }
                   },
                   child: Container(
@@ -165,20 +169,20 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 ),
                 
                 // 오른쪽 버튼
-                GestureDetector(
-                  onTapDown: (_) {
+                Listener(
+                  onPointerDown: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isRightPressed = true;
+                      (game as DdongDodgeGame).setTouchInput('right', true);
                     }
                   },
-                  onTapUp: (_) {
+                  onPointerUp: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isRightPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('right', false);
                     }
                   },
-                  onTapCancel: () {
+                  onPointerCancel: (_) {
                     if (game is DdongDodgeGame) {
-                      (game as DdongDodgeGame).isRightPressed = false;
+                      (game as DdongDodgeGame).setTouchInput('right', false);
                     }
                   },
                   child: Container(

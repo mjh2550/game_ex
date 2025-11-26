@@ -35,16 +35,16 @@ class Player extends PositionComponent with HasGameReference<DdongDodgeGame>, Co
       final circleComponent = CircleComponent(
         radius: sizeD / 2,
         paint: Paint()..color = const Color.fromARGB(255, 0, 0, 255),
-        anchor: Anchor.center,
+        anchor: Anchor.topLeft,
       );
       add(circleComponent);
       print('🔵 CircleComponent added with radius: ${circleComponent.radius}');
 
-      // 충돌 감지 hitbox - 이미지의 70%로 설정 (균형잡힌 판정)
+      // 충돌 감지 hitbox
       add(
         CircleHitbox(
-          radius: sizeD / 2 * 0.7,
-          anchor: Anchor.center,
+          radius: sizeD / 2,
+          anchor: Anchor.topLeft,
         ),
       );
     print('✅ Player loaded successfully at $position with size $size');
