@@ -18,11 +18,11 @@ class DifficultySystem {
   
   double getDdongSpeed() {
     switch (getDifficultyLevel()) {
-      case 1: return 350.0;
-      case 2: return 450.0;
-      case 3: return 550.0;
-      case 4: return 650.0;
-      default: return 350.0;
+      case 1: return 500.0;
+      case 2: return 600.0;
+      case 3: return 700.0;
+      case 4: return 800.0;
+      default: return 500.0;
     }
   }
   
