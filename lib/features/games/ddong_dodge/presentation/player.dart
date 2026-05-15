@@ -6,7 +6,6 @@ import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game
 class Player extends SpriteComponent with HasGameReference<DdongDodgeGame> {
   static const double speed = 360.0;
   static const double playerSize = 54.0;
-  static const double bottomMargin = 76.0;
   static const double hitboxWidth = 18.0;
   static const double hitboxHeight = 34.0;
   static const double hitboxOffsetY = 4.0;
@@ -24,7 +23,7 @@ class Player extends SpriteComponent with HasGameReference<DdongDodgeGame> {
   }
 
   void reset() {
-    position = Vector2(game.size.x / 2, game.size.y - bottomMargin);
+    position = Vector2(game.size.x / 2, game.size.y - game.playerBottomMargin);
     isInvulnerable = false;
     moveDirection = 0.0;
   }

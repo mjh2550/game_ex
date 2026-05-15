@@ -170,6 +170,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
               gameHeight = 1000;
             }
 
+            if (game is DdongDodgeGame) {
+              (game as DdongDodgeGame).setMobileControlsEnabled(
+                usesMobileControls,
+              );
+            }
+
             return SizedBox(
               width: gameWidth,
               height: gameHeight,
@@ -243,9 +249,9 @@ class _MobileDirectionControls extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      bottom: 18,
+      bottom: 8,
       child: SafeArea(
-        minimum: const EdgeInsets.symmetric(horizontal: 28),
+        minimum: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -294,9 +300,9 @@ class _DirectionButton extends StatelessWidget {
           ],
         ),
         child: SizedBox(
-          width: 76,
-          height: 64,
-          child: Icon(icon, size: 46, color: Colors.white),
+          width: 64,
+          height: 54,
+          child: Icon(icon, size: 40, color: Colors.white),
         ),
       ),
     );

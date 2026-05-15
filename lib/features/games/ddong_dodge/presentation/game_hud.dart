@@ -31,46 +31,53 @@ class GameHUD extends ConsumerWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                _HudMetric(label: 'Score', value: '$score', alignEnd: false),
-                _HudMetric(
-                  label: 'Lv $difficulty',
-                  value: '${playTime.toStringAsFixed(1)}s',
-                  alignEnd: true,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _HudMetric(
+                      label: 'Score',
+                      value: '$score',
+                      alignEnd: false,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 48),
+                      child: _HudMetric(
+                        label: 'Lv $difficulty',
+                        value: '${playTime.toStringAsFixed(1)}s',
+                        alignEnd: true,
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 8),
+                if (combo > 0)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE56B1F),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      'Combo x$combo',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
               ],
             ),
-
-            const SizedBox(height: 8),
-
-            if (combo > 0)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE56B1F),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  'Combo x$combo',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-
-            const Spacer(),
-
-            Align(
-              alignment: Alignment.topRight,
+            Positioned(
+              top: 0,
+              right: 0,
               child: IconButton(
                 tooltip: 'Pause',
                 icon: const Icon(

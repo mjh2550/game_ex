@@ -51,6 +51,7 @@ class DdongDodgeGame extends FlameGame
   double _stateUpdateTimer = 0;
   bool _touchLeftPressed = false;
   bool _touchRightPressed = false;
+  bool _mobileControlsEnabled = false;
 
   @override
   Color backgroundColor() => const Color(0xFFEAF7FF);
@@ -59,6 +60,8 @@ class DdongDodgeGame extends FlameGame
   bool get debugMode => false;
 
   bool get hasPlayer => _isLoaded && player.isMounted;
+
+  double get playerBottomMargin => _mobileControlsEnabled ? 112.0 : 76.0;
 
   @override
   Future<void> onLoad() async {
@@ -178,6 +181,17 @@ class DdongDodgeGame extends FlameGame
       _touchLeftPressed = isPressed;
     } else if (direction == 'right') {
       _touchRightPressed = isPressed;
+    }
+  }
+
+  void setMobileControlsEnabled(bool enabled) {
+    if (_mobileControlsEnabled == enabled) {
+      return;
+    }
+
+    _mobileControlsEnabled = enabled;
+    if (hasPlayer && !isGameOver) {
+      player.reset();
     }
   }
 
