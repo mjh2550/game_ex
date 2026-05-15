@@ -1,72 +1,161 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:game_ex/shared/game_info.dart';
 
 class GameCard extends StatelessWidget {
   final GameInfo game;
   final VoidCallback onTap;
 
-  const GameCard({
-    required this.game,
-    required this.onTap,
-  });
+  const GameCard({super.key, required this.game, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    final locked = !game.isUnlocked;
+
+    return Material(
+      color: Colors.white,
+      elevation: 0,
+      borderRadius: BorderRadius.circular(8),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: game.isUnlocked ? onTap : null,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // 게임 썸네일
-            Expanded(
-              flex: 3,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  if (game.thumbnailUrl != null)
-                  game.thumbnailUrl != null ? Image.asset(
-                    game.thumbnailUrl!,
-                    fit: BoxFit.cover,
-                  ) : Container(color: Colors.grey, child: Text(game.name),),
-                  if (!game.isUnlocked)
-                    Container(
-                      color: Colors.black54,
-                      child: const Icon(
-                        Icons.lock,
-                        size: 48,
-                        color: Colors.white,
+        onTap: locked ? null : onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            border: Border.all(color: const Color(0xFFE1E7EF)),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: ColoredBox(
+                  color: locked
+                      ? const Color(0xFFE9EDF3)
+                      : const Color(0xFFEAF7FF),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      if (game.thumbnailUrl != null)
+                        Image.asset(
+                          game.thumbnailUrl!,
+                          width: 82,
+                          height: 82,
+                          filterQuality: FilterQuality.none,
+                        )
+                      else
+                        const Icon(
+                          Icons.videogame_asset_outlined,
+                          size: 62,
+                          color: Color(0xFF60707F),
+                        ),
+                      Positioned(
+                        top: 10,
+                        right: 10,
+                        child: _StatusBadge(locked: locked),
                       ),
-                    ),
-                ],
+                    ],
+                  ),
+                ),
               ),
-            ),
-            
-            // 게임 정보
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       game.name,
-                      style: Theme.of(context).textTheme.titleMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    if (game.bestScore != 0)
-                      Text(
-                        'Best: ${game.bestScore}',
-                        style: Theme.of(context).textTheme.bodySmall,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFF18212F),
                       ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      game.description,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        height: 1.28,
+                        color: Color(0xFF60707F),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.keyboard_arrow_left_rounded,
+                          size: 18,
+                          color: Color(0xFF2BB673),
+                        ),
+                        const Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          size: 18,
+                          color: Color(0xFF2BB673),
+                        ),
+                        const SizedBox(width: 4),
+                        const Text(
+                          '방향키',
+                          style: TextStyle(
+                            color: Color(0xFF2BB673),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const Spacer(),
+                        if (game.bestScore != 0)
+                          Text(
+                            'Best ${game.bestScore}',
+                            style: const TextStyle(
+                              color: Color(0xFFE56B1F),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                      ],
+                    ),
                   ],
                 ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StatusBadge extends StatelessWidget {
+  const _StatusBadge({required this.locked});
+
+  final bool locked;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: locked ? const Color(0xFF60707F) : const Color(0xFF2BB673),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              locked ? Icons.lock_outline : Icons.check_circle_outline,
+              size: 13,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 4),
+            Text(
+              locked ? '잠김' : '오픈',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
               ),
             ),
           ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,6 +8,7 @@ class GameResultScreen extends ConsumerWidget {
   final Map<String, dynamic> stats;
 
   const GameResultScreen({
+    super.key,
     required this.gameId,
     required this.score,
     required this.stats,
@@ -16,42 +16,245 @@ class GameResultScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 순위 정보 가져오기
-    // final rank = ref.watch(userRankProvider(gameId));
+    final nearMiss = stats['near_miss_count'] ?? 0;
+    final maxCombo = stats['max_combo'] ?? 0;
+    final difficulty = stats['difficulty_reached'] ?? 1;
 
     return Scaffold(
-      body: Center(
+      backgroundColor: const Color(0xFFF5F7FB),
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: const Color(0xFFE1E7EF)),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x1F18212F),
+                      blurRadius: 22,
+                      offset: Offset(0, 12),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        height: 118,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFD166),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const SizedBox(width: 118, height: 118),
+                            ),
+                            Image.asset(
+                              'assets/images/openmoji_poop.png',
+                              width: 70,
+                              height: 70,
+                              filterQuality: FilterQuality.none,
+                            ),
+                            Positioned(
+                              right: 148,
+                              bottom: 12,
+                              child: Image.asset(
+                                'assets/images/openmoji_player.png',
+                                width: 48,
+                                height: 48,
+                                filterQuality: FilterQuality.none,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 22),
+                      const Text(
+                        '게임 오버',
+                        style: TextStyle(
+                          color: Color(0xFF18212F),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      const Text(
+                        '다음 판은 조금 더 오래 버틸 수 있어요.',
+                        style: TextStyle(
+                          color: Color(0xFF60707F),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF18212F),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 18,
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'SCORE',
+                                style: TextStyle(
+                                  color: Color(0xFFFFD166),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              Text(
+                                '$score',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 56,
+                                  fontWeight: FontWeight.w900,
+                                  height: 1.05,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _ResultStat(
+                              label: 'Near Miss',
+                              value: '$nearMiss',
+                              icon: Icons.flash_on_rounded,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: _ResultStat(
+                              label: 'Max Combo',
+                              value: 'x$maxCombo',
+                              icon: Icons.local_fire_department_rounded,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: _ResultStat(
+                              label: 'Level',
+                              value: '$difficulty',
+                              icon: Icons.speed_rounded,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton.icon(
+                              onPressed: () => context.go('/game/$gameId'),
+                              icon: const Icon(Icons.replay_rounded),
+                              label: const Text('다시하기'),
+                              style: FilledButton.styleFrom(
+                                backgroundColor: const Color(0xFF2BB673),
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 14,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: () => context.go('/home'),
+                              icon: const Icon(Icons.home_rounded),
+                              label: const Text('허브로'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: const Color(0xFF18212F),
+                                side: const BorderSide(
+                                  color: Color(0xFFCAD4E1),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 14,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ResultStat extends StatelessWidget {
+  const _ResultStat({
+    required this.label,
+    required this.value,
+    required this.icon,
+  });
+
+  final String label;
+  final String value;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFFF5F7FB),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFE1E7EF)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Game Over', style: TextStyle(fontSize: 48)),
-            SizedBox(height: 20),
-            Text('Score: $score', style: TextStyle(fontSize: 32)),
-            SizedBox(height: 20),
-            // Text('Your Rank: #${rank.rank}'),
-            SizedBox(height: 40),
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                  icon: Icon(Icons.replay),
-                  label: Text('Play Again'),
-                  onPressed: () {
-                    // 🔄 같은 게임 다시 플레이
-                    context.go('/game/$gameId');
-                  },
-                ),
-                SizedBox(width: 20),
-                ElevatedButton.icon(
-                  icon: Icon(Icons.home),
-                  label: Text('Home'),
-                  onPressed: () {
-                    // 🏠 홈으로 돌아가기
-                    context.go('/home');
-                  },
-                ),
-              ],
+            Icon(icon, color: const Color(0xFFE56B1F), size: 20),
+            const SizedBox(height: 6),
+            Text(
+              value,
+              maxLines: 1,
+              style: const TextStyle(
+                color: Color(0xFF18212F),
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Color(0xFF60707F),
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ],
         ),

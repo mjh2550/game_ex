@@ -6,7 +6,9 @@ part 'game_state.g.dart';
 
 @freezed
 abstract class GameState with _$GameState {
-  const factory GameState({required final List<GameInfo> gameList}) = _GameState;
+  const factory GameState({required final List<GameInfo> gameList}) =
+      _GameState;
 
-  factory GameState.fromJson(Map<String, dynamic> json) => _$GameStateFromJson(json);
+  factory GameState.fromJson(Map<String, dynamic> json) =>
+      _$GameStateFromJson(json);
 }

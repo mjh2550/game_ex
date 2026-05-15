@@ -9,7 +9,14 @@ import 'package:game_ex/shared/game_info.dart';
 class GameManager {
   final List<FlameGame> _games = [
     DdongDodgeGame(
-      gameInfo: GameInfo(id: 'g001', name: 'ddong_dodge', description: 'dodge ddong game', routeName: '/ddong_dodge', isUnlocked: true),
+      gameInfo: GameInfo(
+        id: 'g001',
+        name: '똥 피하기',
+        description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
+        routeName: '/ddong_dodge',
+        isUnlocked: true,
+        thumbnailUrl: 'assets/images/openmoji_poop.png',
+      ),
       onGameOver: (GameResult result) {
         // 게임 오버 처리 로직
       },
@@ -17,13 +24,14 @@ class GameManager {
         // 일시정지 처리 로직
       },
       userId: 'test_user',
-      
     ),
 
     // 다른 게임 추가 가능
   ];
 
-  List<GameInfo> get games => List.unmodifiable(_games.map((game) => game.gameInfo).whereType<GameInfo>());
+  List<GameInfo> get games => List.unmodifiable(
+    _games.map((game) => game.gameInfo).whereType<GameInfo>(),
+  );
 
   FlameGame? getGameById(String id) {
     return _games.firstWhere((game) => game.gameInfo?.id == id);
@@ -40,10 +48,11 @@ class GameManager {
         return DdongDodgeGame(
           gameInfo: GameInfo(
             id: 'g001',
-            name: 'ddong_dodge',
-            description: 'dodge ddong game',
+            name: '똥 피하기',
+            description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
             routeName: '/ddong_dodge',
             isUnlocked: true,
+            thumbnailUrl: 'assets/images/openmoji_poop.png',
           ),
           onGameOver: onGameOver,
           onPause: onPause,

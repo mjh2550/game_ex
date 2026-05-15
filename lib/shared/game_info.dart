@@ -22,7 +22,8 @@ class GameInfo {
     this.bestScore = 0,
   });
 
-  factory GameInfo.fromJson(Map<String, dynamic> json) => _$GameInfoFromJson(json);
+  factory GameInfo.fromJson(Map<String, dynamic> json) =>
+      _$GameInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$GameInfoToJson(this);
 
@@ -37,5 +38,4 @@ class GameInfo {
       bestScore: 0,
     );
   }
-
 }

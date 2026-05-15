@@ -3,52 +3,59 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:game_ex/features/games/ddong_dodge/data/difficulty_system.dart';
 import 'package:game_ex/features/games/ddong_dodge/domain/ddong.dart';
+import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
 
-class DdongSpawner extends Component with HasGameReference {
-  
+class DdongSpawner extends Component with HasGameReference<DdongDodgeGame> {
+  final Random _random = Random();
+
   double spawnTimer = 0;
-  double spawnInterval = 1.5; // 초기 1.5초마다 생성
-  
+  double spawnInterval = 1.0;
+
   final DifficultySystem difficultySystem;
-  
+
   DdongSpawner(this.difficultySystem);
-  
+
   @override
   void update(double dt) {
     super.update(dt);
-    
+
+    if (game.isGameOver) {
+      return;
+    }
+
     spawnTimer += dt;
-    
+
     if (spawnTimer >= spawnInterval) {
       spawnDdong();
       spawnTimer = 0;
-      
-      // 난이도에 따라 간격 조정
       spawnInterval = difficultySystem.getDdongSpawnInterval();
     }
   }
-  
+
   void spawnDdong() {
     final count = difficultySystem.getDdongsPerSpawn();
-    final random = Random();
-    final speed = difficultySystem.getDdongSpeed();
-    
-    // 모든 경우에 완전 랜덤으로 생성
+    final baseSpeed = difficultySystem.getDdongSpeed();
+    final width = game.size.x;
+    final laneWidth = width / (count + 1);
+
     for (int i = 0; i < count; i++) {
-      // x: 0 ~ 게임 화면 너비 (완전 랜덤)
-      final x = random.nextDouble() * game.size.x;
-      
-      // y: -20 ~ -100 사이 (상단에서 약간 떨어진 곳)
-      final y = -20 - random.nextDouble() * 80;
-      
-      game.add(Ddong(position: Vector2(x, y), speed: speed));
+      final laneCenter = laneWidth * (i + 1);
+      final jitter = (_random.nextDouble() - 0.5) * laneWidth * 0.72;
+      final radius = 17 + _random.nextDouble() * 8;
+      final x = (laneCenter + jitter).clamp(radius, width - radius).toDouble();
+      final y = -radius - (_random.nextDouble() * 90) - (i * 16);
+      final speed = baseSpeed + _random.nextDouble() * 80;
+
+      game.add(Ddong(position: Vector2(x, y), speed: speed, radius: radius));
     }
   }
-  
+
   void spawnMultipleDdongs(int count) {
     for (int i = 0; i < count; i++) {
       Future.delayed(Duration(milliseconds: i * 100), () {
-        spawnDdong();
+        if (!isRemoved && !game.isGameOver) {
+          spawnDdong();
+        }
       });
     }
   }

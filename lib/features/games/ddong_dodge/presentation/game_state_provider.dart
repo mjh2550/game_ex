@@ -1,5 +1,4 @@
 import 'package:flame/game.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
 
@@ -26,13 +25,13 @@ class GameState {
   });
 
   const GameState.initial()
-      : score = 0,
-        playTime = 0.0,
-        combo = 0,
-        nearMissCount = 0,
-        difficultyLevel = 1,
-        isPaused = false,
-        isGameOver = false;
+    : score = 0,
+      playTime = 0.0,
+      combo = 0,
+      nearMissCount = 0,
+      difficultyLevel = 1,
+      isPaused = false,
+      isGameOver = false;
 
   GameState copyWith({
     int? score,
