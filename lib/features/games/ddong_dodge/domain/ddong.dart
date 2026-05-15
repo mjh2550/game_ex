@@ -19,18 +19,6 @@ class Ddong extends SpriteComponent with HasGameReference<DdongDodgeGame> {
   Future<void> onLoad() async {
     size = Vector2.all(radius * 2);
     sprite = await Sprite.load('openmoji_poop.png');
-    add(
-      CircleComponent(
-        position: Vector2(size.x / 2, size.y / 2),
-        radius: collisionRadius,
-        anchor: Anchor.center,
-        priority: 1,
-        paint: Paint()
-          ..color = const Color(0xCCE53935)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2,
-      ),
-    );
   }
 
   @override

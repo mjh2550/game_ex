@@ -24,17 +24,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   late final FlameGame game;
   bool _isGameInitialized = false;
 
-  bool get _usesMobileControls {
-    if (kIsWeb) {
-      return false;
-    }
-
-    return switch (defaultTargetPlatform) {
-      TargetPlatform.android || TargetPlatform.iOS => true,
-      _ => false,
-    };
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -156,6 +145,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             // 사용 가능한 공간
             final maxWidth = constraints.maxWidth;
             final maxHeight = constraints.maxHeight;
+            final usesMobileControls = _usesMobileControls(
+              context,
+              constraints,
+            );
 
             // 게임 크기 결정 (500x1000 이하면 종횡비 유지, 그 이상은 고정)
             late double gameWidth;
@@ -199,7 +192,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     },
                     initialActiveOverlays: const ['hud'],
                   ),
-                  if (_usesMobileControls && game is DdongDodgeGame)
+                  if (usesMobileControls && game is DdongDodgeGame)
                     _MobileDirectionControls(game: game as DdongDodgeGame),
                 ],
               ),
@@ -215,6 +208,28 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     // 게임 리소스 정리
     game.onRemove();
     super.dispose();
+  }
+
+  bool _usesMobileControls(BuildContext context, BoxConstraints constraints) {
+    final platformIsMobile = switch (defaultTargetPlatform) {
+      TargetPlatform.android || TargetPlatform.iOS => true,
+      _ => false,
+    };
+
+    if (platformIsMobile) {
+      return true;
+    }
+
+    if (!kIsWeb) {
+      return false;
+    }
+
+    final media = MediaQuery.of(context);
+    final isCompactPortrait =
+        constraints.maxWidth <= 700 &&
+        media.orientation == Orientation.portrait;
+
+    return isCompactPortrait;
   }
 }
 

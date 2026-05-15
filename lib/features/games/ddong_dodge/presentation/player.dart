@@ -21,22 +21,6 @@ class Player extends SpriteComponent with HasGameReference<DdongDodgeGame> {
   Future<void> onLoad() async {
     sprite = await Sprite.load('openmoji_player.png');
     reset();
-
-    final hitboxSize = Vector2(hitboxWidth, hitboxHeight);
-    final hitboxPosition = Vector2(size.x / 2, size.y / 2 + hitboxOffsetY);
-
-    add(
-      RectangleComponent(
-        position: hitboxPosition,
-        size: hitboxSize,
-        anchor: Anchor.center,
-        priority: 1,
-        paint: Paint()
-          ..color = const Color(0xCC1A73E8)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2,
-      ),
-    );
   }
 
   void reset() {
