@@ -4,8 +4,14 @@ import 'package:game_ex/shared/game_info.dart';
 class GameCard extends StatelessWidget {
   final GameInfo game;
   final VoidCallback onTap;
+  final int bestScore;
 
-  const GameCard({super.key, required this.game, required this.onTap});
+  const GameCard({
+    super.key,
+    required this.game,
+    required this.onTap,
+    this.bestScore = 0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +111,9 @@ class GameCard extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        if (game.bestScore != 0)
+                        if (bestScore != 0)
                           Text(
-                            'Best ${game.bestScore}',
+                            'Best $bestScore',
                             style: const TextStyle(
                               color: Color(0xFFE56B1F),
                               fontSize: 12,

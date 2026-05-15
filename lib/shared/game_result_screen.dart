@@ -6,12 +6,18 @@ class GameResultScreen extends ConsumerWidget {
   final String gameId;
   final int score;
   final Map<String, dynamic> stats;
+  final bool isNewBest;
+  final int bestScore;
+  final int rank;
 
   const GameResultScreen({
     super.key,
     required this.gameId,
     required this.score,
     required this.stats,
+    required this.isNewBest,
+    required this.bestScore,
+    required this.rank,
   });
 
   @override
@@ -87,12 +93,14 @@ class GameResultScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 6),
-                      const Text(
-                        '다음 판은 조금 더 오래 버틸 수 있어요.',
+                      Text(
+                        isNewBest ? '새 최고 기록입니다!' : '다음 판은 조금 더 오래 버틸 수 있어요.',
                         style: TextStyle(
-                          color: Color(0xFF60707F),
+                          color: isNewBest
+                              ? const Color(0xFFE56B1F)
+                              : const Color(0xFF60707F),
                           fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -123,6 +131,15 @@ class GameResultScreen extends ConsumerWidget {
                                   fontSize: 56,
                                   fontWeight: FontWeight.w900,
                                   height: 1.05,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                'BEST $bestScore',
+                                style: const TextStyle(
+                                  color: Color(0xFFD4DEE8),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w800,
                                 ),
                               ),
                             ],
@@ -157,6 +174,41 @@ class GameResultScreen extends ConsumerWidget {
                           ),
                         ],
                       ),
+                      if (rank > 0) ...[
+                        const SizedBox(height: 12),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEAF7FF),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: const Color(0xFFB9E2F4)),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 10,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  Icons.emoji_events_rounded,
+                                  color: Color(0xFFE56B1F),
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '로컬 순위 #$rank',
+                                  style: const TextStyle(
+                                    color: Color(0xFF18212F),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                       const SizedBox(height: 24),
                       Row(
                         children: [

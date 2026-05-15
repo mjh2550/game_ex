@@ -36,6 +36,9 @@ final routerProvider = Provider<GoRouter>((ref) {
             gameId: extra['gameId'] ?? 'unknown',
             score: extra['score'] ?? 0,
             stats: extra['stats'] ?? {},
+            isNewBest: extra['isNewBest'] ?? false,
+            bestScore: extra['bestScore'] ?? extra['score'] ?? 0,
+            rank: extra['rank'] ?? 0,
           );
         },
       ),

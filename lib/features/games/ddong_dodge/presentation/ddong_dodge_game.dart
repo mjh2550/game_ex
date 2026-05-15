@@ -49,6 +49,8 @@ class DdongDodgeGame extends FlameGame
   bool isGameOver = false;
   bool _isLoaded = false;
   double _stateUpdateTimer = 0;
+  bool _touchLeftPressed = false;
+  bool _touchRightPressed = false;
 
   @override
   Color backgroundColor() => const Color(0xFFEAF7FF);
@@ -90,12 +92,16 @@ class DdongDodgeGame extends FlameGame
         _emitState();
       }
 
-      final hasLeft = HardwareKeyboard.instance.logicalKeysPressed.contains(
-        LogicalKeyboardKey.arrowLeft,
-      );
-      final hasRight = HardwareKeyboard.instance.logicalKeysPressed.contains(
-        LogicalKeyboardKey.arrowRight,
-      );
+      final hasLeft =
+          HardwareKeyboard.instance.logicalKeysPressed.contains(
+            LogicalKeyboardKey.arrowLeft,
+          ) ||
+          _touchLeftPressed;
+      final hasRight =
+          HardwareKeyboard.instance.logicalKeysPressed.contains(
+            LogicalKeyboardKey.arrowRight,
+          ) ||
+          _touchRightPressed;
       if (hasLeft && !hasRight) {
         player.moveLeft();
       } else if (hasRight && !hasLeft) {
@@ -119,6 +125,8 @@ class DdongDodgeGame extends FlameGame
     if (isGameOver) return;
 
     isGameOver = true;
+    _touchLeftPressed = false;
+    _touchRightPressed = false;
     player.stopMoving();
     _emitState();
     pauseEngine();
@@ -153,6 +161,8 @@ class DdongDodgeGame extends FlameGame
     }
 
     player.reset();
+    _touchLeftPressed = false;
+    _touchRightPressed = false;
     _stateUpdateTimer = 0;
     _emitState();
     resumeEngine();
@@ -161,6 +171,14 @@ class DdongDodgeGame extends FlameGame
   void registerNearMiss() {
     scoreSystem.addNearMissBonus();
     _emitState();
+  }
+
+  void setTouchInput(String direction, bool isPressed) {
+    if (direction == 'left') {
+      _touchLeftPressed = isPressed;
+    } else if (direction == 'right') {
+      _touchRightPressed = isPressed;
+    }
   }
 
   void _emitState() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/game_card.dart';
 import 'package:game_ex/shared/game_provider.dart';
 import 'package:go_router/go_router.dart';
@@ -84,8 +85,11 @@ class HomeScreen extends ConsumerWidget {
                 itemCount: games.length,
                 itemBuilder: (context, index) {
                   final game = games[index];
+                  final bestScore = ref.watch(bestScoreProvider(game.id));
+
                   return GameCard(
                     game: game,
+                    bestScore: bestScore.value ?? 0,
                     onTap: () => context.push('/game/${game.id}'),
                   );
                 },
