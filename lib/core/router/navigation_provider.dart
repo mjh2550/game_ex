@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/core/router/navigation_state.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/leader_board.dart';
+import 'package:game_ex/features/games/group_quiz/presentation/group_quiz_screen.dart';
 import 'package:game_ex/features/games/kiosk_panic/presentation/kiosk_panic_screen.dart';
 import 'package:game_ex/features/games/rocket_delivery/presentation/rocket_delivery_screen.dart';
 import 'package:game_ex/features/home/presentation/home_screen.dart';
@@ -26,6 +27,9 @@ final routerProvider = Provider<GoRouter>((ref) {
           }
           if (gameId == RocketDeliveryScreen.gameId) {
             return const RocketDeliveryScreen();
+          }
+          if (gameId == GroupQuizScreen.gameId) {
+            return const GroupQuizScreen();
           }
 
           return GameScreen(gameId: gameId);

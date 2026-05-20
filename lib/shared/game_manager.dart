@@ -29,6 +29,13 @@ class GameManager {
       routeName: '/rocket_delivery',
       isUnlocked: true,
     ),
+    GameInfo(
+      id: 'g004',
+      name: '눈치 퀴즈 대작전',
+      description: '한 화면을 같이 보며 제한 시간 안에 정답을 외쳐보세요.',
+      routeName: '/group_quiz',
+      isUnlocked: true,
+    ),
   ];
 
   List<GameInfo> get games => List.unmodifiable(_gameInfos);

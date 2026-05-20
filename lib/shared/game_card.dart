@@ -18,6 +18,7 @@ class GameCard extends StatelessWidget {
     final locked = !game.isUnlocked;
     final isKiosk = game.id == 'g002';
     final isRocket = game.id == 'g003';
+    final isQuiz = game.id == 'g004';
 
     return Material(
       color: Colors.white,
@@ -49,9 +50,11 @@ class GameCard extends StatelessWidget {
                           height: 82,
                           filterQuality: FilterQuality.none,
                         )
-                      else if (isKiosk || isRocket)
+                      else if (isKiosk || isRocket || isQuiz)
                         Icon(
-                          isRocket
+                          isQuiz
+                              ? Icons.groups_2_rounded
+                              : isRocket
                               ? Icons.local_shipping_rounded
                               : Icons.touch_app_rounded,
                           size: 70,
@@ -104,13 +107,15 @@ class GameCard extends StatelessWidget {
                         Icon(
                           isKiosk
                               ? Icons.touch_app_rounded
+                              : isQuiz
+                              ? Icons.groups_2_rounded
                               : isRocket
                               ? Icons.keyboard_double_arrow_right_rounded
                               : Icons.keyboard_arrow_left_rounded,
                           size: 18,
                           color: const Color(0xFF2BB673),
                         ),
-                        if (!isKiosk)
+                        if (!isKiosk && !isQuiz)
                           const Icon(
                             Icons.keyboard_arrow_right_rounded,
                             size: 18,
@@ -118,7 +123,11 @@ class GameCard extends StatelessWidget {
                           ),
                         const SizedBox(width: 4),
                         Text(
-                          isKiosk ? '터치' : '방향키/터치',
+                          isKiosk
+                              ? '터치'
+                              : isQuiz
+                              ? '진행자'
+                              : '방향키/터치',
                           style: TextStyle(
                             color: const Color(0xFF2BB673),
                             fontSize: 12,

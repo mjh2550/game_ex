@@ -27,10 +27,12 @@ class GameResultScreen extends ConsumerWidget {
     final nearMiss = stats['near_miss_count'] ?? 0;
     final ordersCompleted = stats['orders_completed'] ?? nearMiss;
     final packagesSorted = stats['packages_sorted'] ?? nearMiss;
+    final quizRounds = stats['quiz_rounds'] ?? nearMiss;
     final maxCombo = stats['max_combo'] ?? 0;
     final difficulty = stats['difficulty_reached'] ?? 1;
     final isKiosk = gameId == 'g002';
     final isRocket = gameId == 'g003';
+    final isQuiz = gameId == 'g004';
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
@@ -172,14 +174,20 @@ class GameResultScreen extends ConsumerWidget {
                                       ? 'Orders'
                                       : isRocket
                                       ? 'Packages'
+                                      : isQuiz
+                                      ? 'Rounds'
                                       : 'Near Miss',
                                   value: isRocket
                                       ? '$packagesSorted'
+                                      : isQuiz
+                                      ? '$quizRounds'
                                       : '$ordersCompleted',
                                   icon: isKiosk
                                       ? Icons.receipt_long_rounded
                                       : isRocket
                                       ? Icons.inventory_2_rounded
+                                      : isQuiz
+                                      ? Icons.quiz_rounded
                                       : Icons.flash_on_rounded,
                                 ),
                               ),
@@ -389,6 +397,21 @@ class _GameResultVisual extends StatelessWidget {
             bottom: compact ? 8 : 12,
             child: Icon(
               Icons.inventory_2_rounded,
+              size: secondarySize,
+              color: const Color(0xFF2BB673),
+            ),
+          ),
+        ] else if (gameId == 'g004') ...[
+          Icon(
+            Icons.groups_2_rounded,
+            size: primarySize,
+            color: const Color(0xFF18212F),
+          ),
+          Positioned(
+            right: compact ? 104 : 148,
+            bottom: compact ? 8 : 12,
+            child: Icon(
+              Icons.quiz_rounded,
               size: secondarySize,
               color: const Color(0xFF2BB673),
             ),
