@@ -26,9 +26,11 @@ class GameResultScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final nearMiss = stats['near_miss_count'] ?? 0;
     final ordersCompleted = stats['orders_completed'] ?? nearMiss;
+    final packagesSorted = stats['packages_sorted'] ?? nearMiss;
     final maxCombo = stats['max_combo'] ?? 0;
     final difficulty = stats['difficulty_reached'] ?? 1;
     final isKiosk = gameId == 'g002';
+    final isRocket = gameId == 'g003';
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
@@ -166,10 +168,18 @@ class GameResultScreen extends ConsumerWidget {
                             children: [
                               Expanded(
                                 child: _ResultStat(
-                                  label: isKiosk ? 'Orders' : 'Near Miss',
-                                  value: '$ordersCompleted',
+                                  label: isKiosk
+                                      ? 'Orders'
+                                      : isRocket
+                                      ? 'Packages'
+                                      : 'Near Miss',
+                                  value: isRocket
+                                      ? '$packagesSorted'
+                                      : '$ordersCompleted',
                                   icon: isKiosk
                                       ? Icons.receipt_long_rounded
+                                      : isRocket
+                                      ? Icons.inventory_2_rounded
                                       : Icons.flash_on_rounded,
                                 ),
                               ),
@@ -364,6 +374,21 @@ class _GameResultVisual extends StatelessWidget {
             bottom: compact ? 8 : 12,
             child: Icon(
               Icons.receipt_long_rounded,
+              size: secondarySize,
+              color: const Color(0xFF2BB673),
+            ),
+          ),
+        ] else if (gameId == 'g003') ...[
+          Icon(
+            Icons.local_shipping_rounded,
+            size: primarySize,
+            color: const Color(0xFF18212F),
+          ),
+          Positioned(
+            right: compact ? 104 : 148,
+            bottom: compact ? 8 : 12,
+            child: Icon(
+              Icons.inventory_2_rounded,
               size: secondarySize,
               color: const Color(0xFF2BB673),
             ),

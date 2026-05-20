@@ -22,6 +22,13 @@ class GameManager {
       routeName: '/kiosk_panic',
       isUnlocked: true,
     ),
+    GameInfo(
+      id: 'g003',
+      name: '쿠팡 로켓배송',
+      description: '컨베이어의 택배를 목적지 구역으로 빠르게 분류하세요.',
+      routeName: '/rocket_delivery',
+      isUnlocked: true,
+    ),
   ];
 
   List<GameInfo> get games => List.unmodifiable(_gameInfos);

@@ -147,6 +147,7 @@ class _FeaturedGamePanel extends StatelessWidget {
           builder: (context, constraints) {
             final compact = constraints.maxWidth < 420;
             final isKiosk = game.id == 'g002';
+            final isRocket = game.id == 'g003';
 
             final visual = SizedBox(
               width: compact ? 96 : 132,
@@ -172,6 +173,21 @@ class _FeaturedGamePanel extends StatelessWidget {
                       bottom: compact ? 10 : 16,
                       child: Icon(
                         Icons.receipt_long_rounded,
+                        size: compact ? 40 : 52,
+                        color: const Color(0xFF2BB673),
+                      ),
+                    ),
+                  ] else if (isRocket) ...[
+                    Icon(
+                      Icons.local_shipping_rounded,
+                      size: compact ? 62 : 84,
+                      color: const Color(0xFF18212F),
+                    ),
+                    Positioned(
+                      right: compact ? 10 : 16,
+                      bottom: compact ? 10 : 16,
+                      child: Icon(
+                        Icons.inventory_2_rounded,
                         size: compact ? 40 : 52,
                         color: const Color(0xFF2BB673),
                       ),
