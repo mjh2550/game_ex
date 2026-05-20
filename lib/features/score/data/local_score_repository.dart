@@ -63,7 +63,10 @@ class LocalScoreRepository {
 
     records.add(record);
     records.sort(_sortForLeaderboard);
-    final rank = records.indexWhere((item) => item.id == record.id) + 1;
+    final gameRecords =
+        records.where((item) => item.gameId == record.gameId).toList()
+          ..sort(_sortForLeaderboard);
+    final rank = gameRecords.indexWhere((item) => item.id == record.id) + 1;
 
     final cappedRecords = records.take(_maxStoredRecords).toList();
     await _prefs.setString(
