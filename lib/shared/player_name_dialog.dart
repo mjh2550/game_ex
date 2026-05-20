@@ -66,7 +66,7 @@ class _PlayerNameDialogState extends State<_PlayerNameDialog> {
             maxLength: 10,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
-              hintText: hasRecentName ? '새 닉네임 입력' : '예: 키오스크고수',
+              hintText: hasRecentName ? '새 닉네임 입력' : '예: 홍길동',
               counterText: '',
               border: const OutlineInputBorder(),
             ),
