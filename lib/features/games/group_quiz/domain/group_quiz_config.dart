@@ -9,6 +9,8 @@ class GroupQuizConfig {
   final int roundLimit;
   final int secondsPerRound;
 
+  bool get hasTimeLimit => secondsPerRound > 0;
+
   GroupQuizConfig copyWith({
     int? teamCount,
     int? roundLimit,

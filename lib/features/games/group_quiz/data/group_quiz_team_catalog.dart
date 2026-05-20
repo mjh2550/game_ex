@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_ex/features/games/group_quiz/domain/quiz_team.dart';
 
 const groupQuizTeamColors = [
+  Color(0xFF18212F),
   Color(0xFF2BB673),
   Color(0xFFE56B1F),
   Color(0xFF54C6EB),
@@ -13,7 +14,7 @@ List<QuizTeam> buildGroupQuizTeams(int count) {
     for (var index = 0; index < count; index++)
       QuizTeam(
         id: index,
-        name: '${String.fromCharCode(65 + index)}팀',
+        name: count == 1 ? '도전팀' : '${String.fromCharCode(65 + index)}팀',
         color: groupQuizTeamColors[index],
       ),
   ];

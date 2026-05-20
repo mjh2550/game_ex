@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:game_ex/features/games/group_quiz/data/group_quiz_questions.dart';
+import 'package:game_ex/features/games/group_quiz/data/group_quiz_question_repository.dart';
 import 'package:game_ex/features/games/group_quiz/data/group_quiz_team_catalog.dart';
 import 'package:game_ex/features/games/group_quiz/domain/group_quiz_config.dart';
 import 'package:game_ex/features/games/group_quiz/domain/group_quiz_session.dart';
+import 'package:game_ex/features/games/group_quiz/domain/quiz_question.dart';
 import 'package:game_ex/features/games/group_quiz/domain/quiz_team.dart';
 import 'package:game_ex/features/games/group_quiz/presentation/group_quiz_widgets.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
@@ -23,10 +24,12 @@ class GroupQuizScreen extends ConsumerStatefulWidget {
 
 class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   Timer? _timer;
+  final _questionRepository = GroupQuizQuestionRepository();
 
   GroupQuizConfig _config = const GroupQuizConfig();
   late GroupQuizSession _session;
   bool _isSaving = false;
+  bool _isLoadingQuestions = false;
 
   @override
   void initState() {
@@ -43,22 +46,63 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     super.dispose();
   }
 
-  void _startGame() {
+  Future<void> _startGame() async {
+    if (_isLoadingQuestions) {
+      return;
+    }
+
     setState(() {
+      _isLoadingQuestions = true;
+    });
+
+    final List<QuizQuestion> questionDeck;
+    try {
+      questionDeck = await _questionRepository.buildDeck(
+        roundLimit: _config.roundLimit,
+      );
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _isLoadingQuestions = false;
+      });
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('문제팩을 불러오지 못했어요.')));
+      return;
+    }
+
+    if (!mounted) {
+      return;
+    }
+
+    if (questionDeck.isEmpty) {
+      setState(() {
+        _isLoadingQuestions = false;
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoadingQuestions = false;
       _session = _session.start(
-        questionDeck: buildGroupQuizQuestionDeck(
-          roundLimit: _config.roundLimit,
-        ),
+        questionDeck: questionDeck,
         freshTeams: buildGroupQuizTeams(_config.teamCount),
       );
     });
-    _startTimer();
+    if (_config.hasTimeLimit) {
+      _startTimer();
+    }
   }
 
   void _startTimer() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (_session.answerVisible || _isSaving) {
+      if (!_session.config.hasTimeLimit ||
+          _session.answerVisible ||
+          _isSaving) {
         return;
       }
 
@@ -102,7 +146,9 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       return;
     }
 
-    _startTimer();
+    if (next.session.config.hasTimeLimit) {
+      _startTimer();
+    }
   }
 
   void _updateConfig(GroupQuizConfig config) {
@@ -191,6 +237,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       config: _config,
       onConfigChanged: _updateConfig,
       onStart: _startGame,
+      starting: _isLoadingQuestions,
     );
   }
 

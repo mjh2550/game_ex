@@ -45,7 +45,8 @@ class GroupQuizSession {
 
   bool get isLastRound => roundIndex >= config.roundLimit - 1;
 
-  bool get isTimerDanger => remainingSeconds <= 3 && !answerVisible;
+  bool get isTimerDanger =>
+      config.hasTimeLimit && remainingSeconds <= 3 && !answerVisible;
 
   QuizTeam get winner {
     final ranked = [...teams]..sort((a, b) => b.score.compareTo(a.score));
@@ -53,7 +54,8 @@ class GroupQuizSession {
   }
 
   double get estimatedPlayTime =>
-      (config.roundLimit * config.secondsPerRound).toDouble();
+      (config.roundLimit * (config.hasTimeLimit ? config.secondsPerRound : 0))
+          .toDouble();
 
   GroupQuizSession start({
     required List<QuizQuestion> questionDeck,
@@ -72,7 +74,7 @@ class GroupQuizSession {
   }
 
   GroupQuizSession tick() {
-    if (answerVisible) {
+    if (answerVisible || !config.hasTimeLimit) {
       return this;
     }
 
@@ -90,7 +92,8 @@ class GroupQuizSession {
   ({GroupQuizSession session, GroupQuizAdvanceResult result}) awardTeam(
     QuizTeam team,
   ) {
-    final earnedScore = 100 + (remainingSeconds * 10) + (team.combo * 20);
+    final timeBonus = config.hasTimeLimit ? remainingSeconds * 10 : 0;
+    final earnedScore = 100 + timeBonus + (team.combo * 20);
     final nextCombo = team.combo + 1;
     final nextTeams = [
       for (final item in teams)

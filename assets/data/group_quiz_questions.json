@@ -1,0 +1,2052 @@
+[
+  {
+    "id": "q001",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㄱㅈ",
+    "answer": "고구려",
+    "hint": "삼국 시대 국가",
+    "difficulty": 1
+  },
+  {
+    "id": "q002",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅂㅈ",
+    "answer": "백제",
+    "hint": "삼국 시대 국가",
+    "difficulty": 1
+  },
+  {
+    "id": "q003",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㄹ",
+    "answer": "신라",
+    "hint": "삼국 시대 국가",
+    "difficulty": 1
+  },
+  {
+    "id": "q004",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅈㅅㅇㅈ",
+    "answer": "조선왕조",
+    "hint": "역사 용어",
+    "difficulty": 1
+  },
+  {
+    "id": "q005",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㅈㄷㅇ",
+    "answer": "세종대왕",
+    "hint": "한글 창제",
+    "difficulty": 1
+  },
+  {
+    "id": "q006",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅎㄱ",
+    "answer": "한글",
+    "hint": "문자",
+    "difficulty": 1
+  },
+  {
+    "id": "q007",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅂㅈ",
+    "answer": "광복절",
+    "hint": "국경일",
+    "difficulty": 1
+  },
+  {
+    "id": "q008",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅌㄱㄱ",
+    "answer": "태극기",
+    "hint": "국기",
+    "difficulty": 1
+  },
+  {
+    "id": "q009",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅁㄱㅎ",
+    "answer": "무궁화",
+    "hint": "나라꽃",
+    "difficulty": 1
+  },
+  {
+    "id": "q010",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅎㅅ",
+    "answer": "한산",
+    "hint": "이순신 해전",
+    "difficulty": 1
+  },
+  {
+    "id": "q011",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅈㄱ",
+    "answer": "지구",
+    "hint": "행성",
+    "difficulty": 1
+  },
+  {
+    "id": "q012",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅌㅇ",
+    "answer": "태양",
+    "hint": "별",
+    "difficulty": 1
+  },
+  {
+    "id": "q013",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅇㅅ",
+    "answer": "위성",
+    "hint": "천문 용어",
+    "difficulty": 1
+  },
+  {
+    "id": "q014",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅁㅅ",
+    "answer": "목성",
+    "hint": "태양계 행성",
+    "difficulty": 1
+  },
+  {
+    "id": "q015",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅎㅅ",
+    "answer": "화성",
+    "hint": "태양계 행성",
+    "difficulty": 1
+  },
+  {
+    "id": "q016",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㅅ",
+    "answer": "수성",
+    "hint": "태양계 행성",
+    "difficulty": 1
+  },
+  {
+    "id": "q017",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅅ",
+    "answer": "금성",
+    "hint": "태양계 행성",
+    "difficulty": 1
+  },
+  {
+    "id": "q018",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅌㅅ",
+    "answer": "토성",
+    "hint": "태양계 행성",
+    "difficulty": 1
+  },
+  {
+    "id": "q019",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅊㅇㅅ",
+    "answer": "천왕성",
+    "hint": "태양계 행성",
+    "difficulty": 2
+  },
+  {
+    "id": "q020",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅎㅇㅅ",
+    "answer": "해왕성",
+    "hint": "태양계 행성",
+    "difficulty": 2
+  },
+  {
+    "id": "q021",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅌㅍㅇ",
+    "answer": "태평양",
+    "hint": "가장 큰 바다",
+    "difficulty": 1
+  },
+  {
+    "id": "q022",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄷㅅㅇ",
+    "answer": "대서양",
+    "hint": "바다",
+    "difficulty": 1
+  },
+  {
+    "id": "q023",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅇㄷㅇ",
+    "answer": "인도양",
+    "hint": "바다",
+    "difficulty": 1
+  },
+  {
+    "id": "q024",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅂㄱ",
+    "answer": "북극",
+    "hint": "지리",
+    "difficulty": 1
+  },
+  {
+    "id": "q025",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄴㄱ",
+    "answer": "남극",
+    "hint": "지리",
+    "difficulty": 1
+  },
+  {
+    "id": "q026",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㅇ",
+    "answer": "서울",
+    "hint": "대한민국 수도",
+    "difficulty": 1
+  },
+  {
+    "id": "q027",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄷㄱ",
+    "answer": "대구",
+    "hint": "도시",
+    "difficulty": 1
+  },
+  {
+    "id": "q028",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅂㅅ",
+    "answer": "부산",
+    "hint": "도시",
+    "difficulty": 1
+  },
+  {
+    "id": "q029",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅈ",
+    "answer": "광주",
+    "hint": "도시",
+    "difficulty": 1
+  },
+  {
+    "id": "q030",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄷㅈ",
+    "answer": "대전",
+    "hint": "도시",
+    "difficulty": 1
+  },
+  {
+    "id": "q031",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅁㅅ",
+    "answer": "미술",
+    "hint": "예술",
+    "difficulty": 1
+  },
+  {
+    "id": "q032",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅇㅇ",
+    "answer": "음악",
+    "hint": "예술",
+    "difficulty": 1
+  },
+  {
+    "id": "q033",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅊㅇ",
+    "answer": "체육",
+    "hint": "과목",
+    "difficulty": 1
+  },
+  {
+    "id": "q034",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅎ",
+    "answer": "과학",
+    "hint": "과목",
+    "difficulty": 1
+  },
+  {
+    "id": "q035",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㅎ",
+    "answer": "수학",
+    "hint": "과목",
+    "difficulty": 1
+  },
+  {
+    "id": "q036",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅇㅇ",
+    "answer": "영어",
+    "hint": "과목",
+    "difficulty": 1
+  },
+  {
+    "id": "q037",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅇ",
+    "answer": "국어",
+    "hint": "과목",
+    "difficulty": 1
+  },
+  {
+    "id": "q038",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅎㄱ",
+    "answer": "화가",
+    "hint": "직업",
+    "difficulty": 1
+  },
+  {
+    "id": "q039",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅇㅅ",
+    "answer": "의사",
+    "hint": "직업",
+    "difficulty": 1
+  },
+  {
+    "id": "q040",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅂㅎㅅ",
+    "answer": "변호사",
+    "hint": "직업",
+    "difficulty": 1
+  },
+  {
+    "id": "q041",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅈ",
+    "answer": "기자",
+    "hint": "직업",
+    "difficulty": 1
+  },
+  {
+    "id": "q042",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㅂㄱ",
+    "answer": "소방관",
+    "hint": "직업",
+    "difficulty": 1
+  },
+  {
+    "id": "q043",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄱㅅㄱㅁ",
+    "answer": "광속불변",
+    "hint": "물리학 개념",
+    "difficulty": 3
+  },
+  {
+    "id": "q044",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅇㅂㄱㄷㄹ",
+    "answer": "아보가드로",
+    "hint": "화학 상수 이름",
+    "difficulty": 3
+  },
+  {
+    "id": "q045",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅅㅍㅌㄴㅋ",
+    "answer": "스푸트니크",
+    "hint": "최초 인공위성",
+    "difficulty": 3
+  },
+  {
+    "id": "q046",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅁㅌㅋㄷㄹㅇ",
+    "answer": "미토콘드리아",
+    "hint": "세포 소기관",
+    "difficulty": 3
+  },
+  {
+    "id": "q047",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅂㄹㅅㄹㄹㅇ",
+    "answer": "브라질리아",
+    "hint": "수도 이름",
+    "difficulty": 3
+  },
+  {
+    "id": "q048",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅋㄹㄹㅍ",
+    "answer": "클로로필",
+    "hint": "식물 색소",
+    "difficulty": 3
+  },
+  {
+    "id": "q049",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㄷㅇㅋㄹㅌㅇ",
+    "answer": "데카르트",
+    "hint": "철학자",
+    "difficulty": 3
+  },
+  {
+    "id": "q050",
+    "type": "initial",
+    "category": "초성",
+    "question": "ㅍㅂㄴㅊ",
+    "answer": "피보나치",
+    "hint": "수열 이름",
+    "difficulty": 3
+  },
+  {
+    "id": "q051",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "가는 말이 고와야",
+    "answer": "오는 말이 곱다",
+    "difficulty": 1
+  },
+  {
+    "id": "q052",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "티끌 모아",
+    "answer": "태산",
+    "difficulty": 1
+  },
+  {
+    "id": "q053",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "백지장도",
+    "answer": "맞들면 낫다",
+    "difficulty": 1
+  },
+  {
+    "id": "q054",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "돌다리도",
+    "answer": "두들겨 보고 건너라",
+    "difficulty": 1
+  },
+  {
+    "id": "q055",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "급할수록",
+    "answer": "돌아가라",
+    "difficulty": 1
+  },
+  {
+    "id": "q056",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "낮말은 새가 듣고",
+    "answer": "밤말은 쥐가 듣는다",
+    "difficulty": 1
+  },
+  {
+    "id": "q057",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "원숭이도 나무에서",
+    "answer": "떨어진다",
+    "difficulty": 1
+  },
+  {
+    "id": "q058",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "고래 싸움에",
+    "answer": "새우 등 터진다",
+    "difficulty": 1
+  },
+  {
+    "id": "q059",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "꿩 대신",
+    "answer": "닭",
+    "difficulty": 1
+  },
+  {
+    "id": "q060",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "서당 개 삼 년이면",
+    "answer": "풍월을 읊는다",
+    "difficulty": 1
+  },
+  {
+    "id": "q061",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "소 잃고",
+    "answer": "외양간 고친다",
+    "difficulty": 1
+  },
+  {
+    "id": "q062",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "가는 날이",
+    "answer": "장날",
+    "difficulty": 1
+  },
+  {
+    "id": "q063",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "개구리 올챙이 적",
+    "answer": "생각 못 한다",
+    "difficulty": 1
+  },
+  {
+    "id": "q064",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "구슬이 서 말이라도",
+    "answer": "꿰어야 보배",
+    "difficulty": 1
+  },
+  {
+    "id": "q065",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "하늘의 별",
+    "answer": "따기",
+    "difficulty": 1
+  },
+  {
+    "id": "q066",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "말 한마디에",
+    "answer": "천 냥 빚도 갚는다",
+    "difficulty": 1
+  },
+  {
+    "id": "q067",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "아는 길도",
+    "answer": "물어가라",
+    "difficulty": 1
+  },
+  {
+    "id": "q068",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "시작이",
+    "answer": "반이다",
+    "difficulty": 1
+  },
+  {
+    "id": "q069",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "웃는 얼굴에",
+    "answer": "침 못 뱉는다",
+    "difficulty": 1
+  },
+  {
+    "id": "q070",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "천 리 길도",
+    "answer": "한 걸음부터",
+    "difficulty": 1
+  },
+  {
+    "id": "q071",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "호랑이 굴에 가야",
+    "answer": "호랑이 새끼를 잡는다",
+    "difficulty": 2
+  },
+  {
+    "id": "q072",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "빈 수레가",
+    "answer": "요란하다",
+    "difficulty": 1
+  },
+  {
+    "id": "q073",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "우물 안",
+    "answer": "개구리",
+    "difficulty": 1
+  },
+  {
+    "id": "q074",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "등잔 밑이",
+    "answer": "어둡다",
+    "difficulty": 1
+  },
+  {
+    "id": "q075",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "공든 탑이",
+    "answer": "무너지랴",
+    "difficulty": 1
+  },
+  {
+    "id": "q076",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "발 없는 말이",
+    "answer": "천 리 간다",
+    "difficulty": 1
+  },
+  {
+    "id": "q077",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "낫 놓고",
+    "answer": "기역 자도 모른다",
+    "difficulty": 1
+  },
+  {
+    "id": "q078",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "벼는 익을수록",
+    "answer": "고개를 숙인다",
+    "difficulty": 1
+  },
+  {
+    "id": "q079",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "하룻강아지",
+    "answer": "범 무서운 줄 모른다",
+    "difficulty": 1
+  },
+  {
+    "id": "q080",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "뛰는 놈 위에",
+    "answer": "나는 놈 있다",
+    "difficulty": 1
+  },
+  {
+    "id": "q081",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "아니 땐 굴뚝에",
+    "answer": "연기 나랴",
+    "difficulty": 1
+  },
+  {
+    "id": "q082",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "믿는 도끼에",
+    "answer": "발등 찍힌다",
+    "difficulty": 1
+  },
+  {
+    "id": "q083",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "가는 정이 있어야",
+    "answer": "오는 정이 있다",
+    "difficulty": 1
+  },
+  {
+    "id": "q084",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "열 번 찍어",
+    "answer": "안 넘어가는 나무 없다",
+    "difficulty": 1
+  },
+  {
+    "id": "q085",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "콩 심은 데 콩 나고",
+    "answer": "팥 심은 데 팥 난다",
+    "difficulty": 1
+  },
+  {
+    "id": "q086",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "하나를 보면",
+    "answer": "열을 안다",
+    "difficulty": 1
+  },
+  {
+    "id": "q087",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "엎친 데",
+    "answer": "덮친 격",
+    "difficulty": 1
+  },
+  {
+    "id": "q088",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "새 발의",
+    "answer": "피",
+    "difficulty": 1
+  },
+  {
+    "id": "q089",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "감나무 밑에 누워",
+    "answer": "홍시 떨어지길 바란다",
+    "difficulty": 2
+  },
+  {
+    "id": "q090",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "호미로 막을 것을",
+    "answer": "가래로 막는다",
+    "difficulty": 2
+  },
+  {
+    "id": "q091",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "놓친 고기가",
+    "answer": "더 커 보인다",
+    "difficulty": 1
+  },
+  {
+    "id": "q092",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "입에 쓴 약이",
+    "answer": "몸에 좋다",
+    "difficulty": 1
+  },
+  {
+    "id": "q093",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "가지 많은 나무에",
+    "answer": "바람 잘 날 없다",
+    "difficulty": 2
+  },
+  {
+    "id": "q094",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "까마귀 날자",
+    "answer": "배 떨어진다",
+    "difficulty": 2
+  },
+  {
+    "id": "q095",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "열 길 물속은 알아도",
+    "answer": "한 길 사람 속은 모른다",
+    "difficulty": 3
+  },
+  {
+    "id": "q096",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "범 없는 골에",
+    "answer": "토끼가 스승",
+    "difficulty": 3
+  },
+  {
+    "id": "q097",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "삼 년 가뭄에는 살아도",
+    "answer": "석 달 장마에는 못 산다",
+    "difficulty": 3
+  },
+  {
+    "id": "q098",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "외손뼉이",
+    "answer": "못 울고 한 다리로 가지 못한다",
+    "difficulty": 3
+  },
+  {
+    "id": "q099",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "아홉 가진 놈이",
+    "answer": "하나 가진 놈 부러워한다",
+    "difficulty": 3
+  },
+  {
+    "id": "q100",
+    "type": "complete",
+    "category": "이어 말하기",
+    "question": "개밥에",
+    "answer": "도토리",
+    "difficulty": 2
+  },
+  {
+    "id": "q101",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "대한민국의 수도는?",
+    "answer": "서울",
+    "difficulty": 1
+  },
+  {
+    "id": "q102",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "한글을 창제한 왕은?",
+    "answer": "세종대왕",
+    "difficulty": 1
+  },
+  {
+    "id": "q103",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "대한민국 국기의 이름은?",
+    "answer": "태극기",
+    "difficulty": 1
+  },
+  {
+    "id": "q104",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "대한민국 광복절은 몇 월 며칠?",
+    "answer": "8월 15일",
+    "difficulty": 1
+  },
+  {
+    "id": "q105",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "1킬로미터는 몇 미터?",
+    "answer": "1000미터",
+    "difficulty": 1
+  },
+  {
+    "id": "q106",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "물의 화학식은?",
+    "answer": "H2O",
+    "difficulty": 1
+  },
+  {
+    "id": "q107",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "지구에서 가장 큰 바다는?",
+    "answer": "태평양",
+    "difficulty": 1
+  },
+  {
+    "id": "q108",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "태양계에서 가장 큰 행성은?",
+    "answer": "목성",
+    "difficulty": 1
+  },
+  {
+    "id": "q109",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "태양계에서 태양과 가장 가까운 행성은?",
+    "answer": "수성",
+    "difficulty": 1
+  },
+  {
+    "id": "q110",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "달은 지구의 무엇일까?",
+    "answer": "위성",
+    "difficulty": 1
+  },
+  {
+    "id": "q111",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "피사의 사탑이 있는 나라는?",
+    "answer": "이탈리아",
+    "difficulty": 1
+  },
+  {
+    "id": "q112",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "에펠탑이 있는 도시는?",
+    "answer": "파리",
+    "difficulty": 1
+  },
+  {
+    "id": "q113",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "자유의 여신상이 있는 나라는?",
+    "answer": "미국",
+    "difficulty": 1
+  },
+  {
+    "id": "q114",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "세계에서 면적이 가장 넓은 나라는?",
+    "answer": "러시아",
+    "difficulty": 1
+  },
+  {
+    "id": "q115",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "세계에서 인구가 가장 많은 나라는?",
+    "answer": "인도",
+    "difficulty": 1
+  },
+  {
+    "id": "q116",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "산소의 원소 기호는?",
+    "answer": "O",
+    "difficulty": 1
+  },
+  {
+    "id": "q117",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "금의 원소 기호는?",
+    "answer": "Au",
+    "difficulty": 2
+  },
+  {
+    "id": "q118",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "소금의 주성분 화합물은?",
+    "answer": "염화나트륨",
+    "difficulty": 2
+  },
+  {
+    "id": "q119",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "컴퓨터에서 CPU는 주로 무엇을 담당할까?",
+    "answer": "연산 처리",
+    "difficulty": 1
+  },
+  {
+    "id": "q120",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "인터넷 주소에서 www는 무엇의 줄임말?",
+    "answer": "월드 와이드 웹",
+    "difficulty": 2
+  },
+  {
+    "id": "q121",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "사진의 빛 조절 구멍을 무엇이라 할까?",
+    "answer": "조리개",
+    "difficulty": 1
+  },
+  {
+    "id": "q122",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "우리 몸에서 피를 온몸으로 보내는 기관은?",
+    "answer": "심장",
+    "difficulty": 1
+  },
+  {
+    "id": "q123",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "숨을 쉴 때 산소 교환을 돕는 기관은?",
+    "answer": "폐",
+    "difficulty": 1
+  },
+  {
+    "id": "q124",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "뼈와 뼈가 만나는 부분은?",
+    "answer": "관절",
+    "difficulty": 1
+  },
+  {
+    "id": "q125",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "식물이 광합성에 주로 사용하는 빛의 원천은?",
+    "answer": "태양",
+    "difficulty": 1
+  },
+  {
+    "id": "q126",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "지구의 자전으로 생기는 대표 현상은?",
+    "answer": "낮과 밤",
+    "difficulty": 1
+  },
+  {
+    "id": "q127",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "지구의 공전으로 생기는 대표 현상은?",
+    "answer": "계절",
+    "difficulty": 1
+  },
+  {
+    "id": "q128",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "무지개는 보통 몇 가지 색으로 말할까?",
+    "answer": "7가지",
+    "difficulty": 1
+  },
+  {
+    "id": "q129",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "피아노 건반에서 도레미파솔라시 다음은?",
+    "answer": "도",
+    "difficulty": 1
+  },
+  {
+    "id": "q130",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "올림픽은 보통 몇 년마다 열릴까?",
+    "answer": "4년",
+    "difficulty": 1
+  },
+  {
+    "id": "q131",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "축구 한 팀의 경기장 선수 수는?",
+    "answer": "11명",
+    "difficulty": 1
+  },
+  {
+    "id": "q132",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "야구에서 한 팀의 수비 인원은?",
+    "answer": "9명",
+    "difficulty": 1
+  },
+  {
+    "id": "q133",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "농구에서 한 팀의 코트 위 선수 수는?",
+    "answer": "5명",
+    "difficulty": 1
+  },
+  {
+    "id": "q134",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "테니스에서 0점을 부르는 말은?",
+    "answer": "러브",
+    "difficulty": 1
+  },
+  {
+    "id": "q135",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "전기저항의 단위 기호 Ω는 무엇을 뜻할까?",
+    "answer": "옴",
+    "difficulty": 3
+  },
+  {
+    "id": "q136",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "지진의 크기를 나타내는 척도로 널리 알려진 이름은?",
+    "answer": "리히터 규모",
+    "difficulty": 3
+  },
+  {
+    "id": "q137",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "혈액 응고에 중요한 역할을 하는 비타민은?",
+    "answer": "비타민 K",
+    "difficulty": 3
+  },
+  {
+    "id": "q138",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "세계에서 가장 깊은 해구로 알려진 곳은?",
+    "answer": "마리아나 해구",
+    "difficulty": 3
+  },
+  {
+    "id": "q139",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "빛의 삼원색은 빨강, 초록, 그리고 무엇일까?",
+    "answer": "파랑",
+    "difficulty": 2
+  },
+  {
+    "id": "q140",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "갑자, 을축처럼 60년을 한 주기로 세는 전통 체계는?",
+    "answer": "육십갑자",
+    "difficulty": 3
+  },
+  {
+    "id": "q141",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "빛이 진공에서 1초 동안 이동하는 거리는 약 몇 km일까?",
+    "answer": "30만 km",
+    "difficulty": 3
+  },
+  {
+    "id": "q142",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "아보가드로 수는 약 얼마일까?",
+    "answer": "6.02×10^23",
+    "difficulty": 3
+  },
+  {
+    "id": "q143",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "주기율표에서 원자번호 79번 원소는?",
+    "answer": "금",
+    "difficulty": 3
+  },
+  {
+    "id": "q144",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "인체에서 가장 큰 내장 기관은?",
+    "answer": "간",
+    "difficulty": 2
+  },
+  {
+    "id": "q145",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "상대성 이론으로 유명한 공식 E=mc²에서 c는 무엇의 속도일까?",
+    "answer": "빛",
+    "difficulty": 3
+  },
+  {
+    "id": "q146",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "태양계에서 평균 표면 온도가 가장 높은 행성은?",
+    "answer": "금성",
+    "difficulty": 3
+  },
+  {
+    "id": "q147",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "세계 최초의 인공위성 이름은?",
+    "answer": "스푸트니크 1호",
+    "difficulty": 3
+  },
+  {
+    "id": "q148",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "절대영도는 섭씨로 약 몇 도일까?",
+    "answer": "-273.15도",
+    "difficulty": 3
+  },
+  {
+    "id": "q149",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "지구 대기에서 가장 많은 비율을 차지하는 기체는?",
+    "answer": "질소",
+    "difficulty": 2
+  },
+  {
+    "id": "q150",
+    "type": "commonSense",
+    "category": "상식",
+    "question": "피보나치 수열에서 1, 1, 2, 3, 5 다음 수는?",
+    "answer": "8",
+    "difficulty": 2
+  },
+  {
+    "id": "q151",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "세상에서 가장 뜨거운 바다는?",
+    "answer": "열바다",
+    "difficulty": 1
+  },
+  {
+    "id": "q152",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "왕이 넘어지면?",
+    "answer": "킹콩",
+    "difficulty": 1
+  },
+  {
+    "id": "q153",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "먹으면 죽는데 안 먹어도 죽는 것은?",
+    "answer": "나이",
+    "difficulty": 1
+  },
+  {
+    "id": "q154",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "오리가 얼면?",
+    "answer": "언덕",
+    "difficulty": 1
+  },
+  {
+    "id": "q155",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "자동차가 울면?",
+    "answer": "잉카",
+    "difficulty": 1
+  },
+  {
+    "id": "q156",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "소가 웃으면?",
+    "answer": "우하하",
+    "difficulty": 1
+  },
+  {
+    "id": "q157",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 차가운 전화는?",
+    "answer": "콜드콜",
+    "difficulty": 1
+  },
+  {
+    "id": "q158",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "불이 네 개면?",
+    "answer": "사파이어",
+    "difficulty": 1
+  },
+  {
+    "id": "q159",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "항상 미안해하는 동물은?",
+    "answer": "오소리",
+    "difficulty": 1
+  },
+  {
+    "id": "q160",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "바나나가 웃으면?",
+    "answer": "바나나킥",
+    "difficulty": 1
+  },
+  {
+    "id": "q161",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "세상에서 가장 쉬운 숫자는?",
+    "answer": "십",
+    "difficulty": 1
+  },
+  {
+    "id": "q162",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "빵이 목욕하면?",
+    "answer": "호빵",
+    "difficulty": 1
+  },
+  {
+    "id": "q163",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "딸기가 회사에서 잘리면?",
+    "answer": "딸기시럽",
+    "difficulty": 1
+  },
+  {
+    "id": "q164",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "물이 화나면?",
+    "answer": "워터파크",
+    "difficulty": 1
+  },
+  {
+    "id": "q165",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 오래된 파이는?",
+    "answer": "할아버지파이",
+    "difficulty": 1
+  },
+  {
+    "id": "q166",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "깨가 죽으면?",
+    "answer": "주근깨",
+    "difficulty": 1
+  },
+  {
+    "id": "q167",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "신발이 화내면?",
+    "answer": "신발끈",
+    "difficulty": 1
+  },
+  {
+    "id": "q168",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "도둑이 싫어하는 아이스크림은?",
+    "answer": "누가바",
+    "difficulty": 1
+  },
+  {
+    "id": "q169",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 지루한 중학교는?",
+    "answer": "로딩중",
+    "difficulty": 1
+  },
+  {
+    "id": "q170",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "사과가 웃으면?",
+    "answer": "풋사과",
+    "difficulty": 1
+  },
+  {
+    "id": "q171",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "검은색 자동차가 멈추면?",
+    "answer": "블랙박스",
+    "difficulty": 1
+  },
+  {
+    "id": "q172",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "바람이 귀여우면?",
+    "answer": "산들바람",
+    "difficulty": 1
+  },
+  {
+    "id": "q173",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "공이 화나면?",
+    "answer": "공격",
+    "difficulty": 2
+  },
+  {
+    "id": "q174",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "문이 노래하면?",
+    "answer": "문송",
+    "difficulty": 2
+  },
+  {
+    "id": "q175",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "책이 춤추면?",
+    "answer": "북댄스",
+    "difficulty": 2
+  },
+  {
+    "id": "q176",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 똑똑한 물은?",
+    "answer": "지식수",
+    "difficulty": 2
+  },
+  {
+    "id": "q177",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "라면이 화나면?",
+    "answer": "불라면",
+    "difficulty": 1
+  },
+  {
+    "id": "q178",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 빠른 떡은?",
+    "answer": "번개떡",
+    "difficulty": 1
+  },
+  {
+    "id": "q179",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "우유가 넘어지면?",
+    "answer": "아야우유",
+    "difficulty": 1
+  },
+  {
+    "id": "q180",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "시계가 배고프면?",
+    "answer": "시계밥",
+    "difficulty": 1
+  },
+  {
+    "id": "q181",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "눈이 바쁘면?",
+    "answer": "눈코 뜰 새 없다",
+    "difficulty": 2
+  },
+  {
+    "id": "q182",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "컴퓨터가 좋아하는 간식은?",
+    "answer": "칩",
+    "difficulty": 1
+  },
+  {
+    "id": "q183",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "연필이 화나면?",
+    "answer": "심통",
+    "difficulty": 1
+  },
+  {
+    "id": "q184",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 조용한 라면은?",
+    "answer": "잠잠면",
+    "difficulty": 2
+  },
+  {
+    "id": "q185",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 밝은 국수는?",
+    "answer": "전구국수",
+    "difficulty": 2
+  },
+  {
+    "id": "q186",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "비가 싫어하는 말은?",
+    "answer": "그만 내려",
+    "difficulty": 2
+  },
+  {
+    "id": "q187",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "소금이 좋아하는 요일은?",
+    "answer": "짠요일",
+    "difficulty": 2
+  },
+  {
+    "id": "q188",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 무거운 새는?",
+    "answer": "철새",
+    "difficulty": 2
+  },
+  {
+    "id": "q189",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "핸드폰이 자면?",
+    "answer": "슬립폰",
+    "difficulty": 2
+  },
+  {
+    "id": "q190",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "치즈가 슬프면?",
+    "answer": "눈물치즈",
+    "difficulty": 2
+  },
+  {
+    "id": "q191",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "커피가 놀라면?",
+    "answer": "아메리카노",
+    "difficulty": 2
+  },
+  {
+    "id": "q192",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "고추가 길을 잃으면?",
+    "answer": "고추장",
+    "difficulty": 2
+  },
+  {
+    "id": "q193",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "김밥이 노래하면?",
+    "answer": "김밥천국",
+    "difficulty": 2
+  },
+  {
+    "id": "q194",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "버스가 좋아하는 음식은?",
+    "answer": "정류장국",
+    "difficulty": 2
+  },
+  {
+    "id": "q195",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "계단이 화나면?",
+    "answer": "단계적 분노",
+    "difficulty": 3
+  },
+  {
+    "id": "q196",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "종이가 운동하면?",
+    "answer": "페이퍼워크",
+    "difficulty": 3
+  },
+  {
+    "id": "q197",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "사전이 웃으면?",
+    "answer": "낱말웃음",
+    "difficulty": 3
+  },
+  {
+    "id": "q198",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "라디오가 추우면?",
+    "answer": "FM",
+    "difficulty": 3
+  },
+  {
+    "id": "q199",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "달력이 뛰면?",
+    "answer": "날짜변경선",
+    "difficulty": 3
+  },
+  {
+    "id": "q200",
+    "type": "commonSense",
+    "category": "넌센스",
+    "question": "가장 깔끔한 국가는?",
+    "answer": "청소국",
+    "difficulty": 3
+  },
+  {
+    "id": "q201",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "김밥의 겉을 감싸는 검은 재료는?",
+    "answer": "김",
+    "difficulty": 1
+  },
+  {
+    "id": "q202",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "떡볶이의 대표적인 빨간 양념 재료는?",
+    "answer": "고추장",
+    "difficulty": 1
+  },
+  {
+    "id": "q203",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "비빔밥에 자주 올리는 매운 양념은?",
+    "answer": "고추장",
+    "difficulty": 1
+  },
+  {
+    "id": "q204",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "김치의 대표 발효 재료 중 하나인 채소는?",
+    "answer": "배추",
+    "difficulty": 1
+  },
+  {
+    "id": "q205",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "된장의 주재료가 되는 콩 발효 식품은?",
+    "answer": "메주",
+    "difficulty": 1
+  },
+  {
+    "id": "q206",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "간장의 기본 맛은 주로 어떤 맛일까?",
+    "answer": "짠맛",
+    "difficulty": 1
+  },
+  {
+    "id": "q207",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "불고기의 대표 조리 방식은?",
+    "answer": "양념한 고기 구이",
+    "difficulty": 1
+  },
+  {
+    "id": "q208",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "삼계탕에 들어가는 대표 곡물은?",
+    "answer": "찹쌀",
+    "difficulty": 1
+  },
+  {
+    "id": "q209",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "냉면 육수에 자주 쓰이는 차가운 액체는?",
+    "answer": "육수",
+    "difficulty": 1
+  },
+  {
+    "id": "q210",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "잡채의 주재료인 투명한 면은?",
+    "answer": "당면",
+    "difficulty": 1
+  },
+  {
+    "id": "q211",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "순두부찌개의 주재료는?",
+    "answer": "순두부",
+    "difficulty": 1
+  },
+  {
+    "id": "q212",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "부대찌개에 자주 들어가는 가공육은?",
+    "answer": "햄",
+    "difficulty": 1
+  },
+  {
+    "id": "q213",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "갈비탕의 주요 재료는?",
+    "answer": "갈비",
+    "difficulty": 1
+  },
+  {
+    "id": "q214",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "설렁탕과 함께 자주 나오는 깍두기는 어떤 채소로 만들까?",
+    "answer": "무",
+    "difficulty": 1
+  },
+  {
+    "id": "q215",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "해물파전의 이름에 들어가는 대표 채소는?",
+    "answer": "파",
+    "difficulty": 1
+  },
+  {
+    "id": "q216",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "라면을 끓일 때 가장 먼저 필요한 액체는?",
+    "answer": "물",
+    "difficulty": 1
+  },
+  {
+    "id": "q217",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "초밥에서 밥 위에 올라가는 재료를 보통 무엇이라 할까?",
+    "answer": "네타",
+    "difficulty": 1
+  },
+  {
+    "id": "q218",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "파스타를 삶을 때 넣는 대표 조미료는?",
+    "answer": "소금",
+    "difficulty": 1
+  },
+  {
+    "id": "q219",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "피자의 기본 바탕이 되는 빵 부분은?",
+    "answer": "도우",
+    "difficulty": 1
+  },
+  {
+    "id": "q220",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "햄버거에서 고기 패티를 끼우는 빵은?",
+    "answer": "번",
+    "difficulty": 1
+  },
+  {
+    "id": "q221",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "샌드위치의 기본 재료는?",
+    "answer": "빵",
+    "difficulty": 1
+  },
+  {
+    "id": "q222",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "카레의 노란색을 내는 대표 향신료는?",
+    "answer": "강황",
+    "difficulty": 2
+  },
+  {
+    "id": "q223",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "마라탕의 얼얼한 맛을 내는 향신료는?",
+    "answer": "화자오",
+    "difficulty": 2
+  },
+  {
+    "id": "q224",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "쌀을 씻어 물과 함께 끓이면 주로 무엇이 될까?",
+    "answer": "밥",
+    "difficulty": 1
+  },
+  {
+    "id": "q225",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "누룽지는 밥의 어느 부분이 눌어붙은 것일까?",
+    "answer": "바닥",
+    "difficulty": 1
+  },
+  {
+    "id": "q226",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "식혜의 단맛을 내는 발효 재료는?",
+    "answer": "엿기름",
+    "difficulty": 2
+  },
+  {
+    "id": "q227",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "수정과에 들어가는 대표 향신료는?",
+    "answer": "계피",
+    "difficulty": 2
+  },
+  {
+    "id": "q228",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "팥빙수의 대표 토핑은?",
+    "answer": "팥",
+    "difficulty": 1
+  },
+  {
+    "id": "q229",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "호떡 안에 들어가는 달콤한 속재료는?",
+    "answer": "설탕",
+    "difficulty": 1
+  },
+  {
+    "id": "q230",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "붕어빵의 대표 속재료는?",
+    "answer": "팥",
+    "difficulty": 1
+  },
+  {
+    "id": "q231",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "찐빵 속에 자주 들어가는 달콤한 재료는?",
+    "answer": "팥앙금",
+    "difficulty": 1
+  },
+  {
+    "id": "q232",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "치킨무의 주재료는?",
+    "answer": "무",
+    "difficulty": 1
+  },
+  {
+    "id": "q233",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "떡국에 들어가는 얇게 썬 떡은?",
+    "answer": "가래떡",
+    "difficulty": 1
+  },
+  {
+    "id": "q234",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "송편을 주로 먹는 명절은?",
+    "answer": "추석",
+    "difficulty": 1
+  },
+  {
+    "id": "q235",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "만두피 안에 넣는 재료를 통틀어 뭐라고 할까?",
+    "answer": "소",
+    "difficulty": 2
+  },
+  {
+    "id": "q236",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "어묵의 주재료는?",
+    "answer": "생선살",
+    "difficulty": 1
+  },
+  {
+    "id": "q237",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "우동의 대표 특징은 어떤 면일까?",
+    "answer": "굵은 면",
+    "difficulty": 1
+  },
+  {
+    "id": "q238",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "쫄면의 대표 식감은?",
+    "answer": "쫄깃함",
+    "difficulty": 1
+  },
+  {
+    "id": "q239",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "크루아상은 어느 나라 빵으로 널리 알려졌을까?",
+    "answer": "프랑스",
+    "difficulty": 2
+  },
+  {
+    "id": "q240",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "에스프레소에 물을 더한 커피는?",
+    "answer": "아메리카노",
+    "difficulty": 1
+  },
+  {
+    "id": "q241",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "커피 추출에서 압력을 이용해 짧은 시간에 뽑는 진한 원액은?",
+    "answer": "에스프레소",
+    "difficulty": 2
+  },
+  {
+    "id": "q242",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "프랑스식 기본 소스 중 우유와 루로 만드는 흰 소스는?",
+    "answer": "베샤멜 소스",
+    "difficulty": 3
+  },
+  {
+    "id": "q243",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "이탈리아식 쌀 요리 리소토에 자주 쓰이는 쌀 품종은?",
+    "answer": "아르보리오",
+    "difficulty": 3
+  },
+  {
+    "id": "q244",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "일식에서 가다랑어포를 뜻하는 말은?",
+    "answer": "가쓰오부시",
+    "difficulty": 3
+  },
+  {
+    "id": "q245",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "멕시코 요리 과카몰레의 주재료는?",
+    "answer": "아보카도",
+    "difficulty": 2
+  },
+  {
+    "id": "q246",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "인도 요리에서 기버터를 뜻하는 말은?",
+    "answer": "기",
+    "difficulty": 3
+  },
+  {
+    "id": "q247",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "중국 사천 요리의 얼얼한 맛을 내는 향신료는?",
+    "answer": "화자오",
+    "difficulty": 3
+  },
+  {
+    "id": "q248",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "스페인식 쌀 요리 파에야에 색과 향을 내는 고가의 향신료는?",
+    "answer": "사프란",
+    "difficulty": 3
+  },
+  {
+    "id": "q249",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "그리스식 요거트 소스 차지키에 들어가는 대표 채소는?",
+    "answer": "오이",
+    "difficulty": 3
+  },
+  {
+    "id": "q250",
+    "type": "commonSense",
+    "category": "음식",
+    "question": "포도주 맛을 표현할 때 떫은맛과 구조감을 주는 성분은?",
+    "answer": "탄닌",
+    "difficulty": 3
+  }
+]

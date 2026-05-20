@@ -10,11 +10,13 @@ class GroupQuizSetupView extends StatelessWidget {
     required this.config,
     required this.onConfigChanged,
     required this.onStart,
+    required this.starting,
   });
 
   final GroupQuizConfig config;
   final ValueChanged<GroupQuizConfig> onConfigChanged;
   final VoidCallback onStart;
+  final bool starting;
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +62,8 @@ class GroupQuizSetupView extends StatelessWidget {
                   _SetupSegment<int>(
                     label: '팀 수',
                     value: config.teamCount,
-                    options: const [2, 3, 4],
-                    labelBuilder: (value) => '$value팀',
+                    options: const [1, 2, 3, 4],
+                    labelBuilder: (value) => value == 1 ? '1팀' : '$value팀',
                     onChanged: (value) =>
                         onConfigChanged(config.copyWith(teamCount: value)),
                   ),
@@ -78,20 +80,30 @@ class GroupQuizSetupView extends StatelessWidget {
                   _SetupSegment<int>(
                     label: '제한 시간',
                     value: config.secondsPerRound,
-                    options: const [5, 8, 12],
-                    labelBuilder: (value) => '$value초',
+                    options: const [0, 5, 8, 12],
+                    labelBuilder: (value) => value == 0 ? '무제한' : '$value초',
                     onChanged: (value) => onConfigChanged(
                       config.copyWith(secondsPerRound: value),
                     ),
                   ),
                   const SizedBox(height: 22),
                   FilledButton.icon(
-                    onPressed: onStart,
-                    icon: const Icon(Icons.play_arrow_rounded),
-                    label: const Text('시작'),
+                    onPressed: starting ? null : onStart,
+                    icon: starting
+                        ? const SizedBox.square(
+                            dimension: 18,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.4,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Icon(Icons.play_arrow_rounded),
+                    label: Text(starting ? '문제 불러오는 중' : '시작'),
                     style: FilledButton.styleFrom(
                       backgroundColor: const Color(0xFF2BB673),
                       foregroundColor: Colors.white,
+                      disabledBackgroundColor: const Color(0xFF8EA0AD),
+                      disabledForegroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -137,6 +149,7 @@ class GroupQuizPlayView extends StatelessWidget {
                 roundLimit: session.config.roundLimit,
                 remainingSeconds: session.remainingSeconds,
                 secondsPerRound: session.config.secondsPerRound,
+                hasTimeLimit: session.config.hasTimeLimit,
                 danger: session.isTimerDanger,
               ),
               const SizedBox(height: 14),
@@ -235,6 +248,7 @@ class _QuizStatusPanel extends StatelessWidget {
     required this.roundLimit,
     required this.remainingSeconds,
     required this.secondsPerRound,
+    required this.hasTimeLimit,
     required this.danger,
   });
 
@@ -242,6 +256,7 @@ class _QuizStatusPanel extends StatelessWidget {
   final int roundLimit;
   final int remainingSeconds;
   final int secondsPerRound;
+  final bool hasTimeLimit;
   final bool danger;
 
   @override
@@ -258,23 +273,49 @@ class _QuizStatusPanel extends StatelessWidget {
             Row(
               children: [
                 _StatusValue(label: 'Round', value: '$round/$roundLimit'),
-                _StatusValue(label: 'Time', value: '${remainingSeconds}s'),
+                _StatusValue(
+                  label: 'Time',
+                  value: hasTimeLimit ? '${remainingSeconds}s' : '∞',
+                ),
               ],
             ),
-            const SizedBox(height: 12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: LinearProgressIndicator(
-                minHeight: 10,
-                value:
-                    remainingSeconds.clamp(0, secondsPerRound) /
-                    secondsPerRound,
-                backgroundColor: const Color(0xFF3B4657),
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  danger ? const Color(0xFFE53935) : const Color(0xFF54C6EB),
+            if (hasTimeLimit) ...[
+              const SizedBox(height: 12),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: LinearProgressIndicator(
+                  minHeight: 10,
+                  value:
+                      remainingSeconds.clamp(0, secondsPerRound) /
+                      secondsPerRound,
+                  backgroundColor: const Color(0xFF3B4657),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    danger ? const Color(0xFFE53935) : const Color(0xFF54C6EB),
+                  ),
                 ),
               ),
-            ),
+            ] else ...[
+              const SizedBox(height: 12),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: const Color(0xFF263246),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: const Color(0xFF3B4657)),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    '시간 제한 없음',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFFD4DEE8),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -323,6 +364,8 @@ class _QuestionPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final difficulty = _QuestionDifficultyStyle.fromValue(question.difficulty);
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -340,26 +383,24 @@ class _QuestionPanel extends StatelessWidget {
         padding: const EdgeInsets.all(22),
         child: Column(
           children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: const Color(0xFFEAF7FF),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: const Color(0xFFB9E2F4)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 7,
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _QuestionBadge(
+                  label: question.category,
+                  backgroundColor: const Color(0xFFEAF7FF),
+                  borderColor: const Color(0xFFB9E2F4),
+                  foregroundColor: const Color(0xFF18212F),
                 ),
-                child: Text(
-                  question.category,
-                  style: const TextStyle(
-                    color: Color(0xFF18212F),
-                    fontSize: 13,
-                    fontWeight: FontWeight.w900,
-                  ),
+                _QuestionBadge(
+                  label: '난이도 ${difficulty.label}',
+                  backgroundColor: difficulty.backgroundColor,
+                  borderColor: difficulty.borderColor,
+                  foregroundColor: difficulty.foregroundColor,
                 ),
-              ),
+              ],
             ),
             const SizedBox(height: 18),
             Text(
@@ -410,6 +451,79 @@ class _QuestionPanel extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _QuestionBadge extends StatelessWidget {
+  const _QuestionBadge({
+    required this.label,
+    required this.backgroundColor,
+    required this.borderColor,
+    required this.foregroundColor,
+  });
+
+  final String label;
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color foregroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: foregroundColor,
+            fontSize: 13,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _QuestionDifficultyStyle {
+  const _QuestionDifficultyStyle({
+    required this.label,
+    required this.backgroundColor,
+    required this.borderColor,
+    required this.foregroundColor,
+  });
+
+  final String label;
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color foregroundColor;
+
+  static _QuestionDifficultyStyle fromValue(int value) {
+    return switch (value) {
+      3 => const _QuestionDifficultyStyle(
+        label: '상',
+        backgroundColor: Color(0xFFFFE8E4),
+        borderColor: Color(0xFFFFA08D),
+        foregroundColor: Color(0xFFB3261E),
+      ),
+      2 => const _QuestionDifficultyStyle(
+        label: '중',
+        backgroundColor: Color(0xFFFFF1D6),
+        borderColor: Color(0xFFFFC36A),
+        foregroundColor: Color(0xFF9A4F00),
+      ),
+      _ => const _QuestionDifficultyStyle(
+        label: '하',
+        backgroundColor: Color(0xFFE8F8EF),
+        borderColor: Color(0xFF9ED8B8),
+        foregroundColor: Color(0xFF147A45),
+      ),
+    };
   }
 }
 
