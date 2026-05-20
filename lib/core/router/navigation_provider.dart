@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/core/router/navigation_state.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/leader_board.dart';
+import 'package:game_ex/features/games/kiosk_panic/presentation/kiosk_panic_screen.dart';
 import 'package:game_ex/features/home/presentation/home_screen.dart';
 import 'package:game_ex/features/profile/presentation/profile_screen.dart';
 import 'package:game_ex/shared/game_result_screen.dart';
@@ -19,6 +20,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/game/:gameId',
         builder: (context, state) {
           final gameId = state.pathParameters['gameId']!;
+          if (gameId == KioskPanicScreen.gameId) {
+            return const KioskPanicScreen();
+          }
+
           return GameScreen(gameId: gameId);
         },
       ),
@@ -34,6 +39,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           }
           return GameResultScreen(
             gameId: extra['gameId'] ?? 'unknown',
+            playerName: extra['playerName'] ?? '익명',
             score: extra['score'] ?? 0,
             stats: extra['stats'] ?? {},
             isNewBest: extra['isNewBest'] ?? false,
@@ -46,7 +52,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       // 리더보드
       GoRoute(
         path: '/leaderboard',
-        builder: (context, state) => const LeaderboardScreen(),
+        builder: (context, state) => LeaderboardScreen(
+          initialGameId: state.uri.queryParameters['game'] ?? 'g001',
+        ),
       ),
 
       // 프로필

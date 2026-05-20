@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/game_card.dart';
+import 'package:game_ex/shared/game_info.dart';
 import 'package:game_ex/shared/game_provider.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,7 +12,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final games = ref.watch(gameListProvider);
-    final featuredGame = games.firstWhere((game) => game.isUnlocked);
+    final featuredGame = _todayFeaturedGame(games);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
@@ -27,7 +28,8 @@ class HomeScreen extends ConsumerWidget {
           IconButton(
             tooltip: 'Leaderboard',
             icon: const Icon(Icons.leaderboard_outlined),
-            onPressed: () => context.push('/leaderboard'),
+            onPressed: () =>
+                context.push('/leaderboard?game=${featuredGame.id}'),
           ),
           IconButton(
             tooltip: 'Profile',
@@ -43,6 +45,7 @@ class HomeScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 18),
                 child: _FeaturedGamePanel(
+                  game: featuredGame,
                   onPlay: () => context.push('/game/${featuredGame.id}'),
                 ),
               ),
@@ -100,11 +103,28 @@ class HomeScreen extends ConsumerWidget {
       ),
     );
   }
+
+  GameInfo _todayFeaturedGame(List<GameInfo> games) {
+    final activeGames = games.where((game) => game.isUnlocked).toList();
+    if (activeGames.isEmpty) {
+      return games.first;
+    }
+
+    final today = DateTime.now();
+    final dayKey = DateTime(
+      today.year,
+      today.month,
+      today.day,
+    ).difference(DateTime(2026)).inDays;
+
+    return activeGames[dayKey % activeGames.length];
+  }
 }
 
 class _FeaturedGamePanel extends StatelessWidget {
-  const _FeaturedGamePanel({required this.onPlay});
+  const _FeaturedGamePanel({required this.game, required this.onPlay});
 
+  final GameInfo game;
   final VoidCallback onPlay;
 
   @override
@@ -126,6 +146,7 @@ class _FeaturedGamePanel extends StatelessWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final compact = constraints.maxWidth < 420;
+            final isKiosk = game.id == 'g002';
 
             final visual = SizedBox(
               width: compact ? 96 : 132,
@@ -140,22 +161,39 @@ class _FeaturedGamePanel extends StatelessWidget {
                     ),
                     child: const SizedBox.expand(),
                   ),
-                  Image.asset(
-                    'assets/images/openmoji_poop.png',
-                    width: compact ? 60 : 82,
-                    height: compact ? 60 : 82,
-                    filterQuality: FilterQuality.none,
-                  ),
-                  Positioned(
-                    right: compact ? 10 : 16,
-                    bottom: compact ? 10 : 16,
-                    child: Image.asset(
-                      'assets/images/openmoji_player.png',
-                      width: compact ? 40 : 52,
-                      height: compact ? 40 : 52,
+                  if (isKiosk) ...[
+                    Icon(
+                      Icons.touch_app_rounded,
+                      size: compact ? 60 : 82,
+                      color: const Color(0xFF18212F),
+                    ),
+                    Positioned(
+                      right: compact ? 10 : 16,
+                      bottom: compact ? 10 : 16,
+                      child: Icon(
+                        Icons.receipt_long_rounded,
+                        size: compact ? 40 : 52,
+                        color: const Color(0xFF2BB673),
+                      ),
+                    ),
+                  ] else ...[
+                    Image.asset(
+                      game.thumbnailUrl ?? 'assets/images/openmoji_poop.png',
+                      width: compact ? 60 : 82,
+                      height: compact ? 60 : 82,
                       filterQuality: FilterQuality.none,
                     ),
-                  ),
+                    Positioned(
+                      right: compact ? 10 : 16,
+                      bottom: compact ? 10 : 16,
+                      child: Image.asset(
+                        'assets/images/openmoji_player.png',
+                        width: compact ? 40 : 52,
+                        height: compact ? 40 : 52,
+                        filterQuality: FilterQuality.none,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             );
@@ -173,8 +211,8 @@ class _FeaturedGamePanel extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
-                const Text(
-                  '똥 피하기',
+                Text(
+                  game.name,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
@@ -182,10 +220,10 @@ class _FeaturedGamePanel extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  '마우스는 봉인. 방향키만 믿고 살아남으세요.',
+                Text(
+                  game.description,
                   style: TextStyle(
-                    color: Color(0xFFD4DEE8),
+                    color: const Color(0xFFD4DEE8),
                     fontSize: 14,
                     height: 1.35,
                   ),

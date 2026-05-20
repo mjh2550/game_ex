@@ -1,6 +1,7 @@
 class ScoreRecord {
   final String id;
   final String gameId;
+  final String playerName;
   final int score;
   final double playTime;
   final int nearMissCount;
@@ -11,6 +12,7 @@ class ScoreRecord {
   const ScoreRecord({
     required this.id,
     required this.gameId,
+    required this.playerName,
     required this.score,
     required this.playTime,
     required this.nearMissCount,
@@ -23,6 +25,7 @@ class ScoreRecord {
     return ScoreRecord(
       id: json['id'] as String,
       gameId: json['gameId'] as String,
+      playerName: json['playerName'] as String? ?? '익명',
       score: json['score'] as int,
       playTime: (json['playTime'] as num).toDouble(),
       nearMissCount: json['nearMissCount'] as int,
@@ -36,6 +39,7 @@ class ScoreRecord {
     return {
       'id': id,
       'gameId': gameId,
+      'playerName': playerName,
       'score': score,
       'playTime': playTime,
       'nearMissCount': nearMissCount,

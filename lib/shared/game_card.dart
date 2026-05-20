@@ -16,6 +16,7 @@ class GameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locked = !game.isUnlocked;
+    final isKiosk = game.id == 'g002';
 
     return Material(
       color: Colors.white,
@@ -46,6 +47,12 @@ class GameCard extends StatelessWidget {
                           width: 82,
                           height: 82,
                           filterQuality: FilterQuality.none,
+                        )
+                      else if (isKiosk)
+                        const Icon(
+                          Icons.touch_app_rounded,
+                          size: 70,
+                          color: Color(0xFF18212F),
                         )
                       else
                         const Icon(
@@ -91,21 +98,24 @@ class GameCard extends StatelessWidget {
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        const Icon(
-                          Icons.keyboard_arrow_left_rounded,
+                        Icon(
+                          isKiosk
+                              ? Icons.touch_app_rounded
+                              : Icons.keyboard_arrow_left_rounded,
                           size: 18,
-                          color: Color(0xFF2BB673),
+                          color: const Color(0xFF2BB673),
                         ),
-                        const Icon(
-                          Icons.keyboard_arrow_right_rounded,
-                          size: 18,
-                          color: Color(0xFF2BB673),
-                        ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          '방향키',
-                          style: TextStyle(
+                        if (!isKiosk)
+                          const Icon(
+                            Icons.keyboard_arrow_right_rounded,
+                            size: 18,
                             color: Color(0xFF2BB673),
+                          ),
+                        const SizedBox(width: 4),
+                        Text(
+                          isKiosk ? '터치' : '방향키',
+                          style: TextStyle(
+                            color: const Color(0xFF2BB673),
                             fontSize: 12,
                             fontWeight: FontWeight.w800,
                           ),

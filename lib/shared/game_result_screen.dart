@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 class GameResultScreen extends ConsumerWidget {
   final String gameId;
+  final String playerName;
   final int score;
   final Map<String, dynamic> stats;
   final bool isNewBest;
@@ -13,6 +14,7 @@ class GameResultScreen extends ConsumerWidget {
   const GameResultScreen({
     super.key,
     required this.gameId,
+    required this.playerName,
     required this.score,
     required this.stats,
     required this.isNewBest,
@@ -23,8 +25,10 @@ class GameResultScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nearMiss = stats['near_miss_count'] ?? 0;
+    final ordersCompleted = stats['orders_completed'] ?? nearMiss;
     final maxCombo = stats['max_combo'] ?? 0;
     final difficulty = stats['difficulty_reached'] ?? 1;
+    final isKiosk = gameId == 'g002';
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
@@ -63,36 +67,9 @@ class GameResultScreen extends ConsumerWidget {
                         children: [
                           SizedBox(
                             height: compact ? 88 : 118,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFFFD166),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: SizedBox(
-                                    width: compact ? 88 : 118,
-                                    height: compact ? 88 : 118,
-                                  ),
-                                ),
-                                Image.asset(
-                                  'assets/images/openmoji_poop.png',
-                                  width: compact ? 54 : 70,
-                                  height: compact ? 54 : 70,
-                                  filterQuality: FilterQuality.none,
-                                ),
-                                Positioned(
-                                  right: compact ? 104 : 148,
-                                  bottom: compact ? 8 : 12,
-                                  child: Image.asset(
-                                    'assets/images/openmoji_player.png',
-                                    width: compact ? 36 : 48,
-                                    height: compact ? 36 : 48,
-                                    filterQuality: FilterQuality.none,
-                                  ),
-                                ),
-                              ],
+                            child: _GameResultVisual(
+                              gameId: gameId,
+                              compact: compact,
                             ),
                           ),
                           SizedBox(height: compact ? 14 : 22),
@@ -115,6 +92,30 @@ class GameResultScreen extends ConsumerWidget {
                                   : const Color(0xFF60707F),
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFEAF7FF),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: const Color(0xFFB9E2F4),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 7,
+                              ),
+                              child: Text(
+                                playerName,
+                                style: const TextStyle(
+                                  color: Color(0xFF18212F),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(height: 24),
@@ -165,9 +166,11 @@ class GameResultScreen extends ConsumerWidget {
                             children: [
                               Expanded(
                                 child: _ResultStat(
-                                  label: 'Near Miss',
-                                  value: '$nearMiss',
-                                  icon: Icons.flash_on_rounded,
+                                  label: isKiosk ? 'Orders' : 'Near Miss',
+                                  value: '$ordersCompleted',
+                                  icon: isKiosk
+                                      ? Icons.receipt_long_rounded
+                                      : Icons.flash_on_rounded,
                                 ),
                               ),
                               const SizedBox(width: 10),
@@ -230,6 +233,8 @@ class GameResultScreen extends ConsumerWidget {
                             compact: compact,
                             onRetry: () => context.go('/game/$gameId'),
                             onHome: () => context.go('/home'),
+                            onLeaderboard: () =>
+                                context.push('/leaderboard?game=$gameId'),
                           ),
                         ],
                       ),
@@ -250,11 +255,13 @@ class _ResultActions extends StatelessWidget {
     required this.compact,
     required this.onRetry,
     required this.onHome,
+    required this.onLeaderboard,
   });
 
   final bool compact;
   final VoidCallback onRetry;
   final VoidCallback onHome;
+  final VoidCallback onLeaderboard;
 
   @override
   Widget build(BuildContext context) {
@@ -282,18 +289,103 @@ class _ResultActions extends StatelessWidget {
       ),
     );
 
+    final leaderboardButton = OutlinedButton.icon(
+      onPressed: onLeaderboard,
+      icon: const Icon(Icons.leaderboard_rounded),
+      label: const Text('순위표'),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: const Color(0xFF18212F),
+        side: const BorderSide(color: Color(0xFFCAD4E1)),
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+    );
+
     if (compact) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [retryButton, const SizedBox(height: 10), homeButton],
+        children: [
+          retryButton,
+          const SizedBox(height: 10),
+          leaderboardButton,
+          const SizedBox(height: 10),
+          homeButton,
+        ],
       );
     }
 
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(child: retryButton),
-        const SizedBox(width: 10),
-        Expanded(child: homeButton),
+        Row(
+          children: [
+            Expanded(child: retryButton),
+            const SizedBox(width: 10),
+            Expanded(child: homeButton),
+          ],
+        ),
+        const SizedBox(height: 10),
+        leaderboardButton,
+      ],
+    );
+  }
+}
+
+class _GameResultVisual extends StatelessWidget {
+  const _GameResultVisual({required this.gameId, required this.compact});
+
+  final String gameId;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final boxSize = compact ? 88.0 : 118.0;
+    final primarySize = compact ? 54.0 : 70.0;
+    final secondarySize = compact ? 36.0 : 48.0;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFD166),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: SizedBox(width: boxSize, height: boxSize),
+        ),
+        if (gameId == 'g002') ...[
+          Icon(
+            Icons.touch_app_rounded,
+            size: primarySize,
+            color: const Color(0xFF18212F),
+          ),
+          Positioned(
+            right: compact ? 104 : 148,
+            bottom: compact ? 8 : 12,
+            child: Icon(
+              Icons.receipt_long_rounded,
+              size: secondarySize,
+              color: const Color(0xFF2BB673),
+            ),
+          ),
+        ] else ...[
+          Image.asset(
+            'assets/images/openmoji_poop.png',
+            width: primarySize,
+            height: primarySize,
+            filterQuality: FilterQuality.none,
+          ),
+          Positioned(
+            right: compact ? 104 : 148,
+            bottom: compact ? 8 : 12,
+            child: Image.asset(
+              'assets/images/openmoji_player.png',
+              width: secondarySize,
+              height: secondarySize,
+              filterQuality: FilterQuality.none,
+            ),
+          ),
+        ],
       ],
     );
   }

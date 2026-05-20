@@ -9,6 +9,8 @@ import 'package:game_ex/features/games/ddong_dodge/presentation/game_state_provi
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/game_provider.dart';
+import 'package:game_ex/shared/player_name_dialog.dart';
+import 'package:game_ex/shared/ready_start_overlay.dart';
 import 'package:go_router/go_router.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
@@ -23,6 +25,7 @@ class GameScreen extends ConsumerStatefulWidget {
 class _GameScreenState extends ConsumerState<GameScreen> {
   late final FlameGame game;
   bool _isGameInitialized = false;
+  bool _isReadyOverlayVisible = true;
 
   @override
   void didChangeDependencies() {
@@ -75,10 +78,24 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   // 🏁 게임 오버 처리
   Future<void> _handleGameOver(GameResult result) async {
     final scoreRepository = await ref.read(localScoreRepositoryProvider.future);
+    if (!mounted) {
+      return;
+    }
+
+    final playerName = await showPlayerNameDialog(
+      context,
+      initialName: scoreRepository.getLastPlayerName(),
+    );
+
+    if (!mounted || playerName == null) {
+      return;
+    }
+
     final saveResult = await scoreRepository.saveRecord(
       ScoreRecord(
         id: DateTime.now().microsecondsSinceEpoch.toString(),
         gameId: widget.gameId,
+        playerName: playerName,
         score: result.score,
         playTime: result.playTime,
         nearMissCount: result.stats['near_miss_count'] as int? ?? 0,
@@ -101,6 +118,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         'gameId': widget.gameId,
         'score': result.score,
         'stats': result.stats,
+        'playerName': playerName,
         'isNewBest': saveResult.isNewBest,
         'bestScore': saveResult.bestScore,
         'rank': saveResult.rank,
@@ -200,6 +218,24 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   ),
                   if (usesMobileControls && game is DdongDodgeGame)
                     _MobileDirectionControls(game: game as DdongDodgeGame),
+                  if (_isReadyOverlayVisible)
+                    ReadyStartOverlay(
+                      onCompleted: () {
+                        if (!mounted) {
+                          return;
+                        }
+
+                        setState(() {
+                          _isReadyOverlayVisible = false;
+                        });
+
+                        if (game is DdongDodgeGame) {
+                          (game as DdongDodgeGame).startGame();
+                        } else {
+                          game.resumeEngine();
+                        }
+                      },
+                    ),
                 ],
               ),
             );

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalScoreRepository {
   static const _recordsKey = 'score_records_v1';
+  static const _lastPlayerNameKey = 'last_player_name_v1';
   static const _maxStoredRecords = 100;
 
   final SharedPreferences _prefs;
@@ -34,7 +35,27 @@ class LocalScoreRepository {
     return records.first.score;
   }
 
+  String getLastPlayerName() {
+    final name = _prefs.getString(_lastPlayerNameKey)?.trim();
+    if (name == null || name.isEmpty) {
+      return '';
+    }
+
+    return name;
+  }
+
+  Future<void> saveLastPlayerName(String playerName) async {
+    final normalized = playerName.trim();
+    if (normalized.isEmpty || normalized == '익명') {
+      return;
+    }
+
+    await _prefs.setString(_lastPlayerNameKey, normalized);
+  }
+
   Future<ScoreSaveResult> saveRecord(ScoreRecord record) async {
+    await saveLastPlayerName(record.playerName);
+
     final records = _loadRecords();
     final previousBest = records
         .where((item) => item.gameId == record.gameId)

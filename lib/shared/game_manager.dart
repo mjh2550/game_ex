@@ -1,40 +1,33 @@
 import 'dart:ui';
 
 import 'package:flame/game.dart';
-import 'package:game_ex/core/utils/flame_game_extension.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/game_state_provider.dart';
 import 'package:game_ex/shared/game_info.dart';
 
 class GameManager {
-  final List<FlameGame> _games = [
-    DdongDodgeGame(
-      gameInfo: GameInfo(
-        id: 'g001',
-        name: '똥 피하기',
-        description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
-        routeName: '/ddong_dodge',
-        isUnlocked: true,
-        thumbnailUrl: 'assets/images/openmoji_poop.png',
-      ),
-      onGameOver: (GameResult result) {
-        // 게임 오버 처리 로직
-      },
-      onPause: () {
-        // 일시정지 처리 로직
-      },
-      userId: 'test_user',
+  static final List<GameInfo> _gameInfos = [
+    GameInfo(
+      id: 'g001',
+      name: '똥 피하기',
+      description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
+      routeName: '/ddong_dodge',
+      isUnlocked: true,
+      thumbnailUrl: 'assets/images/openmoji_poop.png',
     ),
-
-    // 다른 게임 추가 가능
+    GameInfo(
+      id: 'g002',
+      name: '키오스크 눈치게임',
+      description: '뒤 손님의 압박 속에서 주문을 빠르게 완성하세요.',
+      routeName: '/kiosk_panic',
+      isUnlocked: true,
+    ),
   ];
 
-  List<GameInfo> get games => List.unmodifiable(
-    _games.map((game) => game.gameInfo).whereType<GameInfo>(),
-  );
+  List<GameInfo> get games => List.unmodifiable(_gameInfos);
 
   FlameGame? getGameById(String id) {
-    return _games.firstWhere((game) => game.gameInfo?.id == id);
+    return null;
   }
 
   FlameGame createGame(

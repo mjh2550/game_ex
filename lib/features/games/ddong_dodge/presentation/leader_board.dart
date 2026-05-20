@@ -2,15 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
+import 'package:game_ex/shared/game_info.dart';
+import 'package:game_ex/shared/game_provider.dart';
 
-class LeaderboardScreen extends ConsumerWidget {
-  const LeaderboardScreen({super.key});
+class LeaderboardScreen extends ConsumerStatefulWidget {
+  const LeaderboardScreen({super.key, this.initialGameId = 'g001'});
 
-  static const _gameId = 'g001';
+  final String initialGameId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final records = ref.watch(leaderboardRecordsProvider(_gameId));
+  ConsumerState<LeaderboardScreen> createState() => _LeaderboardScreenState();
+}
+
+class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
+  late String _selectedGameId;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedGameId = widget.initialGameId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final games = ref.watch(gameListProvider);
+    if (!games.any((game) => game.id == _selectedGameId) && games.isNotEmpty) {
+      _selectedGameId = games.first.id;
+    }
+
+    final selectedGame = games.firstWhere(
+      (game) => game.id == _selectedGameId,
+      orElse: GameInfo.empty,
+    );
+    final records = ref.watch(leaderboardRecordsProvider(_selectedGameId));
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
@@ -23,7 +47,7 @@ class LeaderboardScreen extends ConsumerWidget {
           IconButton(
             tooltip: '기록 초기화',
             icon: const Icon(Icons.delete_outline_rounded),
-            onPressed: () => _confirmClearRecords(context, ref),
+            onPressed: () => _confirmClearRecords(context),
           ),
         ],
       ),
@@ -33,7 +57,17 @@ class LeaderboardScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const _LeaderboardHeader(),
+              _GameSelector(
+                games: games,
+                selectedGameId: _selectedGameId,
+                onSelected: (gameId) {
+                  setState(() {
+                    _selectedGameId = gameId;
+                  });
+                },
+              ),
+              const SizedBox(height: 14),
+              _LeaderboardHeader(game: selectedGame),
               const SizedBox(height: 18),
               Expanded(
                 child: records.when(
@@ -64,13 +98,13 @@ class LeaderboardScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _confirmClearRecords(BuildContext context, WidgetRef ref) async {
+  Future<void> _confirmClearRecords(BuildContext context) async {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('기록 초기화'),
-          content: const Text('현재 기기에 저장된 똥 피하기 기록을 모두 삭제할까요?'),
+          content: const Text('현재 기기에 저장된 이 게임 기록을 모두 삭제할까요?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
@@ -90,9 +124,9 @@ class LeaderboardScreen extends ConsumerWidget {
     }
 
     final repository = await ref.read(localScoreRepositoryProvider.future);
-    await repository.clearRecords(gameId: _gameId);
-    ref.invalidate(leaderboardRecordsProvider(_gameId));
-    ref.invalidate(bestScoreProvider(_gameId));
+    await repository.clearRecords(gameId: _selectedGameId);
+    ref.invalidate(leaderboardRecordsProvider(_selectedGameId));
+    ref.invalidate(bestScoreProvider(_selectedGameId));
 
     if (context.mounted) {
       ScaffoldMessenger.of(
@@ -102,11 +136,53 @@ class LeaderboardScreen extends ConsumerWidget {
   }
 }
 
-class _LeaderboardHeader extends StatelessWidget {
-  const _LeaderboardHeader();
+class _GameSelector extends StatelessWidget {
+  const _GameSelector({
+    required this.games,
+    required this.selectedGameId,
+    required this.onSelected,
+  });
+
+  final List<GameInfo> games;
+  final String selectedGameId;
+  final ValueChanged<String> onSelected;
 
   @override
   Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (final game in games)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: ChoiceChip(
+                selected: game.id == selectedGameId,
+                label: Text(game.name),
+                avatar: Icon(
+                  game.id == 'g002'
+                      ? Icons.touch_app_rounded
+                      : Icons.keyboard_arrow_left_rounded,
+                  size: 18,
+                ),
+                onSelected: (_) => onSelected(game.id),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LeaderboardHeader extends StatelessWidget {
+  const _LeaderboardHeader({required this.game});
+
+  final GameInfo game;
+
+  @override
+  Widget build(BuildContext context) {
+    final isKiosk = game.id == 'g002';
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0xFF18212F),
@@ -123,27 +199,34 @@ class _LeaderboardHeader extends StatelessWidget {
         padding: const EdgeInsets.all(18),
         child: Row(
           children: [
-            Image.asset(
-              'assets/images/openmoji_poop.png',
-              width: 58,
-              height: 58,
-              filterQuality: FilterQuality.none,
-            ),
+            if (isKiosk)
+              const Icon(
+                Icons.touch_app_rounded,
+                color: Color(0xFFFFD166),
+                size: 58,
+              )
+            else
+              Image.asset(
+                game.thumbnailUrl ?? 'assets/images/openmoji_poop.png',
+                width: 58,
+                height: 58,
+                filterQuality: FilterQuality.none,
+              ),
             const SizedBox(width: 16),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '똥 피하기 Top 10',
-                    style: TextStyle(
+                    '${game.name} Top 10',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 22,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Text(
+                  const SizedBox(height: 4),
+                  const Text(
                     '현재 기기에 저장된 로컬 기록입니다.',
                     style: TextStyle(
                       color: Color(0xFFD4DEE8),
@@ -212,7 +295,7 @@ class _ScoreRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${record.score}',
+                    '${record.score}점',
                     style: const TextStyle(
                       color: Color(0xFF18212F),
                       fontSize: 22,
@@ -221,7 +304,18 @@ class _ScoreRow extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    '${record.playTime.toStringAsFixed(1)}초 · 근접 ${record.nearMissCount} · 콤보 x${record.maxCombo}',
+                    record.playerName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color(0xFF18212F),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    '${record.playTime.toStringAsFixed(1)}초 · 기록 ${record.nearMissCount} · 콤보 x${record.maxCombo}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(

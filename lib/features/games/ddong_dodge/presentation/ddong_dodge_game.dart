@@ -48,6 +48,7 @@ class DdongDodgeGame extends FlameGame
 
   bool isGameOver = false;
   bool _isLoaded = false;
+  bool _isWaitingForStart = true;
   double _stateUpdateTimer = 0;
   bool _touchLeftPressed = false;
   bool _touchRightPressed = false;
@@ -79,6 +80,7 @@ class DdongDodgeGame extends FlameGame
     overlays.add('hud');
     _isLoaded = true;
     _emitState();
+    pauseEngine();
   }
 
   @override
@@ -156,6 +158,7 @@ class DdongDodgeGame extends FlameGame
 
   void resetGame() {
     isGameOver = false;
+    _isWaitingForStart = false;
     scoreSystem.reset();
     difficultySystem.reset();
 
@@ -169,6 +172,16 @@ class DdongDodgeGame extends FlameGame
     _stateUpdateTimer = 0;
     _emitState();
     resumeEngine();
+  }
+
+  void startGame() {
+    if (!_isWaitingForStart || isGameOver) {
+      return;
+    }
+
+    _isWaitingForStart = false;
+    resumeEngine();
+    _emitState();
   }
 
   void registerNearMiss() {
