@@ -159,12 +159,7 @@ class _GameSelector extends StatelessWidget {
               child: ChoiceChip(
                 selected: game.id == selectedGameId,
                 label: Text(game.name),
-                avatar: Icon(
-                  game.id == 'g002'
-                      ? Icons.touch_app_rounded
-                      : Icons.keyboard_arrow_left_rounded,
-                  size: 18,
-                ),
+                avatar: Icon(_iconForGame(game.id), size: 18),
                 onSelected: (_) => onSelected(game.id),
               ),
             ),
@@ -181,8 +176,6 @@ class _LeaderboardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isKiosk = game.id == 'g002';
-
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0xFF18212F),
@@ -199,19 +192,7 @@ class _LeaderboardHeader extends StatelessWidget {
         padding: const EdgeInsets.all(18),
         child: Row(
           children: [
-            if (isKiosk)
-              const Icon(
-                Icons.touch_app_rounded,
-                color: Color(0xFFFFD166),
-                size: 58,
-              )
-            else
-              Image.asset(
-                game.thumbnailUrl ?? 'assets/images/openmoji_poop.png',
-                width: 58,
-                height: 58,
-                filterQuality: FilterQuality.none,
-              ),
+            _LeaderboardGameIcon(game: game),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
@@ -242,6 +223,51 @@ class _LeaderboardHeader extends StatelessWidget {
       ),
     );
   }
+}
+
+class _LeaderboardGameIcon extends StatelessWidget {
+  const _LeaderboardGameIcon({required this.game});
+
+  final GameInfo game;
+
+  @override
+  Widget build(BuildContext context) {
+    if (game.id == 'g001' && game.thumbnailUrl != null) {
+      return Image.asset(
+        game.thumbnailUrl!,
+        width: 58,
+        height: 58,
+        filterQuality: FilterQuality.none,
+      );
+    }
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFF263246),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFF3B4657)),
+      ),
+      child: SizedBox(
+        width: 58,
+        height: 58,
+        child: Icon(
+          _iconForGame(game.id),
+          color: const Color(0xFFFFD166),
+          size: 34,
+        ),
+      ),
+    );
+  }
+}
+
+IconData _iconForGame(String gameId) {
+  return switch (gameId) {
+    'g001' => Icons.sentiment_very_dissatisfied_rounded,
+    'g002' => Icons.touch_app_rounded,
+    'g003' => Icons.local_shipping_rounded,
+    'g004' => Icons.quiz_rounded,
+    _ => Icons.sports_esports_rounded,
+  };
 }
 
 class _ScoreRow extends StatelessWidget {

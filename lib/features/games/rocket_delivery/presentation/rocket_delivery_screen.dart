@@ -45,13 +45,17 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   int _remainingTime = _totalTime;
   int _lives = _maxLives;
   int _difficulty = 1;
+  bool _isSetupVisible = true;
   bool _isReadyOverlayVisible = true;
   bool _isSaving = false;
   bool _zoneShuffleEnabled = true;
   bool _isZoneShuffleWarningVisible = false;
+  bool _isZoneShuffleCompleteVisible = false;
+  bool _isConveyorPaused = false;
   int _lastShuffleDifficulty = 1;
   SortFeedback? _feedback;
   Timer? _feedbackTimer;
+  Timer? _zoneShuffleOverlayTimer;
 
   late List<DeliveryZone> _activeZones;
   final List<MovingPackage> _packages = [];
@@ -70,13 +74,14 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
     _timer?.cancel();
     _packageTimer?.cancel();
     _zoneShuffleTimer?.cancel();
+    _zoneShuffleOverlayTimer?.cancel();
     _feedbackTimer?.cancel();
     _focusNode.dispose();
     super.dispose();
   }
 
   void _startGame() {
-    if (!_isReadyOverlayVisible) {
+    if (_isSetupVisible || !_isReadyOverlayVisible) {
       return;
     }
 
@@ -89,7 +94,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   }
 
   void _tick() {
-    if (_isSaving || _isReadyOverlayVisible) {
+    if (_isSaving || _isSetupVisible || _isReadyOverlayVisible) {
       return;
     }
 
@@ -105,19 +110,21 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   void _startPackageTimer() {
     _packageTimer?.cancel();
     _packageTimer = Timer.periodic(const Duration(milliseconds: 60), (_) {
-      if (_isSaving || _isReadyOverlayVisible) {
+      if (_isSaving || _isSetupVisible || _isReadyOverlayVisible) {
         return;
       }
 
-      setState(() {
-        for (final package in _packages) {
-          package.progress += _packageSpeed;
-        }
+      if (!_isConveyorPaused) {
+        setState(() {
+          for (final package in _packages) {
+            package.progress += _packageSpeed;
+          }
 
-        if (_packages.isEmpty || _packages.last.progress >= _spawnGap) {
-          _spawnPackage();
-        }
-      });
+          if (_packages.isEmpty || _packages.last.progress >= _spawnGap) {
+            _spawnPackage();
+          }
+        });
+      }
 
       final missedCount = _packages
           .where((package) => package.progress >= 1)
@@ -166,19 +173,36 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   }
 
   void _setZoneShuffleEnabled(bool enabled) {
+    if (!_isSetupVisible) {
+      return;
+    }
+
     setState(() {
       _zoneShuffleEnabled = enabled;
       if (!enabled) {
         _zoneShuffleTimer?.cancel();
+        _zoneShuffleOverlayTimer?.cancel();
         _isZoneShuffleWarningVisible = false;
+        _isZoneShuffleCompleteVisible = false;
+        _isConveyorPaused = false;
       }
+    });
+  }
+
+  void _confirmSetup() {
+    setState(() {
+      _isSetupVisible = false;
+      _isReadyOverlayVisible = true;
     });
   }
 
   void _scheduleZoneShuffle() {
     _lastShuffleDifficulty = _difficulty;
     _zoneShuffleTimer?.cancel();
+    _zoneShuffleOverlayTimer?.cancel();
     _isZoneShuffleWarningVisible = true;
+    _isZoneShuffleCompleteVisible = false;
+    _isConveyorPaused = false;
     _zoneShuffleTimer = Timer(const Duration(seconds: 2), () {
       if (!mounted || _isSaving) {
         return;
@@ -187,6 +211,8 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
       setState(() {
         _activeZones.shuffle(_random);
         _isZoneShuffleWarningVisible = false;
+        _isZoneShuffleCompleteVisible = true;
+        _isConveyorPaused = true;
         _setFeedback(
           SortFeedback.notice(
             '배송구역 재배치 완료',
@@ -194,6 +220,16 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
             Icons.shuffle_rounded,
           ),
         );
+      });
+      _zoneShuffleOverlayTimer = Timer(const Duration(milliseconds: 1200), () {
+        if (!mounted) {
+          return;
+        }
+
+        setState(() {
+          _isZoneShuffleCompleteVisible = false;
+          _isConveyorPaused = false;
+        });
       });
     });
   }
@@ -213,7 +249,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   }
 
   void _selectZone(DeliveryZone zone) {
-    if (_isSaving || _isReadyOverlayVisible) {
+    if (_isSaving || _isSetupVisible || _isReadyOverlayVisible) {
       return;
     }
 
@@ -291,12 +327,13 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
 
     final key = event.logicalKey;
     final index = switch (key) {
-      LogicalKeyboardKey.arrowLeft || LogicalKeyboardKey.keyA => 0,
-      LogicalKeyboardKey.arrowUp || LogicalKeyboardKey.keyW => 1,
-      LogicalKeyboardKey.arrowRight || LogicalKeyboardKey.keyD => 2,
-      LogicalKeyboardKey.arrowDown || LogicalKeyboardKey.keyS => 3,
+      LogicalKeyboardKey.digit1 || LogicalKeyboardKey.numpad1 => 0,
+      LogicalKeyboardKey.digit2 || LogicalKeyboardKey.numpad2 => 1,
+      LogicalKeyboardKey.digit3 || LogicalKeyboardKey.numpad3 => 2,
+      LogicalKeyboardKey.digit4 || LogicalKeyboardKey.numpad4 => 3,
       LogicalKeyboardKey.digit5 => 4,
-      LogicalKeyboardKey.digit6 => 5,
+      LogicalKeyboardKey.numpad5 => 4,
+      LogicalKeyboardKey.digit6 || LogicalKeyboardKey.numpad6 => 5,
       _ => -1,
     };
 
@@ -313,6 +350,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
     _timer?.cancel();
     _packageTimer?.cancel();
     _zoneShuffleTimer?.cancel();
+    _zoneShuffleOverlayTimer?.cancel();
     setState(() {
       _isSaving = true;
     });
@@ -430,7 +468,6 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
                               difficulty: _difficulty,
                               zoneShuffleEnabled: _zoneShuffleEnabled,
                               scoreMultiplier: _scoreMultiplier,
-                              onZoneShuffleChanged: _setZoneShuffleEnabled,
                             ),
                             const SizedBox(height: 14),
                             _ConveyorPanel(
@@ -438,6 +475,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
                               currentPackage: _currentPackage.package,
                               speed: _packageSpeed,
                               spawnGap: _spawnGap,
+                              paused: _isConveyorPaused,
                               feedback: _feedback,
                             ),
                             const SizedBox(height: 14),
@@ -453,8 +491,20 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
                   );
                 },
               ),
-              if (_isReadyOverlayVisible)
+              if (_isReadyOverlayVisible && !_isSetupVisible)
                 ReadyStartOverlay(onCompleted: _startGame),
+              if (_isSetupVisible)
+                _RocketSetupOverlay(
+                  zoneShuffleEnabled: _zoneShuffleEnabled,
+                  scoreMultiplier: _scoreMultiplier,
+                  onZoneShuffleChanged: _setZoneShuffleEnabled,
+                  onStart: _confirmSetup,
+                ),
+              if (!_isReadyOverlayVisible)
+                _ZoneShuffleTopOverlay(
+                  warningVisible: _isZoneShuffleWarningVisible,
+                  completeVisible: _isZoneShuffleCompleteVisible,
+                ),
             ],
           ),
         ),
