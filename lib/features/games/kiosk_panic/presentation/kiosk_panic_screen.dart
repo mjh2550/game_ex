@@ -3,6 +3,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_ex/features/games/kiosk_panic/data/customer_reaction_catalog.dart';
+import 'package:game_ex/features/games/kiosk_panic/data/kiosk_catalog.dart';
+import 'package:game_ex/features/games/kiosk_panic/domain/customer_reaction.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/player_name_dialog.dart';
@@ -17,45 +20,6 @@ class KioskPanicScreen extends ConsumerStatefulWidget {
   @override
   ConsumerState<KioskPanicScreen> createState() => _KioskPanicScreenState();
 }
-
-const Map<String, String> _choiceEmoji = {
-  '아메리카노': '☕',
-  '라떼': '🥛',
-  '바닐라라떼': '🍦',
-  '딸기스무디': '🍓',
-  '제로콜라': '🥤',
-  '불고기버거': '🍔',
-  '새우버거': '🍤',
-  '감자튀김': '🍟',
-  '김치볶음밥': '🍚',
-  '라면': '🍜',
-  '김밥': '🍙',
-  '떡볶이': '🌶️',
-  '치즈돈까스': '🧀',
-  '핫도그': '🌭',
-  '치킨너겟': '🍗',
-  '초코케이크': '🍰',
-  '얼음 적게': '🧊',
-  '얼음 많이': '🧊',
-  '샷 추가': '➕',
-  '휘핑 빼기': '🚫',
-  '매운맛': '🔥',
-  '순한맛': '🙂',
-  '치즈 추가': '🧀',
-  '소스 많이': '🥫',
-  '피클 빼기': '🥒',
-  '포장': '🛍️',
-  '매장 식사': '🍽️',
-  '쿠폰 사용': '🎟️',
-  '카드 결제': '💳',
-  '현금 결제': '💵',
-  '영수증 없음': '🗑️',
-  '영수증 출력': '🧾',
-  '사이즈업': '⬆️',
-  '세트 변경': '🔁',
-};
-
-String _emojiForChoice(String choice) => _choiceEmoji[choice] ?? '🔘';
 
 class _KioskPanicScreenState extends ConsumerState<KioskPanicScreen> {
   static const _totalTime = 45;
@@ -78,46 +42,6 @@ class _KioskPanicScreenState extends ConsumerState<KioskPanicScreen> {
   late List<String> _targetSteps;
   late List<String> _choices;
   int _stepIndex = 0;
-
-  final List<String> _menus = const [
-    '아메리카노',
-    '라떼',
-    '바닐라라떼',
-    '딸기스무디',
-    '제로콜라',
-    '불고기버거',
-    '새우버거',
-    '감자튀김',
-    '김치볶음밥',
-    '라면',
-    '김밥',
-    '떡볶이',
-    '치즈돈까스',
-    '핫도그',
-    '치킨너겟',
-    '초코케이크',
-  ];
-
-  final List<String> _options = const [
-    '얼음 적게',
-    '얼음 많이',
-    '샷 추가',
-    '휘핑 빼기',
-    '매운맛',
-    '순한맛',
-    '치즈 추가',
-    '소스 많이',
-    '피클 빼기',
-    '포장',
-    '매장 식사',
-    '쿠폰 사용',
-    '카드 결제',
-    '현금 결제',
-    '영수증 없음',
-    '영수증 출력',
-    '사이즈업',
-    '세트 변경',
-  ];
 
   @override
   void initState() {
@@ -162,8 +86,11 @@ class _KioskPanicScreenState extends ConsumerState<KioskPanicScreen> {
   void _generateOrder() {
     _difficulty = 1 + (_ordersCompleted ~/ 3);
     final stepCount = min(2 + _difficulty, 8);
-    final choiceCount = min(5 + _difficulty, _menus.length + _options.length);
-    final pool = [..._menus, ..._options]..shuffle(_random);
+    final choiceCount = min(
+      5 + _difficulty,
+      kioskMenus.length + kioskOptions.length,
+    );
+    final pool = [...kioskMenus, ...kioskOptions]..shuffle(_random);
 
     _targetSteps = pool.take(stepCount).toList();
     _choices = pool.take(max(choiceCount, stepCount + 1)).toList()
@@ -278,9 +205,9 @@ class _KioskPanicScreenState extends ConsumerState<KioskPanicScreen> {
     final expected = _targetSteps[_stepIndex];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FB),
+      backgroundColor: const Color(0xFFEAF7FF),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF5F7FB),
+        backgroundColor: const Color(0xCCF5F7FB),
         elevation: 0,
         foregroundColor: const Color(0xFF18212F),
         title: const Text(
@@ -295,6 +222,18 @@ class _KioskPanicScreenState extends ConsumerState<KioskPanicScreen> {
 
             return Stack(
               children: [
+                Positioned.fill(
+                  child: Image.asset(
+                    'assets/images/kiosk_panic_hud_bg.png',
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                Positioned.fill(
+                  child: ColoredBox(
+                    color: const Color(0xFFF5F7FB).withValues(alpha: 0.74),
+                  ),
+                ),
                 SingleChildScrollView(
                   padding: EdgeInsets.fromLTRB(
                     compact ? 14 : 20,
@@ -462,7 +401,7 @@ class _CustomerPressurePanel extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white.withValues(alpha: 0.93),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color(0xFFE1E7EF)),
       ),
@@ -534,55 +473,7 @@ class _CustomerPressurePanel extends StatelessWidget {
     );
   }
 
-  _CustomerReaction get _reaction {
-    if (patience > 70) {
-      return const _CustomerReaction(
-        icon: Icons.sentiment_satisfied_alt_rounded,
-        color: Color(0xFF2BB673),
-        title: '뒤 손님: 평온',
-        message: '아직은 기다려줄 만한 분위기예요.',
-      );
-    }
-
-    if (patience > 40) {
-      return const _CustomerReaction(
-        icon: Icons.visibility_rounded,
-        color: Color(0xFFFFA726),
-        title: '뒤 손님: 눈치',
-        message: '어깨 너머로 주문을 확인하기 시작했습니다.',
-      );
-    }
-
-    if (patience > 18) {
-      return const _CustomerReaction(
-        icon: Icons.record_voice_over_rounded,
-        color: Color(0xFFE56B1F),
-        title: '뒤 손님: 한숨',
-        message: '“아... 아직도 고르는 중인가?”',
-      );
-    }
-
-    return const _CustomerReaction(
-      icon: Icons.warning_amber_rounded,
-      color: Color(0xFFE53935),
-      title: '뒤 손님: 폭발 직전',
-      message: '실수하면 바로 분위기가 끝장납니다.',
-    );
-  }
-}
-
-class _CustomerReaction {
-  const _CustomerReaction({
-    required this.icon,
-    required this.color,
-    required this.title,
-    required this.message,
-  });
-
-  final IconData icon;
-  final Color color;
-  final String title;
-  final String message;
+  CustomerReaction get _reaction => customerReactionForPatience(patience);
 }
 
 class _StatusMetric extends StatelessWidget {
@@ -634,7 +525,7 @@ class _OrderPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white.withValues(alpha: 0.93),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color(0xFFE1E7EF)),
       ),
@@ -655,7 +546,7 @@ class _OrderPanel extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  _emojiForChoice(expected),
+                  emojiForKioskChoice(expected),
                   style: const TextStyle(fontSize: 30),
                 ),
                 const SizedBox(width: 10),
@@ -705,7 +596,7 @@ class _StepChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-      avatar: Text(_emojiForChoice(text)),
+      avatar: Text(emojiForKioskChoice(text)),
       label: Text(text),
       backgroundColor: done
           ? const Color(0xFFDCF5E8)
@@ -734,7 +625,7 @@ class _KioskPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFFEAF7FF),
+        color: const Color(0xFFEAF7FF).withValues(alpha: 0.92),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color(0xFFB9E2F4)),
       ),
@@ -780,7 +671,10 @@ class _KioskChoiceButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(_emojiForChoice(choice), style: const TextStyle(fontSize: 20)),
+          Text(
+            emojiForKioskChoice(choice),
+            style: const TextStyle(fontSize: 20),
+          ),
           const SizedBox(width: 6),
           Flexible(
             child: Text(

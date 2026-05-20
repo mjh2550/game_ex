@@ -4,6 +4,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_ex/features/games/rocket_delivery/data/rocket_delivery_catalog.dart';
+import 'package:game_ex/features/games/rocket_delivery/domain/delivery_package.dart';
+import 'package:game_ex/features/games/rocket_delivery/domain/delivery_zone.dart';
+import 'package:game_ex/features/games/rocket_delivery/domain/moving_package.dart';
+import 'package:game_ex/features/games/rocket_delivery/domain/sort_feedback.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/player_name_dialog.dart';
@@ -28,6 +33,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   final _focusNode = FocusNode();
   Timer? _timer;
   Timer? _packageTimer;
+  Timer? _zoneShuffleTimer;
 
   int _score = 0;
   int _combo = 0;
@@ -39,26 +45,20 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   int _difficulty = 1;
   bool _isReadyOverlayVisible = true;
   bool _isSaving = false;
-  _SortFeedback? _feedback;
+  bool _zoneShuffleEnabled = true;
+  bool _isZoneShuffleWarningVisible = false;
+  int _lastShuffleDifficulty = 1;
+  SortFeedback? _feedback;
   Timer? _feedbackTimer;
 
-  late List<_DeliveryZone> _activeZones;
-  final List<_MovingPackage> _packages = [];
+  late List<DeliveryZone> _activeZones;
+  final List<MovingPackage> _packages = [];
   int _nextPackageId = 0;
-
-  final List<_DeliveryZone> _zones = const [
-    _DeliveryZone('A', '강남', Icons.apartment_rounded, Color(0xFF2BB673)),
-    _DeliveryZone('B', '홍대', Icons.storefront_rounded, Color(0xFFE56B1F)),
-    _DeliveryZone('C', '잠실', Icons.stadium_rounded, Color(0xFF54C6EB)),
-    _DeliveryZone('D', '용산', Icons.train_rounded, Color(0xFF8E6BE8)),
-    _DeliveryZone('E', '성수', Icons.factory_rounded, Color(0xFFE84A5F)),
-    _DeliveryZone('F', '판교', Icons.business_rounded, Color(0xFF60707F)),
-  ];
 
   @override
   void initState() {
     super.initState();
-    _activeZones = _zones.take(4).toList();
+    _activeZones = rocketDeliveryZones.take(4).toList();
     _refreshDifficulty();
     _spawnPackage();
   }
@@ -67,6 +67,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   void dispose() {
     _timer?.cancel();
     _packageTimer?.cancel();
+    _zoneShuffleTimer?.cancel();
     _feedbackTimer?.cancel();
     _focusNode.dispose();
     super.dispose();
@@ -129,30 +130,87 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
 
   double get _spawnGap => max(0.14, 0.34 - (_difficulty * 0.022));
 
-  _MovingPackage get _currentPackage {
+  double get _scoreMultiplier => _zoneShuffleEnabled ? 1.5 : 1.0;
+
+  MovingPackage get _currentPackage {
     return _packages.reduce((a, b) => a.progress >= b.progress ? a : b);
   }
 
   void _refreshDifficulty() {
     _difficulty = 1 + (_sortedCount ~/ 5);
-    final zoneCount = min(4 + (_difficulty ~/ 2), _zones.length);
-    _activeZones = _zones.take(zoneCount).toList();
+    final zoneCount = min(4 + (_difficulty ~/ 2), rocketDeliveryZones.length);
+    final unlockedZones = rocketDeliveryZones.take(zoneCount).toList();
+    final unlockedCodes = unlockedZones.map((zone) => zone.code).toSet();
+    final retainedZones = _activeZones
+        .where((zone) => unlockedCodes.contains(zone.code))
+        .toList();
+    final retainedCodes = retainedZones.map((zone) => zone.code).toSet();
+    final newZones = unlockedZones
+        .where((zone) => !retainedCodes.contains(zone.code))
+        .toList();
+    _activeZones = [...retainedZones, ...newZones];
+
+    if (_shouldShuffleZones) {
+      _scheduleZoneShuffle();
+    }
+  }
+
+  bool get _shouldShuffleZones {
+    return _zoneShuffleEnabled &&
+        _difficulty >= 5 &&
+        _difficulty.isOdd &&
+        _difficulty > _lastShuffleDifficulty &&
+        !_isZoneShuffleWarningVisible;
+  }
+
+  void _setZoneShuffleEnabled(bool enabled) {
+    setState(() {
+      _zoneShuffleEnabled = enabled;
+      if (!enabled) {
+        _zoneShuffleTimer?.cancel();
+        _isZoneShuffleWarningVisible = false;
+      }
+    });
+  }
+
+  void _scheduleZoneShuffle() {
+    _lastShuffleDifficulty = _difficulty;
+    _zoneShuffleTimer?.cancel();
+    _isZoneShuffleWarningVisible = true;
+    _zoneShuffleTimer = Timer(const Duration(seconds: 2), () {
+      if (!mounted || _isSaving) {
+        return;
+      }
+
+      setState(() {
+        _activeZones.shuffle(_random);
+        _isZoneShuffleWarningVisible = false;
+        _setFeedback(
+          SortFeedback.notice(
+            '배송구역 재배치 완료',
+            Color(0xFFE56B1F),
+            Icons.shuffle_rounded,
+          ),
+        );
+      });
+    });
   }
 
   void _spawnPackage() {
     _refreshDifficulty();
     final target = _activeZones[_random.nextInt(_activeZones.length)];
-    final label = _boxLabels[_random.nextInt(_boxLabels.length)];
+    final item =
+        rocketDeliveryItems[_random.nextInt(rocketDeliveryItems.length)];
 
     _packages.add(
-      _MovingPackage(
+      MovingPackage(
         id: _nextPackageId++,
-        package: _DeliveryPackage(label: label, target: target),
+        package: DeliveryPackage(item: item, target: target),
       ),
     );
   }
 
-  void _selectZone(_DeliveryZone zone) {
+  void _selectZone(DeliveryZone zone) {
     if (_isSaving || _isReadyOverlayVisible) {
       return;
     }
@@ -165,10 +223,11 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
         _sortedCount++;
         _combo++;
         _maxCombo = max(_maxCombo, _combo);
-        _score += 60 + (_combo * 8) + (_difficulty * 8);
+        final baseScore = 60 + (_combo * 8) + (_difficulty * 8);
+        _score += (baseScore * _scoreMultiplier).round();
         _refreshDifficulty();
         _setFeedback(
-          _SortFeedback.correct(
+          SortFeedback.correct(
             '${currentPackage.package.target.code} ${currentPackage.package.target.name}',
           ),
         );
@@ -192,7 +251,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
       _combo = 0;
       _lives -= count;
       _score = max(0, _score - 35);
-      _setFeedback(_SortFeedback.wrong(count > 1 ? '$count개 놓침' : '분류 실패'));
+      _setFeedback(SortFeedback.wrong(count > 1 ? '$count개 놓침' : '분류 실패'));
       if (packageId == null) {
         _packages.removeWhere((package) => package.progress >= 1);
       } else {
@@ -209,7 +268,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
     }
   }
 
-  void _setFeedback(_SortFeedback feedback) {
+  void _setFeedback(SortFeedback feedback) {
     _feedbackTimer?.cancel();
     _feedback = feedback;
     _feedbackTimer = Timer(const Duration(milliseconds: 700), () {
@@ -251,6 +310,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
 
     _timer?.cancel();
     _packageTimer?.cancel();
+    _zoneShuffleTimer?.cancel();
     setState(() {
       _isSaving = true;
     });
@@ -316,9 +376,10 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
       autofocus: true,
       onKeyEvent: _handleKey,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF5F7FB),
+        backgroundColor: const Color(0xFFEAF7FF),
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF5F7FB),
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xCCF5F7FB),
           elevation: 0,
           foregroundColor: const Color(0xFF18212F),
           title: const Text(
@@ -329,6 +390,18 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
         body: SafeArea(
           child: Stack(
             children: [
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/rocket_delivery_hud_bg.png',
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
+                ),
+              ),
+              Positioned.fill(
+                child: ColoredBox(
+                  color: const Color(0xFFF5F7FB).withValues(alpha: 0.72),
+                ),
+              ),
               LayoutBuilder(
                 builder: (context, constraints) {
                   final compact = constraints.maxWidth < 430;
@@ -353,6 +426,9 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
                               lives: _lives,
                               combo: _combo,
                               difficulty: _difficulty,
+                              zoneShuffleEnabled: _zoneShuffleEnabled,
+                              scoreMultiplier: _scoreMultiplier,
+                              onZoneShuffleChanged: _setZoneShuffleEnabled,
                             ),
                             const SizedBox(height: 14),
                             _ConveyorPanel(
@@ -365,6 +441,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
                             const SizedBox(height: 14),
                             _ZonePanel(
                               zones: _activeZones,
+                              warningVisible: _isZoneShuffleWarningVisible,
                               onPressed: _selectZone,
                             ),
                           ],
@@ -384,64 +461,6 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   }
 }
 
-const _boxLabels = ['생수', '휴지', '간식', '충전기', '양말', '샴푸', '사료', '키보드'];
-
-class _DeliveryZone {
-  const _DeliveryZone(this.code, this.name, this.icon, this.color);
-
-  final String code;
-  final String name;
-  final IconData icon;
-  final Color color;
-}
-
-class _DeliveryPackage {
-  const _DeliveryPackage({required this.label, required this.target});
-
-  final String label;
-  final _DeliveryZone target;
-}
-
-class _MovingPackage {
-  _MovingPackage({required this.id, required this.package});
-
-  final int id;
-  final _DeliveryPackage package;
-  double progress = 0;
-}
-
-class _SortFeedback {
-  const _SortFeedback({
-    required this.correct,
-    required this.message,
-    required this.color,
-    required this.icon,
-  });
-
-  factory _SortFeedback.correct(String destination) {
-    return _SortFeedback(
-      correct: true,
-      message: '$destination 분류 성공',
-      color: const Color(0xFF2BB673),
-      icon: Icons.check_circle_rounded,
-    );
-  }
-
-  factory _SortFeedback.wrong(String reason) {
-    return _SortFeedback(
-      correct: false,
-      message: reason,
-      color: const Color(0xFFE53935),
-      icon: Icons.cancel_rounded,
-    );
-  }
-
-  final bool correct;
-  final String message;
-  final Color color;
-  final IconData icon;
-}
-
 class _RocketStatusPanel extends StatelessWidget {
   const _RocketStatusPanel({
     required this.score,
@@ -450,6 +469,9 @@ class _RocketStatusPanel extends StatelessWidget {
     required this.lives,
     required this.combo,
     required this.difficulty,
+    required this.zoneShuffleEnabled,
+    required this.scoreMultiplier,
+    required this.onZoneShuffleChanged,
   });
 
   final int score;
@@ -458,6 +480,9 @@ class _RocketStatusPanel extends StatelessWidget {
   final int lives;
   final int combo;
   final int difficulty;
+  final bool zoneShuffleEnabled;
+  final double scoreMultiplier;
+  final ValueChanged<bool> onZoneShuffleChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -498,6 +523,81 @@ class _RocketStatusPanel extends StatelessWidget {
                 fontSize: 13,
                 fontWeight: FontWeight.w900,
               ),
+            ),
+            const SizedBox(height: 10),
+            _RocketOptionSwitch(
+              label: '구역 재배치',
+              value: zoneShuffleEnabled,
+              scoreMultiplier: scoreMultiplier,
+              onChanged: onZoneShuffleChanged,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RocketOptionSwitch extends StatelessWidget {
+  const _RocketOptionSwitch({
+    required this.label,
+    required this.value,
+    required this.scoreMultiplier,
+    required this.onChanged,
+  });
+
+  final String label;
+  final bool value;
+  final double scoreMultiplier;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.16)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        child: Row(
+          children: [
+            const Icon(Icons.tune_rounded, color: Color(0xFFD4DEE8), size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Color(0xFFD4DEE8),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    'x${scoreMultiplier.toStringAsFixed(1)}',
+                    style: TextStyle(
+                      color: value
+                          ? const Color(0xFFFFD166)
+                          : const Color(0xFF8A98A8),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Switch.adaptive(
+              value: value,
+              activeThumbColor: const Color(0xFF2BB673),
+              onChanged: onChanged,
             ),
           ],
         ),
@@ -549,17 +649,17 @@ class _ConveyorPanel extends StatelessWidget {
     required this.feedback,
   });
 
-  final List<_MovingPackage> packages;
-  final _DeliveryPackage currentPackage;
+  final List<MovingPackage> packages;
+  final DeliveryPackage currentPackage;
   final double speed;
   final double spawnGap;
-  final _SortFeedback? feedback;
+  final SortFeedback? feedback;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white.withValues(alpha: 0.92),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color(0xFFE1E7EF)),
       ),
@@ -643,7 +743,7 @@ class _ConveyorPanel extends StatelessWidget {
               duration: const Duration(milliseconds: 160),
               child: feedback == null
                   ? const SizedBox(height: 38)
-                  : _SortFeedbackBanner(
+                  : SortFeedbackBanner(
                       key: ValueKey('${feedback!.correct}${feedback!.message}'),
                       feedback: feedback!,
                     ),
@@ -658,7 +758,7 @@ class _ConveyorPanel extends StatelessWidget {
 class _PackageBox extends StatelessWidget {
   const _PackageBox({required this.package, required this.isCurrent});
 
-  final _DeliveryPackage package;
+  final DeliveryPackage package;
   final bool isCurrent;
 
   @override
@@ -685,14 +785,24 @@ class _PackageBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.inventory_2_rounded,
-              size: 32,
-              color: Color(0xFF18212F),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: package.item.color.withValues(alpha: 0.16),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: SizedBox(
+                width: 34,
+                height: 30,
+                child: Icon(
+                  package.item.icon,
+                  size: 22,
+                  color: package.item.color,
+                ),
+              ),
             ),
             const SizedBox(height: 3),
             Text(
-              package.label,
+              package.item.label,
               style: const TextStyle(
                 color: Color(0xFF18212F),
                 fontSize: 13,
@@ -714,10 +824,10 @@ class _PackageBox extends StatelessWidget {
   }
 }
 
-class _SortFeedbackBanner extends StatelessWidget {
-  const _SortFeedbackBanner({super.key, required this.feedback});
+class SortFeedbackBanner extends StatelessWidget {
+  const SortFeedbackBanner({super.key, required this.feedback});
 
-  final _SortFeedback feedback;
+  final SortFeedback feedback;
 
   @override
   Widget build(BuildContext context) {
@@ -750,79 +860,132 @@ class _SortFeedbackBanner extends StatelessWidget {
 }
 
 class _ZonePanel extends StatelessWidget {
-  const _ZonePanel({required this.zones, required this.onPressed});
+  const _ZonePanel({
+    required this.zones,
+    required this.warningVisible,
+    required this.onPressed,
+  });
 
-  final List<_DeliveryZone> zones;
-  final ValueChanged<_DeliveryZone> onPressed;
+  final List<DeliveryZone> zones;
+  final bool warningVisible;
+  final ValueChanged<DeliveryZone> onPressed;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFFEAF7FF),
+        color: const Color(0xFFEAF7FF).withValues(alpha: 0.92),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color(0xFFB9E2F4)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: zones.length,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 190,
-            mainAxisExtent: 72,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemBuilder: (context, index) {
-            final zone = zones[index];
-            final hint = switch (index) {
-              0 => '← A',
-              1 => '↑ W',
-              2 => '→ D',
-              3 => '↓ S',
-              _ => '${index + 1}',
-            };
+        child: Column(
+          children: [
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 160),
+              child: warningVisible
+                  ? const _ZoneShuffleWarning()
+                  : const SizedBox.shrink(),
+            ),
+            if (warningVisible) const SizedBox(height: 10),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: zones.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 190,
+                mainAxisExtent: 72,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                final zone = zones[index];
+                final hint = switch (index) {
+                  0 => '← A',
+                  1 => '↑ W',
+                  2 => '→ D',
+                  3 => '↓ S',
+                  _ => '${index + 1}',
+                };
 
-            return FilledButton(
-              onPressed: () => onPressed(zone),
-              style: FilledButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: const Color(0xFF18212F),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(color: zone.color, width: 1.5),
+                return FilledButton(
+                  onPressed: () => onPressed(zone),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF18212F),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: BorderSide(color: zone.color, width: 1.5),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(zone.icon, color: zone.color, size: 24),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          '${zone.code} ${zone.name}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        hint,
+                        style: const TextStyle(
+                          color: Color(0xFF60707F),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ZoneShuffleWarning extends StatelessWidget {
+  const _ZoneShuffleWarning();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF0C2),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFE56B1F), width: 1.5),
+      ),
+      child: const SizedBox(
+        height: 40,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.shuffle_rounded, color: Color(0xFFE56B1F), size: 20),
+            SizedBox(width: 8),
+            Flexible(
+              child: Text(
+                '배송구역 재배치 예정',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Color(0xFF18212F),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
-              child: Row(
-                children: [
-                  Icon(zone.icon, color: zone.color, size: 24),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '${zone.code} ${zone.name}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    hint,
-                    style: const TextStyle(
-                      color: Color(0xFF60707F),
-                      fontSize: 11,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
