@@ -226,7 +226,7 @@ class _KioskPanicScreenState extends ConsumerState<KioskPanicScreen> {
 
     final playerName = await showPlayerNameDialog(
       context,
-      initialName: repository.getLastPlayerName(),
+      recentName: repository.getLastPlayerName(),
     );
 
     if (!mounted || playerName == null) {

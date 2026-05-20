@@ -84,7 +84,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
     final playerName = await showPlayerNameDialog(
       context,
-      initialName: scoreRepository.getLastPlayerName(),
+      recentName: scoreRepository.getLastPlayerName(),
     );
 
     if (!mounted || playerName == null) {

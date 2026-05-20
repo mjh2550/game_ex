@@ -29,10 +29,10 @@ class _ReadyStartOverlayState extends State<ReadyStartOverlay>
       vsync: this,
       duration: const Duration(milliseconds: 520),
     );
-    _scale = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 0.76, end: 1.08), weight: 58),
-      TweenSequenceItem(tween: Tween(begin: 1.08, end: 1.0), weight: 42),
-    ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
+    _scale = Tween<double>(
+      begin: 0.78,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     _opacity = Tween<double>(
       begin: 0,
       end: 1,
