@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "game_ex" "\0"
+            VALUE "FileDescription", "미니게임허브" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "game_ex" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "game_ex.exe" "\0"
-            VALUE "ProductName", "game_ex" "\0"
+            VALUE "ProductName", "미니게임허브" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

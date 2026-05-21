@@ -1,11 +1,11 @@
 {
-    "name": "game_ex",
-    "short_name": "game_ex",
+    "name": "미니게임허브",
+    "short_name": "미니게임허브",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "짧고 가볍게 즐기는 미니게임허브",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

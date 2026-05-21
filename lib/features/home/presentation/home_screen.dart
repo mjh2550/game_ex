@@ -21,7 +21,7 @@ class HomeScreen extends ConsumerWidget {
         elevation: 0,
         foregroundColor: const Color(0xFF18212F),
         title: const Text(
-          '미니게임천국',
+          '미니게임허브',
           style: TextStyle(fontWeight: FontWeight.w800),
         ),
         actions: [
