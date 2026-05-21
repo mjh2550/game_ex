@@ -222,7 +222,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
           ),
         );
       });
-      _zoneShuffleOverlayTimer = Timer(const Duration(milliseconds: 1200), () {
+      _zoneShuffleOverlayTimer = Timer(const Duration(seconds: 3), () {
         if (!mounted) {
           return;
         }
@@ -250,7 +250,10 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
   }
 
   void _selectZone(DeliveryZone zone) {
-    if (_isSaving || _isSetupVisible || _isReadyOverlayVisible) {
+    if (_isSaving ||
+        _isSetupVisible ||
+        _isReadyOverlayVisible ||
+        _isConveyorPaused) {
       return;
     }
 
@@ -483,6 +486,7 @@ class _RocketDeliveryScreenState extends ConsumerState<RocketDeliveryScreen> {
                             _ZonePanel(
                               zones: _activeZones,
                               warningVisible: _isZoneShuffleWarningVisible,
+                              inputEnabled: !_isConveyorPaused,
                               onPressed: _selectZone,
                             ),
                           ],

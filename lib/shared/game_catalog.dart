@@ -18,7 +18,7 @@ class GameCatalog {
       name: '똥 피하기',
       description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
       routeName: '/ddong_dodge',
-      isUnlocked: true,
+      isUnlocked: false,
       thumbnailUrl: 'assets/images/openmoji_poop.png',
     ),
     GameInfo(

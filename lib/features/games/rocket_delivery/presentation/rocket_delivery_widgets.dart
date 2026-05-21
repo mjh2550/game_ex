@@ -645,11 +645,13 @@ class _ZonePanel extends StatelessWidget {
   const _ZonePanel({
     required this.zones,
     required this.warningVisible,
+    required this.inputEnabled,
     required this.onPressed,
   });
 
   final List<DeliveryZone> zones;
   final bool warningVisible;
+  final bool inputEnabled;
   final ValueChanged<DeliveryZone> onPressed;
 
   @override
@@ -671,6 +673,13 @@ class _ZonePanel extends StatelessWidget {
                   : const SizedBox.shrink(),
             ),
             if (warningVisible) const SizedBox(height: 10),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 160),
+              child: inputEnabled
+                  ? const SizedBox.shrink()
+                  : const _ZoneInputLockedNotice(),
+            ),
+            if (!inputEnabled) const SizedBox(height: 10),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -686,9 +695,11 @@ class _ZonePanel extends StatelessWidget {
                 final hint = '${index + 1}';
 
                 return FilledButton(
-                  onPressed: () => onPressed(zone),
+                  onPressed: inputEnabled ? () => onPressed(zone) : null,
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.white,
+                    disabledBackgroundColor: const Color(0xFFD4DEE8),
+                    disabledForegroundColor: const Color(0xFF60707F),
                     foregroundColor: const Color(0xFF18212F),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     shape: RoundedRectangleBorder(
@@ -723,6 +734,42 @@ class _ZonePanel extends StatelessWidget {
                   ),
                 );
               },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ZoneInputLockedNotice extends StatelessWidget {
+  const _ZoneInputLockedNotice();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFF18212F),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFFFD166)),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.pause_rounded, color: Color(0xFFFFD166), size: 18),
+            SizedBox(width: 7),
+            Flexible(
+              child: Text(
+                '컨베이어 정지 중 · 분류 버튼 잠김',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
             ),
           ],
         ),
