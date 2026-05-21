@@ -54,3 +54,11 @@ lib/
 - [project_plan.md](project_plan.md): 전체 프로젝트 계획과 현재 보완 계획
 - [flame_architecture.md](flame_architecture.md): Flame 구조 정리
 - [flutter_flame_integration.md](flutter_flame_integration.md): Flutter/Riverpod/Flame 통합 가이드
+
+
+## 웹 도커 빌드
+```
+flutter build web --release
+docker build -t mini-game-hub-web:local .
+docker run --rm -p 8081:8081 -v mini-game-hub-scores:/data mini-game-hub-web:local
+```
