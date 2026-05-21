@@ -19,11 +19,11 @@ final bestScoreProvider = FutureProvider.family<int, String>((
   gameId,
 ) async {
   final repository = await ref.watch(localScoreRepositoryProvider.future);
-  return repository.getBestScore(gameId);
+  return await repository.getBestScore(gameId);
 });
 
 final leaderboardRecordsProvider =
     FutureProvider.family<List<ScoreRecord>, String>((ref, gameId) async {
       final repository = await ref.watch(localScoreRepositoryProvider.future);
-      return repository.getRecords(gameId: gameId, limit: 10);
+      return await repository.getRecords(gameId: gameId, limit: 10);
     });

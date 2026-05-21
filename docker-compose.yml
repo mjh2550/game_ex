@@ -5,4 +5,9 @@ services:
     image: mini-game-hub-web:local
     ports:
       - "8081:8081"
+    volumes:
+      - mini-game-hub-scores:/data
     restart: unless-stopped
+
+volumes:
+  mini-game-hub-scores:

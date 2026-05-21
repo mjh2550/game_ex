@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
@@ -104,7 +105,11 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
       builder: (context) {
         return AlertDialog(
           title: const Text('기록 초기화'),
-          content: const Text('현재 기기에 저장된 이 게임 기록을 모두 삭제할까요?'),
+          content: Text(
+            kIsWeb
+                ? '공유 순위표에 저장된 이 게임 기록을 모두 삭제할까요?'
+                : '현재 기기에 저장된 이 게임 기록을 모두 삭제할까요?',
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
@@ -129,9 +134,9 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
     ref.invalidate(bestScoreProvider(_selectedGameId));
 
     if (context.mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('로컬 기록을 삭제했습니다.')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(kIsWeb ? '공유 기록을 삭제했습니다.' : '로컬 기록을 삭제했습니다.')),
+      );
     }
   }
 }
@@ -207,9 +212,9 @@ class _LeaderboardHeader extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
-                    '현재 기기에 저장된 로컬 기록입니다.',
-                    style: TextStyle(
+                  Text(
+                    kIsWeb ? '도커 서버에 공유 저장된 기록입니다.' : '현재 기기에 저장된 로컬 기록입니다.',
+                    style: const TextStyle(
                       color: Color(0xFFD4DEE8),
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -407,7 +412,9 @@ class _EmptyLeaderboard extends StatelessWidget {
               ),
               SizedBox(height: 4),
               Text(
-                '한 판 플레이하면 여기에 점수가 저장됩니다.',
+                kIsWeb
+                    ? '같은 서버에 접속한 플레이어의 점수가 여기에 저장됩니다.'
+                    : '한 판 플레이하면 여기에 점수가 저장됩니다.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF60707F),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -234,7 +235,7 @@ class GameResultScreen extends ConsumerWidget {
                                     ),
                                     const SizedBox(width: 8),
                                     Text(
-                                      '로컬 순위 #$rank',
+                                      kIsWeb ? '공유 순위 #$rank' : '로컬 순위 #$rank',
                                       style: const TextStyle(
                                         color: Color(0xFF18212F),
                                         fontSize: 14,

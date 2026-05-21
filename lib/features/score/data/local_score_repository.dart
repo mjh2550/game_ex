@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalScoreRepository {
@@ -9,10 +11,22 @@ class LocalScoreRepository {
   static const _maxStoredRecords = 100;
 
   final SharedPreferences _prefs;
+  final http.Client _client;
 
-  const LocalScoreRepository(this._prefs);
+  LocalScoreRepository(this._prefs, {http.Client? client})
+    : _client = client ?? http.Client();
 
-  List<ScoreRecord> getRecords({String? gameId, int? limit}) {
+  Future<List<ScoreRecord>> getRecords({String? gameId, int? limit}) async {
+    if (_useRemoteScores) {
+      final remoteRecords = await _getRemoteRecords(
+        gameId: gameId,
+        limit: limit,
+      );
+      if (remoteRecords != null) {
+        return remoteRecords;
+      }
+    }
+
     final records =
         _loadRecords()
             .where((record) => gameId == null || record.gameId == gameId)
@@ -26,8 +40,8 @@ class LocalScoreRepository {
     return records.take(limit).toList();
   }
 
-  int getBestScore(String gameId) {
-    final records = getRecords(gameId: gameId);
+  Future<int> getBestScore(String gameId) async {
+    final records = await getRecords(gameId: gameId);
     if (records.isEmpty) {
       return 0;
     }
@@ -56,6 +70,13 @@ class LocalScoreRepository {
   Future<ScoreSaveResult> saveRecord(ScoreRecord record) async {
     await saveLastPlayerName(record.playerName);
 
+    if (_useRemoteScores) {
+      final remoteResult = await _saveRemoteRecord(record);
+      if (remoteResult != null) {
+        return remoteResult;
+      }
+    }
+
     final records = _loadRecords();
     final previousBest = records
         .where((item) => item.gameId == record.gameId)
@@ -83,6 +104,13 @@ class LocalScoreRepository {
   }
 
   Future<void> clearRecords({String? gameId}) async {
+    if (_useRemoteScores) {
+      final cleared = await _clearRemoteRecords(gameId: gameId);
+      if (cleared) {
+        return;
+      }
+    }
+
     if (gameId == null) {
       await _prefs.remove(_recordsKey);
       return;
@@ -121,5 +149,89 @@ class LocalScoreRepository {
     }
 
     return a.playedAt.compareTo(b.playedAt);
+  }
+
+  bool get _useRemoteScores => kIsWeb;
+
+  Uri _scoresApiUri({String? gameId, int? limit}) {
+    final params = <String, String>{};
+    if (gameId != null && gameId.isNotEmpty) {
+      params['gameId'] = gameId;
+    }
+    if (limit != null) {
+      params['limit'] = '$limit';
+    }
+
+    return Uri.base.replace(
+      path: '/api/scores',
+      queryParameters: params.isEmpty ? null : params,
+    );
+  }
+
+  Future<List<ScoreRecord>?> _getRemoteRecords({
+    String? gameId,
+    int? limit,
+  }) async {
+    try {
+      final response = await _client.get(
+        _scoresApiUri(gameId: gameId, limit: limit),
+      );
+      if (response.statusCode != 200) {
+        return null;
+      }
+
+      final decoded = jsonDecode(response.body);
+      final rawRecords = decoded is Map<String, dynamic>
+          ? decoded['records']
+          : decoded;
+      if (rawRecords is! List) {
+        return null;
+      }
+
+      return rawRecords
+          .whereType<Map>()
+          .map((item) => ScoreRecord.fromJson(Map<String, dynamic>.from(item)))
+          .toList();
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<ScoreSaveResult?> _saveRemoteRecord(ScoreRecord record) async {
+    try {
+      final response = await _client.post(
+        _scoresApiUri(),
+        headers: const {'Content-Type': 'application/json'},
+        body: jsonEncode(record.toJson()),
+      );
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        return null;
+      }
+
+      final decoded = jsonDecode(response.body);
+      if (decoded is! Map<String, dynamic>) {
+        return null;
+      }
+
+      return ScoreSaveResult(
+        record: ScoreRecord.fromJson(
+          Map<String, dynamic>.from(decoded['record'] as Map),
+        ),
+        bestScore: decoded['bestScore'] as int? ?? record.score,
+        isNewBest: decoded['isNewBest'] as bool? ?? false,
+        rank: decoded['rank'] as int? ?? 0,
+      );
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<bool> _clearRemoteRecords({String? gameId}) async {
+    try {
+      final response = await _client.delete(_scoresApiUri(gameId: gameId));
+      return response.statusCode == 200 || response.statusCode == 204;
+    } catch (_) {
+      return false;
+    }
   }
 }
