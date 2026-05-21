@@ -1,0 +1,8 @@
+services:
+  mini-game-hub-web:
+    build:
+      context: .
+    image: mini-game-hub-web:local
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
