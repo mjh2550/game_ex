@@ -9,6 +9,10 @@ class LocalScoreRepository {
   static const _recordsKey = 'score_records_v1';
   static const _lastPlayerNameKey = 'last_player_name_v1';
   static const _maxStoredRecords = 100;
+  static const _scoreBackend = String.fromEnvironment(
+    'SCORE_BACKEND',
+    defaultValue: 'auto',
+  );
 
   final SharedPreferences _prefs;
   final http.Client _client;
@@ -151,7 +155,28 @@ class LocalScoreRepository {
     return a.playedAt.compareTo(b.playedAt);
   }
 
-  bool get _useRemoteScores => kIsWeb;
+  static bool get supportsSharedScores {
+    if (!kIsWeb) {
+      return false;
+    }
+
+    final backend = _scoreBackend.trim().toLowerCase();
+    if (backend == 'local') {
+      return false;
+    }
+    if (backend == 'remote' || backend == 'shared') {
+      return true;
+    }
+
+    final host = Uri.base.host.toLowerCase();
+    if (host.endsWith('github.io')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  bool get _useRemoteScores => supportsSharedScores;
 
   Uri _scoresApiUri({String? gameId, int? limit}) {
     final params = <String, String>{};

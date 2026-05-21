@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_ex/features/score/data/local_score_repository.dart';
 import 'package:go_router/go_router.dart';
 
 class GameResultScreen extends ConsumerWidget {
@@ -235,7 +235,9 @@ class GameResultScreen extends ConsumerWidget {
                                     ),
                                     const SizedBox(width: 8),
                                     Text(
-                                      kIsWeb ? '공유 순위 #$rank' : '로컬 순위 #$rank',
+                                      LocalScoreRepository.supportsSharedScores
+                                          ? '공유 순위 #$rank'
+                                          : '로컬 순위 #$rank',
                                       style: const TextStyle(
                                         color: Color(0xFF18212F),
                                         fontSize: 14,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:game_ex/features/score/data/local_score_repository.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/game_catalog.dart';
@@ -108,7 +108,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
         return AlertDialog(
           title: const Text('기록 초기화'),
           content: Text(
-            kIsWeb
+            LocalScoreRepository.supportsSharedScores
                 ? '공유 순위표에 저장된 이 게임 기록을 모두 삭제할까요?'
                 : '현재 기기에 저장된 이 게임 기록을 모두 삭제할까요?',
           ),
@@ -137,7 +137,13 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
 
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(kIsWeb ? '공유 기록을 삭제했습니다.' : '로컬 기록을 삭제했습니다.')),
+        SnackBar(
+          content: Text(
+            LocalScoreRepository.supportsSharedScores
+                ? '공유 기록을 삭제했습니다.'
+                : '로컬 기록을 삭제했습니다.',
+          ),
+        ),
       );
     }
   }
@@ -215,7 +221,9 @@ class _LeaderboardHeader extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    kIsWeb ? '도커 서버에 공유 저장된 기록입니다.' : '현재 기기에 저장된 로컬 기록입니다.',
+                    LocalScoreRepository.supportsSharedScores
+                        ? '도커 서버에 공유 저장된 기록입니다.'
+                        : '현재 브라우저에 저장된 로컬 기록입니다.',
                     style: const TextStyle(
                       color: Color(0xFFD4DEE8),
                       fontSize: 13,
@@ -383,18 +391,18 @@ class _EmptyLeaderboard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: const Color(0xFFE1E7EF)),
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 22),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.emoji_events_outlined,
                 color: Color(0xFF60707F),
                 size: 44,
               ),
-              SizedBox(height: 12),
-              Text(
+              const SizedBox(height: 12),
+              const Text(
                 '아직 기록이 없습니다.',
                 style: TextStyle(
                   color: Color(0xFF18212F),
@@ -402,9 +410,9 @@ class _EmptyLeaderboard extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
-                kIsWeb
+                LocalScoreRepository.supportsSharedScores
                     ? '같은 서버에 접속한 플레이어의 점수가 여기에 저장됩니다.'
                     : '한 판 플레이하면 여기에 점수가 저장됩니다.',
                 textAlign: TextAlign.center,
