@@ -124,12 +124,24 @@ class GroupQuizPlayView extends StatelessWidget {
   const GroupQuizPlayView({
     super.key,
     required this.session,
+    required this.answerController,
+    required this.answerFocusNode,
+    required this.selectedTeamId,
+    required this.answerFeedback,
+    required this.onAnswerTeamSelected,
+    required this.onAnswerSubmitted,
     required this.onRevealAnswer,
     required this.onAwardTeam,
     required this.onPassQuestion,
   });
 
   final GroupQuizSession session;
+  final TextEditingController answerController;
+  final FocusNode answerFocusNode;
+  final int selectedTeamId;
+  final String? answerFeedback;
+  final ValueChanged<QuizTeam> onAnswerTeamSelected;
+  final VoidCallback onAnswerSubmitted;
   final VoidCallback onRevealAnswer;
   final ValueChanged<QuizTeam> onAwardTeam;
   final VoidCallback onPassQuestion;
@@ -149,6 +161,8 @@ class GroupQuizPlayView extends StatelessWidget {
                 roundLimit: session.config.roundLimit,
                 remainingSeconds: session.remainingSeconds,
                 secondsPerRound: session.config.secondsPerRound,
+                attemptsRemaining: session.attemptsRemaining,
+                attemptLimit: session.attemptLimit,
                 hasTimeLimit: session.config.hasTimeLimit,
                 danger: session.isTimerDanger,
               ),
@@ -158,6 +172,19 @@ class GroupQuizPlayView extends StatelessWidget {
                 answerVisible: session.answerVisible,
               ),
               const SizedBox(height: 14),
+              if (!session.answerVisible) ...[
+                _AnswerInputPanel(
+                  teams: session.teams,
+                  selectedTeamId: selectedTeamId,
+                  attemptsRemaining: session.attemptsRemaining,
+                  controller: answerController,
+                  focusNode: answerFocusNode,
+                  feedback: answerFeedback,
+                  onTeamSelected: onAnswerTeamSelected,
+                  onSubmitted: onAnswerSubmitted,
+                ),
+                const SizedBox(height: 14),
+              ],
               if (session.answerVisible)
                 _AwardPanel(teams: session.teams, onAward: onAwardTeam)
               else
@@ -248,6 +275,8 @@ class _QuizStatusPanel extends StatelessWidget {
     required this.roundLimit,
     required this.remainingSeconds,
     required this.secondsPerRound,
+    required this.attemptsRemaining,
+    required this.attemptLimit,
     required this.hasTimeLimit,
     required this.danger,
   });
@@ -256,6 +285,8 @@ class _QuizStatusPanel extends StatelessWidget {
   final int roundLimit;
   final int remainingSeconds;
   final int secondsPerRound;
+  final int attemptsRemaining;
+  final int attemptLimit;
   final bool hasTimeLimit;
   final bool danger;
 
@@ -276,6 +307,10 @@ class _QuizStatusPanel extends StatelessWidget {
                 _StatusValue(
                   label: 'Time',
                   value: hasTimeLimit ? '${remainingSeconds}s' : '∞',
+                ),
+                _StatusValue(
+                  label: 'Try',
+                  value: '$attemptsRemaining/$attemptLimit',
                 ),
               ],
             ),
@@ -351,6 +386,161 @@ class _StatusValue extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _AnswerInputPanel extends StatelessWidget {
+  const _AnswerInputPanel({
+    required this.teams,
+    required this.selectedTeamId,
+    required this.attemptsRemaining,
+    required this.controller,
+    required this.focusNode,
+    required this.feedback,
+    required this.onTeamSelected,
+    required this.onSubmitted,
+  });
+
+  final List<QuizTeam> teams;
+  final int selectedTeamId;
+  final int attemptsRemaining;
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final String? feedback;
+  final ValueChanged<QuizTeam> onTeamSelected;
+  final VoidCallback onSubmitted;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFFEAF7FF),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFB9E2F4)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final team in teams)
+                  ChoiceChip(
+                    selected: team.id == selectedTeamId,
+                    label: Text(team.name),
+                    avatar: Icon(
+                      Icons.groups_rounded,
+                      color: team.id == selectedTeamId
+                          ? Colors.white
+                          : team.color,
+                      size: 17,
+                    ),
+                    selectedColor: team.color,
+                    labelStyle: TextStyle(
+                      color: team.id == selectedTeamId
+                          ? Colors.white
+                          : const Color(0xFF18212F),
+                      fontWeight: FontWeight.w900,
+                    ),
+                    onSelected: (_) => onTeamSelected(team),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controller,
+                    focusNode: focusNode,
+                    textInputAction: TextInputAction.done,
+                    onSubmitted: (_) => onSubmitted(),
+                    decoration: InputDecoration(
+                      hintText: '정답 입력',
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 13,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(color: Color(0xFFE1E7EF)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(color: Color(0xFFE1E7EF)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF54C6EB),
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    style: const TextStyle(
+                      color: Color(0xFF18212F),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                FilledButton.icon(
+                  onPressed: attemptsRemaining > 0 ? onSubmitted : null,
+                  icon: const Icon(Icons.check_rounded),
+                  label: const Text('입력'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFF2BB673),
+                    foregroundColor: Colors.white,
+                    disabledBackgroundColor: const Color(0xFF8EA0AD),
+                    disabledForegroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 15,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Icon(
+                  attemptsRemaining > 1
+                      ? Icons.favorite_rounded
+                      : Icons.warning_amber_rounded,
+                  color: attemptsRemaining > 1
+                      ? const Color(0xFF2BB673)
+                      : const Color(0xFFE56B1F),
+                  size: 17,
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    feedback ?? '문제당 입력 기회 $attemptsRemaining번',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color(0xFF60707F),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

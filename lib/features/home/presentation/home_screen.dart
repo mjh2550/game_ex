@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
 import 'package:game_ex/shared/game_card.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/game_info.dart';
 import 'package:game_ex/shared/game_provider.dart';
 import 'package:go_router/go_router.dart';
@@ -146,9 +147,9 @@ class _FeaturedGamePanel extends StatelessWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final compact = constraints.maxWidth < 420;
-            final isKiosk = game.id == 'g002';
-            final isRocket = game.id == 'g003';
-            final isQuiz = game.id == 'g004';
+            final isKiosk = game.id == GameIds.kioskPanic;
+            final isRocket = game.id == GameIds.rocketDelivery;
+            final isQuiz = game.id == GameIds.groupQuiz;
 
             final visual = SizedBox(
               width: compact ? 96 : 132,

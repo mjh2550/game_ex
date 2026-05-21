@@ -15,6 +15,7 @@ class GroupQuizSession {
     : questions = const [],
       roundIndex = 0,
       remainingSeconds = config.secondsPerRound,
+      attemptsRemaining = 0,
       maxCombo = 0,
       started = false,
       answerVisible = false;
@@ -25,6 +26,7 @@ class GroupQuizSession {
     required this.questions,
     required this.roundIndex,
     required this.remainingSeconds,
+    required this.attemptsRemaining,
     required this.maxCombo,
     required this.started,
     required this.answerVisible,
@@ -35,11 +37,14 @@ class GroupQuizSession {
   final List<QuizQuestion> questions;
   final int roundIndex;
   final int remainingSeconds;
+  final int attemptsRemaining;
   final int maxCombo;
   final bool started;
   final bool answerVisible;
 
   QuizQuestion get currentQuestion => questions[roundIndex];
+
+  int get attemptLimit => attemptsForDifficulty(currentQuestion.difficulty);
 
   int get round => roundIndex + 1;
 
@@ -67,6 +72,7 @@ class GroupQuizSession {
       questions: questionDeck,
       roundIndex: 0,
       remainingSeconds: config.secondsPerRound,
+      attemptsRemaining: attemptsForDifficulty(questionDeck.first.difficulty),
       maxCombo: 0,
       started: true,
       answerVisible: false,
@@ -87,6 +93,18 @@ class GroupQuizSession {
 
   GroupQuizSession revealAnswer() {
     return copyWith(answerVisible: true);
+  }
+
+  GroupQuizSession registerWrongAttempt() {
+    if (answerVisible) {
+      return this;
+    }
+
+    final nextAttempts = max(0, attemptsRemaining - 1);
+    return copyWith(
+      attemptsRemaining: nextAttempts,
+      answerVisible: nextAttempts <= 0,
+    );
   }
 
   ({GroupQuizSession session, GroupQuizAdvanceResult result}) awardTeam(
@@ -121,10 +139,14 @@ class GroupQuizSession {
       );
     }
 
+    final nextRoundIndex = roundIndex + 1;
     return (
       session: copyWith(
-        roundIndex: roundIndex + 1,
+        roundIndex: nextRoundIndex,
         remainingSeconds: config.secondsPerRound,
+        attemptsRemaining: attemptsForDifficulty(
+          questions[nextRoundIndex].difficulty,
+        ),
         answerVisible: false,
       ),
       result: const GroupQuizAdvanceResult(finished: false),
@@ -137,6 +159,7 @@ class GroupQuizSession {
     List<QuizQuestion>? questions,
     int? roundIndex,
     int? remainingSeconds,
+    int? attemptsRemaining,
     int? maxCombo,
     bool? started,
     bool? answerVisible,
@@ -147,9 +170,14 @@ class GroupQuizSession {
       questions: questions ?? this.questions,
       roundIndex: roundIndex ?? this.roundIndex,
       remainingSeconds: remainingSeconds ?? this.remainingSeconds,
+      attemptsRemaining: attemptsRemaining ?? this.attemptsRemaining,
       maxCombo: maxCombo ?? this.maxCombo,
       started: started ?? this.started,
       answerVisible: answerVisible ?? this.answerVisible,
     );
+  }
+
+  static int attemptsForDifficulty(int difficulty) {
+    return difficulty >= 3 ? 5 : 3;
   }
 }

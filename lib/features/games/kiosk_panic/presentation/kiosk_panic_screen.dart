@@ -8,6 +8,7 @@ import 'package:game_ex/features/games/kiosk_panic/data/kiosk_catalog.dart';
 import 'package:game_ex/features/games/kiosk_panic/domain/customer_reaction.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/player_name_dialog.dart';
 import 'package:game_ex/shared/ready_start_overlay.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +18,7 @@ part 'kiosk_panic_widgets.dart';
 class KioskPanicScreen extends ConsumerStatefulWidget {
   const KioskPanicScreen({super.key});
 
-  static const gameId = 'g002';
+  static const gameId = GameIds.kioskPanic;
 
   @override
   ConsumerState<KioskPanicScreen> createState() => _KioskPanicScreenState();

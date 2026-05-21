@@ -3,42 +3,11 @@ import 'dart:ui';
 import 'package:flame/game.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/ddong_dodge_game.dart';
 import 'package:game_ex/features/games/ddong_dodge/presentation/game_state_provider.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/game_info.dart';
 
 class GameManager {
-  static final List<GameInfo> _gameInfos = [
-    GameInfo(
-      id: 'g001',
-      name: '똥 피하기',
-      description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
-      routeName: '/ddong_dodge',
-      isUnlocked: true,
-      thumbnailUrl: 'assets/images/openmoji_poop.png',
-    ),
-    GameInfo(
-      id: 'g002',
-      name: '키오스크 눈치게임',
-      description: '뒤 손님의 압박 속에서 주문을 빠르게 완성하세요.',
-      routeName: '/kiosk_panic',
-      isUnlocked: true,
-    ),
-    GameInfo(
-      id: 'g003',
-      name: '쿠팡 로켓배송',
-      description: '컨베이어의 택배를 목적지 구역으로 빠르게 분류하세요.',
-      routeName: '/rocket_delivery',
-      isUnlocked: true,
-    ),
-    GameInfo(
-      id: 'g004',
-      name: '눈치 퀴즈 대작전',
-      description: '한 화면을 같이 보며 제한 시간 안에 정답을 외쳐보세요.',
-      routeName: '/group_quiz',
-      isUnlocked: true,
-    ),
-  ];
-
-  List<GameInfo> get games => List.unmodifiable(_gameInfos);
+  List<GameInfo> get games => List.unmodifiable(GameCatalog.games);
 
   FlameGame? getGameById(String id) {
     return null;
@@ -51,16 +20,9 @@ class GameManager {
     Function(GameState)? onStateUpdate, // 추가
   }) {
     switch (gameId) {
-      case 'g001':
+      case GameIds.ddongDodge:
         return DdongDodgeGame(
-          gameInfo: GameInfo(
-            id: 'g001',
-            name: '똥 피하기',
-            description: '방향키로 좌우 이동하며 떨어지는 장애물을 피하세요.',
-            routeName: '/ddong_dodge',
-            isUnlocked: true,
-            thumbnailUrl: 'assets/images/openmoji_poop.png',
-          ),
+          gameInfo: GameCatalog.findById(GameIds.ddongDodge)!,
           onGameOver: onGameOver,
           onPause: onPause,
           onStateUpdate: onStateUpdate,

@@ -3,11 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/game_info.dart';
 import 'package:game_ex/shared/game_provider.dart';
+import 'package:game_ex/shared/game_visuals.dart';
 
 class LeaderboardScreen extends ConsumerStatefulWidget {
-  const LeaderboardScreen({super.key, this.initialGameId = 'g001'});
+  const LeaderboardScreen({super.key, this.initialGameId = GameIds.ddongDodge});
 
   final String initialGameId;
 
@@ -164,7 +166,7 @@ class _GameSelector extends StatelessWidget {
               child: ChoiceChip(
                 selected: game.id == selectedGameId,
                 label: Text(game.name),
-                avatar: Icon(_iconForGame(game.id), size: 18),
+                avatar: Icon(iconForGame(game.id), size: 18),
                 onSelected: (_) => onSelected(game.id),
               ),
             ),
@@ -237,7 +239,7 @@ class _LeaderboardGameIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (game.id == 'g001' && game.thumbnailUrl != null) {
+    if (game.id == GameIds.ddongDodge && game.thumbnailUrl != null) {
       return Image.asset(
         game.thumbnailUrl!,
         width: 58,
@@ -256,23 +258,13 @@ class _LeaderboardGameIcon extends StatelessWidget {
         width: 58,
         height: 58,
         child: Icon(
-          _iconForGame(game.id),
+          iconForGame(game.id),
           color: const Color(0xFFFFD166),
           size: 34,
         ),
       ),
     );
   }
-}
-
-IconData _iconForGame(String gameId) {
-  return switch (gameId) {
-    'g001' => Icons.sentiment_very_dissatisfied_rounded,
-    'g002' => Icons.touch_app_rounded,
-    'g003' => Icons.local_shipping_rounded,
-    'g004' => Icons.quiz_rounded,
-    _ => Icons.sports_esports_rounded,
-  };
 }
 
 class _ScoreRow extends StatelessWidget {

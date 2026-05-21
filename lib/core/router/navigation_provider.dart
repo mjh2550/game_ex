@@ -6,6 +6,7 @@ import 'package:game_ex/features/games/kiosk_panic/presentation/kiosk_panic_scre
 import 'package:game_ex/features/games/rocket_delivery/presentation/rocket_delivery_screen.dart';
 import 'package:game_ex/features/home/presentation/home_screen.dart';
 import 'package:game_ex/features/profile/presentation/profile_screen.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/game_result_screen.dart';
 import 'package:game_ex/shared/game_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -22,13 +23,17 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/game/:gameId',
         builder: (context, state) {
           final gameId = state.pathParameters['gameId']!;
-          if (gameId == KioskPanicScreen.gameId) {
+          if (!GameCatalog.isUnlocked(gameId)) {
+            return const HomeScreen();
+          }
+
+          if (gameId == GameIds.kioskPanic) {
             return const KioskPanicScreen();
           }
-          if (gameId == RocketDeliveryScreen.gameId) {
+          if (gameId == GameIds.rocketDelivery) {
             return const RocketDeliveryScreen();
           }
-          if (gameId == GroupQuizScreen.gameId) {
+          if (gameId == GameIds.groupQuiz) {
             return const GroupQuizScreen();
           }
 
@@ -61,7 +66,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/leaderboard',
         builder: (context, state) => LeaderboardScreen(
-          initialGameId: state.uri.queryParameters['game'] ?? 'g001',
+          initialGameId:
+              state.uri.queryParameters['game'] ?? GameIds.ddongDodge,
         ),
       ),
 

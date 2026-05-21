@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/game_info.dart';
+import 'package:game_ex/shared/game_visuals.dart';
 
 class GameCard extends StatelessWidget {
   final GameInfo game;
@@ -16,9 +18,7 @@ class GameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locked = !game.isUnlocked;
-    final isKiosk = game.id == 'g002';
-    final isRocket = game.id == 'g003';
-    final isQuiz = game.id == 'g004';
+    final isDdong = game.id == GameIds.ddongDodge;
 
     return Material(
       color: Colors.white,
@@ -43,28 +43,18 @@ class GameCard extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      if (game.thumbnailUrl != null)
+                      if (isDdong && game.thumbnailUrl != null)
                         Image.asset(
                           game.thumbnailUrl!,
                           width: 82,
                           height: 82,
                           filterQuality: FilterQuality.none,
                         )
-                      else if (isKiosk || isRocket || isQuiz)
+                      else
                         Icon(
-                          isQuiz
-                              ? Icons.groups_2_rounded
-                              : isRocket
-                              ? Icons.local_shipping_rounded
-                              : Icons.touch_app_rounded,
+                          iconForGame(game.id),
                           size: 70,
                           color: const Color(0xFF18212F),
-                        )
-                      else
-                        const Icon(
-                          Icons.videogame_asset_outlined,
-                          size: 62,
-                          color: Color(0xFF60707F),
                         ),
                       Positioned(
                         top: 10,
@@ -105,17 +95,11 @@ class GameCard extends StatelessWidget {
                     Row(
                       children: [
                         Icon(
-                          isKiosk
-                              ? Icons.touch_app_rounded
-                              : isQuiz
-                              ? Icons.groups_2_rounded
-                              : isRocket
-                              ? Icons.keyboard_double_arrow_right_rounded
-                              : Icons.keyboard_arrow_left_rounded,
+                          iconForGame(game.id),
                           size: 18,
                           color: const Color(0xFF2BB673),
                         ),
-                        if (!isKiosk && !isQuiz)
+                        if (isDdong)
                           const Icon(
                             Icons.keyboard_arrow_right_rounded,
                             size: 18,
@@ -123,11 +107,7 @@ class GameCard extends StatelessWidget {
                           ),
                         const SizedBox(width: 4),
                         Text(
-                          isKiosk
-                              ? '터치'
-                              : isQuiz
-                              ? '진행자'
-                              : '방향키/터치',
+                          controlLabelForGame(game.id),
                           style: TextStyle(
                             color: const Color(0xFF2BB673),
                             fontSize: 12,

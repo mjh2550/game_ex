@@ -11,6 +11,7 @@ import 'package:game_ex/features/games/rocket_delivery/domain/moving_package.dar
 import 'package:game_ex/features/games/rocket_delivery/domain/sort_feedback.dart';
 import 'package:game_ex/features/score/domain/score_record.dart';
 import 'package:game_ex/features/score/presentation/score_provider.dart';
+import 'package:game_ex/shared/game_catalog.dart';
 import 'package:game_ex/shared/player_name_dialog.dart';
 import 'package:game_ex/shared/ready_start_overlay.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +21,7 @@ part 'rocket_delivery_widgets.dart';
 class RocketDeliveryScreen extends ConsumerStatefulWidget {
   const RocketDeliveryScreen({super.key});
 
-  static const gameId = 'g003';
+  static const gameId = GameIds.rocketDelivery;
 
   @override
   ConsumerState<RocketDeliveryScreen> createState() =>
