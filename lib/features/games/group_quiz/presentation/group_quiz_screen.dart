@@ -32,7 +32,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   bool _isSaving = false;
   bool _isLoadingQuestions = false;
   bool _roundScored = false;
-  int _selectedTeamId = 0;
+  bool _awaitingCorrectTeam = false;
   String? _answerFeedback;
   List<String> _categories = const [GroupQuizConfig.allCategory];
 
@@ -95,7 +95,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     setState(() {
       _isLoadingQuestions = false;
       _roundScored = false;
-      _selectedTeamId = 0;
+      _awaitingCorrectTeam = false;
       _answerFeedback = null;
       _session = _session.start(
         questionDeck: questionDeck,
@@ -147,6 +147,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
         setState(() {
           _answerFeedback = '시간 종료! 정답을 확인하세요.';
           _roundScored = false;
+          _awaitingCorrectTeam = false;
         });
       }
     });
@@ -158,6 +159,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       _session = _session.revealAnswer();
       _answerFeedback = '정답을 공개했어요.';
       _roundScored = false;
+      _awaitingCorrectTeam = false;
     });
   }
 
@@ -167,16 +169,14 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   }
 
   void _advanceVisibleQuestion() {
+    if (_awaitingCorrectTeam) {
+      return;
+    }
+
     final next = _roundScored
         ? _session.advanceRound()
         : _session.passQuestion();
     _handleAdvance(next);
-  }
-
-  void _selectAnswerTeam(QuizTeam team) {
-    setState(() {
-      _selectedTeamId = team.id;
-    });
   }
 
   void _submitAnswer(int optionIndex) {
@@ -184,16 +184,13 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       return;
     }
 
-    final selectedTeam = _session.teams.firstWhere(
-      (team) => team.id == _selectedTeamId,
-      orElse: () => _session.teams.first,
-    );
     if (optionIndex == _session.currentQuestion.answerIndex) {
       _timer?.cancel();
       setState(() {
-        _answerFeedback = '${selectedTeam.name} 정답!';
-        _roundScored = true;
-        _session = _session.scoreTeam(selectedTeam).revealAnswer();
+        _answerFeedback = '정답입니다. 맞힌 팀을 선택하세요.';
+        _roundScored = false;
+        _awaitingCorrectTeam = true;
+        _session = _session.revealAnswer();
       });
       return;
     }
@@ -201,8 +198,22 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     _timer?.cancel();
     setState(() {
       _roundScored = false;
+      _awaitingCorrectTeam = false;
       _session = _session.revealAnswer();
       _answerFeedback = '오답입니다. 정답을 확인하세요.';
+    });
+  }
+
+  void _awardCorrectTeam(QuizTeam team) {
+    if (!_session.answerVisible || !_awaitingCorrectTeam || _isSaving) {
+      return;
+    }
+
+    setState(() {
+      _roundScored = true;
+      _awaitingCorrectTeam = false;
+      _answerFeedback = '${team.name} 정답!';
+      _session = _session.scoreTeam(team);
     });
   }
 
@@ -213,10 +224,8 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     setState(() {
       _session = next.session;
       _roundScored = false;
+      _awaitingCorrectTeam = false;
       _answerFeedback = null;
-      if (next.session.teams.every((team) => team.id != _selectedTeamId)) {
-        _selectedTeamId = next.session.teams.first.id;
-      }
     });
 
     if (next.result.finished) {
@@ -237,7 +246,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
         teams: buildGroupQuizTeams(config.teamCount),
       );
       _roundScored = false;
-      _selectedTeamId = 0;
+      _awaitingCorrectTeam = false;
       _answerFeedback = null;
     });
   }
@@ -327,10 +336,10 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   Widget _buildPlayView() {
     return GroupQuizPlayView(
       session: _session,
-      selectedTeamId: _selectedTeamId,
       answerFeedback: _answerFeedback,
-      onAnswerTeamSelected: _selectAnswerTeam,
       onAnswerSubmitted: _submitAnswer,
+      correctAnswerPendingAward: _awaitingCorrectTeam,
+      onCorrectTeamSelected: _awardCorrectTeam,
       onRevealAnswer: _revealAnswer,
       onPassQuestion: _passQuestion,
       onAdvanceVisibleQuestion: _advanceVisibleQuestion,

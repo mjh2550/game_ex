@@ -151,20 +151,20 @@ class GroupQuizPlayView extends StatelessWidget {
   const GroupQuizPlayView({
     super.key,
     required this.session,
-    required this.selectedTeamId,
     required this.answerFeedback,
-    required this.onAnswerTeamSelected,
     required this.onAnswerSubmitted,
+    required this.correctAnswerPendingAward,
+    required this.onCorrectTeamSelected,
     required this.onRevealAnswer,
     required this.onPassQuestion,
     required this.onAdvanceVisibleQuestion,
   });
 
   final GroupQuizSession session;
-  final int selectedTeamId;
   final String? answerFeedback;
-  final ValueChanged<QuizTeam> onAnswerTeamSelected;
   final ValueChanged<int> onAnswerSubmitted;
+  final bool correctAnswerPendingAward;
+  final ValueChanged<QuizTeam> onCorrectTeamSelected;
   final VoidCallback onRevealAnswer;
   final VoidCallback onPassQuestion;
   final VoidCallback onAdvanceVisibleQuestion;
@@ -199,12 +199,9 @@ class GroupQuizPlayView extends StatelessWidget {
               if (!session.answerVisible) ...[
                 _MultipleChoicePanel(
                   question: session.currentQuestion,
-                  teams: session.teams,
-                  selectedTeamId: selectedTeamId,
                   attemptsRemaining: session.attemptsRemaining,
                   hasAttemptLimit: session.hasAttemptLimit,
                   feedback: answerFeedback,
-                  onTeamSelected: onAnswerTeamSelected,
                   onSubmitted: onAnswerSubmitted,
                 ),
                 const SizedBox(height: 14),
@@ -229,7 +226,12 @@ class GroupQuizPlayView extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 10),
-              if (session.answerVisible)
+              if (correctAnswerPendingAward)
+                _CorrectTeamPanel(
+                  teams: session.teams,
+                  onTeamSelected: onCorrectTeamSelected,
+                )
+              else if (session.answerVisible)
                 FilledButton.icon(
                   onPressed: onAdvanceVisibleQuestion,
                   icon: const Icon(Icons.arrow_forward_rounded),
@@ -451,22 +453,16 @@ class _StatusValue extends StatelessWidget {
 class _MultipleChoicePanel extends StatelessWidget {
   const _MultipleChoicePanel({
     required this.question,
-    required this.teams,
-    required this.selectedTeamId,
     required this.attemptsRemaining,
     required this.hasAttemptLimit,
     required this.feedback,
-    required this.onTeamSelected,
     required this.onSubmitted,
   });
 
   final QuizQuestion question;
-  final List<QuizTeam> teams;
-  final int selectedTeamId;
   final int attemptsRemaining;
   final bool hasAttemptLimit;
   final String? feedback;
-  final ValueChanged<QuizTeam> onTeamSelected;
   final ValueChanged<int> onSubmitted;
 
   @override
@@ -482,33 +478,6 @@ class _MultipleChoicePanel extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                for (final team in teams)
-                  ChoiceChip(
-                    selected: team.id == selectedTeamId,
-                    label: Text(team.name),
-                    avatar: Icon(
-                      Icons.groups_rounded,
-                      color: team.id == selectedTeamId
-                          ? Colors.white
-                          : team.color,
-                      size: 17,
-                    ),
-                    selectedColor: team.color,
-                    labelStyle: TextStyle(
-                      color: team.id == selectedTeamId
-                          ? Colors.white
-                          : const Color(0xFF18212F),
-                      fontWeight: FontWeight.w900,
-                    ),
-                    onSelected: (_) => onTeamSelected(team),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -841,6 +810,60 @@ class _AnswerResultPanel extends StatelessWidget {
                 fontWeight: FontWeight.w900,
                 height: 1.25,
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CorrectTeamPanel extends StatelessWidget {
+  const _CorrectTeamPanel({required this.teams, required this.onTeamSelected});
+
+  final List<QuizTeam> teams;
+  final ValueChanged<QuizTeam> onTeamSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFFE8F8EF),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFF9ED8B8)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              '정답 팀 선택',
+              style: TextStyle(
+                color: Color(0xFF147A45),
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final team in teams)
+                  FilledButton.icon(
+                    onPressed: () => onTeamSelected(team),
+                    icon: const Icon(Icons.groups_rounded, size: 18),
+                    label: Text(team.name),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: team.color,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ],
         ),
