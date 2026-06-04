@@ -89,9 +89,9 @@ class GroupQuizSetupView extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   _SetupSegment<int>(
-                    label: '제한 시간',
+                    label: '문제별 시간',
                     value: config.secondsPerRound,
-                    options: const [0, 5, 8, 12],
+                    options: const [0, 5, 8, 10, 15, 20, 30, 60],
                     labelBuilder: (value) => value == 0 ? '무제한' : '$value초',
                     onChanged: (value) => onConfigChanged(
                       config.copyWith(secondsPerRound: value),
