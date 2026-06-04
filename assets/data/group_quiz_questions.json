@@ -1,2052 +1,1022 @@
 [
   {
-    "id": "q001",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㄱㅈ",
-    "answer": "고구려",
-    "hint": "삼국 시대 국가",
-    "difficulty": 1
-  },
-  {
-    "id": "q002",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅂㅈ",
-    "answer": "백제",
-    "hint": "삼국 시대 국가",
-    "difficulty": 1
-  },
-  {
-    "id": "q003",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㄹ",
-    "answer": "신라",
-    "hint": "삼국 시대 국가",
-    "difficulty": 1
-  },
-  {
-    "id": "q004",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅈㅅㅇㅈ",
-    "answer": "조선왕조",
-    "hint": "역사 용어",
-    "difficulty": 1
-  },
-  {
-    "id": "q005",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㅈㄷㅇ",
-    "answer": "세종대왕",
-    "hint": "한글 창제",
-    "difficulty": 1
-  },
-  {
-    "id": "q006",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅎㄱ",
-    "answer": "한글",
-    "hint": "문자",
-    "difficulty": 1
-  },
-  {
-    "id": "q007",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅂㅈ",
-    "answer": "광복절",
-    "hint": "국경일",
-    "difficulty": 1
-  },
-  {
-    "id": "q008",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅌㄱㄱ",
-    "answer": "태극기",
-    "hint": "국기",
-    "difficulty": 1
-  },
-  {
-    "id": "q009",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅁㄱㅎ",
-    "answer": "무궁화",
-    "hint": "나라꽃",
-    "difficulty": 1
-  },
-  {
-    "id": "q010",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅎㅅ",
-    "answer": "한산",
-    "hint": "이순신 해전",
-    "difficulty": 1
-  },
-  {
-    "id": "q011",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅈㄱ",
-    "answer": "지구",
-    "hint": "행성",
-    "difficulty": 1
-  },
-  {
-    "id": "q012",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅌㅇ",
-    "answer": "태양",
-    "hint": "별",
-    "difficulty": 1
-  },
-  {
-    "id": "q013",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅇㅅ",
-    "answer": "위성",
-    "hint": "천문 용어",
-    "difficulty": 1
-  },
-  {
-    "id": "q014",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅁㅅ",
-    "answer": "목성",
-    "hint": "태양계 행성",
-    "difficulty": 1
-  },
-  {
-    "id": "q015",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅎㅅ",
-    "answer": "화성",
-    "hint": "태양계 행성",
-    "difficulty": 1
-  },
-  {
-    "id": "q016",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㅅ",
-    "answer": "수성",
-    "hint": "태양계 행성",
-    "difficulty": 1
-  },
-  {
-    "id": "q017",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅅ",
-    "answer": "금성",
-    "hint": "태양계 행성",
-    "difficulty": 1
-  },
-  {
-    "id": "q018",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅌㅅ",
-    "answer": "토성",
-    "hint": "태양계 행성",
-    "difficulty": 1
-  },
-  {
-    "id": "q019",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅊㅇㅅ",
-    "answer": "천왕성",
-    "hint": "태양계 행성",
-    "difficulty": 2
-  },
-  {
-    "id": "q020",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅎㅇㅅ",
-    "answer": "해왕성",
-    "hint": "태양계 행성",
-    "difficulty": 2
-  },
-  {
-    "id": "q021",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅌㅍㅇ",
-    "answer": "태평양",
-    "hint": "가장 큰 바다",
-    "difficulty": 1
-  },
-  {
-    "id": "q022",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄷㅅㅇ",
-    "answer": "대서양",
-    "hint": "바다",
-    "difficulty": 1
-  },
-  {
-    "id": "q023",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅇㄷㅇ",
-    "answer": "인도양",
-    "hint": "바다",
-    "difficulty": 1
-  },
-  {
-    "id": "q024",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅂㄱ",
-    "answer": "북극",
-    "hint": "지리",
-    "difficulty": 1
-  },
-  {
-    "id": "q025",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄴㄱ",
-    "answer": "남극",
-    "hint": "지리",
-    "difficulty": 1
-  },
-  {
-    "id": "q026",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㅇ",
-    "answer": "서울",
-    "hint": "대한민국 수도",
-    "difficulty": 1
-  },
-  {
-    "id": "q027",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄷㄱ",
-    "answer": "대구",
-    "hint": "도시",
-    "difficulty": 1
-  },
-  {
-    "id": "q028",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅂㅅ",
-    "answer": "부산",
-    "hint": "도시",
-    "difficulty": 1
-  },
-  {
-    "id": "q029",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅈ",
-    "answer": "광주",
-    "hint": "도시",
-    "difficulty": 1
-  },
-  {
-    "id": "q030",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄷㅈ",
-    "answer": "대전",
-    "hint": "도시",
-    "difficulty": 1
-  },
-  {
-    "id": "q031",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅁㅅ",
-    "answer": "미술",
-    "hint": "예술",
-    "difficulty": 1
-  },
-  {
-    "id": "q032",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅇㅇ",
-    "answer": "음악",
-    "hint": "예술",
-    "difficulty": 1
-  },
-  {
-    "id": "q033",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅊㅇ",
-    "answer": "체육",
-    "hint": "과목",
-    "difficulty": 1
-  },
-  {
-    "id": "q034",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅎ",
-    "answer": "과학",
-    "hint": "과목",
-    "difficulty": 1
-  },
-  {
-    "id": "q035",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㅎ",
-    "answer": "수학",
-    "hint": "과목",
-    "difficulty": 1
-  },
-  {
-    "id": "q036",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅇㅇ",
-    "answer": "영어",
-    "hint": "과목",
-    "difficulty": 1
-  },
-  {
-    "id": "q037",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅇ",
-    "answer": "국어",
-    "hint": "과목",
-    "difficulty": 1
-  },
-  {
-    "id": "q038",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅎㄱ",
-    "answer": "화가",
-    "hint": "직업",
-    "difficulty": 1
-  },
-  {
-    "id": "q039",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅇㅅ",
-    "answer": "의사",
-    "hint": "직업",
-    "difficulty": 1
-  },
-  {
-    "id": "q040",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅂㅎㅅ",
-    "answer": "변호사",
-    "hint": "직업",
-    "difficulty": 1
-  },
-  {
-    "id": "q041",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅈ",
-    "answer": "기자",
-    "hint": "직업",
-    "difficulty": 1
-  },
-  {
-    "id": "q042",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㅂㄱ",
-    "answer": "소방관",
-    "hint": "직업",
-    "difficulty": 1
-  },
-  {
-    "id": "q043",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄱㅅㄱㅁ",
-    "answer": "광속불변",
-    "hint": "물리학 개념",
-    "difficulty": 3
-  },
-  {
-    "id": "q044",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅇㅂㄱㄷㄹ",
-    "answer": "아보가드로",
-    "hint": "화학 상수 이름",
-    "difficulty": 3
-  },
-  {
-    "id": "q045",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅅㅍㅌㄴㅋ",
-    "answer": "스푸트니크",
-    "hint": "최초 인공위성",
-    "difficulty": 3
-  },
-  {
-    "id": "q046",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅁㅌㅋㄷㄹㅇ",
-    "answer": "미토콘드리아",
-    "hint": "세포 소기관",
-    "difficulty": 3
-  },
-  {
-    "id": "q047",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅂㄹㅅㄹㄹㅇ",
-    "answer": "브라질리아",
-    "hint": "수도 이름",
-    "difficulty": 3
-  },
-  {
-    "id": "q048",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅋㄹㄹㅍ",
-    "answer": "클로로필",
-    "hint": "식물 색소",
-    "difficulty": 3
-  },
-  {
-    "id": "q049",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㄷㅇㅋㄹㅌㅇ",
-    "answer": "데카르트",
-    "hint": "철학자",
-    "difficulty": 3
-  },
-  {
-    "id": "q050",
-    "type": "initial",
-    "category": "초성",
-    "question": "ㅍㅂㄴㅊ",
-    "answer": "피보나치",
-    "hint": "수열 이름",
-    "difficulty": 3
-  },
-  {
-    "id": "q051",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "가는 말이 고와야",
-    "answer": "오는 말이 곱다",
-    "difficulty": 1
-  },
-  {
-    "id": "q052",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "티끌 모아",
-    "answer": "태산",
-    "difficulty": 1
-  },
-  {
-    "id": "q053",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "백지장도",
-    "answer": "맞들면 낫다",
-    "difficulty": 1
-  },
-  {
-    "id": "q054",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "돌다리도",
-    "answer": "두들겨 보고 건너라",
-    "difficulty": 1
-  },
-  {
-    "id": "q055",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "급할수록",
-    "answer": "돌아가라",
-    "difficulty": 1
-  },
-  {
-    "id": "q056",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "낮말은 새가 듣고",
-    "answer": "밤말은 쥐가 듣는다",
-    "difficulty": 1
-  },
-  {
-    "id": "q057",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "원숭이도 나무에서",
-    "answer": "떨어진다",
-    "difficulty": 1
-  },
-  {
-    "id": "q058",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "고래 싸움에",
-    "answer": "새우 등 터진다",
-    "difficulty": 1
-  },
-  {
-    "id": "q059",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "꿩 대신",
-    "answer": "닭",
-    "difficulty": 1
-  },
-  {
-    "id": "q060",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "서당 개 삼 년이면",
-    "answer": "풍월을 읊는다",
-    "difficulty": 1
-  },
-  {
-    "id": "q061",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "소 잃고",
-    "answer": "외양간 고친다",
-    "difficulty": 1
-  },
-  {
-    "id": "q062",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "가는 날이",
-    "answer": "장날",
-    "difficulty": 1
-  },
-  {
-    "id": "q063",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "개구리 올챙이 적",
-    "answer": "생각 못 한다",
-    "difficulty": 1
-  },
-  {
-    "id": "q064",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "구슬이 서 말이라도",
-    "answer": "꿰어야 보배",
-    "difficulty": 1
-  },
-  {
-    "id": "q065",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "하늘의 별",
-    "answer": "따기",
-    "difficulty": 1
-  },
-  {
-    "id": "q066",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "말 한마디에",
-    "answer": "천 냥 빚도 갚는다",
-    "difficulty": 1
-  },
-  {
-    "id": "q067",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "아는 길도",
-    "answer": "물어가라",
-    "difficulty": 1
-  },
-  {
-    "id": "q068",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "시작이",
-    "answer": "반이다",
-    "difficulty": 1
-  },
-  {
-    "id": "q069",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "웃는 얼굴에",
-    "answer": "침 못 뱉는다",
-    "difficulty": 1
-  },
-  {
-    "id": "q070",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "천 리 길도",
-    "answer": "한 걸음부터",
-    "difficulty": 1
-  },
-  {
-    "id": "q071",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "호랑이 굴에 가야",
-    "answer": "호랑이 새끼를 잡는다",
-    "difficulty": 2
-  },
-  {
-    "id": "q072",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "빈 수레가",
-    "answer": "요란하다",
-    "difficulty": 1
-  },
-  {
-    "id": "q073",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "우물 안",
-    "answer": "개구리",
-    "difficulty": 1
-  },
-  {
-    "id": "q074",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "등잔 밑이",
-    "answer": "어둡다",
-    "difficulty": 1
-  },
-  {
-    "id": "q075",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "공든 탑이",
-    "answer": "무너지랴",
-    "difficulty": 1
-  },
-  {
-    "id": "q076",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "발 없는 말이",
-    "answer": "천 리 간다",
-    "difficulty": 1
-  },
-  {
-    "id": "q077",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "낫 놓고",
-    "answer": "기역 자도 모른다",
-    "difficulty": 1
-  },
-  {
-    "id": "q078",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "벼는 익을수록",
-    "answer": "고개를 숙인다",
-    "difficulty": 1
-  },
-  {
-    "id": "q079",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "하룻강아지",
-    "answer": "범 무서운 줄 모른다",
-    "difficulty": 1
-  },
-  {
-    "id": "q080",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "뛰는 놈 위에",
-    "answer": "나는 놈 있다",
-    "difficulty": 1
-  },
-  {
-    "id": "q081",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "아니 땐 굴뚝에",
-    "answer": "연기 나랴",
-    "difficulty": 1
-  },
-  {
-    "id": "q082",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "믿는 도끼에",
-    "answer": "발등 찍힌다",
-    "difficulty": 1
-  },
-  {
-    "id": "q083",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "가는 정이 있어야",
-    "answer": "오는 정이 있다",
-    "difficulty": 1
-  },
-  {
-    "id": "q084",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "열 번 찍어",
-    "answer": "안 넘어가는 나무 없다",
-    "difficulty": 1
-  },
-  {
-    "id": "q085",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "콩 심은 데 콩 나고",
-    "answer": "팥 심은 데 팥 난다",
-    "difficulty": 1
-  },
-  {
-    "id": "q086",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "하나를 보면",
-    "answer": "열을 안다",
-    "difficulty": 1
-  },
-  {
-    "id": "q087",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "엎친 데",
-    "answer": "덮친 격",
-    "difficulty": 1
-  },
-  {
-    "id": "q088",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "새 발의",
-    "answer": "피",
-    "difficulty": 1
-  },
-  {
-    "id": "q089",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "감나무 밑에 누워",
-    "answer": "홍시 떨어지길 바란다",
-    "difficulty": 2
-  },
-  {
-    "id": "q090",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "호미로 막을 것을",
-    "answer": "가래로 막는다",
-    "difficulty": 2
-  },
-  {
-    "id": "q091",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "놓친 고기가",
-    "answer": "더 커 보인다",
-    "difficulty": 1
-  },
-  {
-    "id": "q092",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "입에 쓴 약이",
-    "answer": "몸에 좋다",
-    "difficulty": 1
-  },
-  {
-    "id": "q093",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "가지 많은 나무에",
-    "answer": "바람 잘 날 없다",
-    "difficulty": 2
-  },
-  {
-    "id": "q094",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "까마귀 날자",
-    "answer": "배 떨어진다",
-    "difficulty": 2
-  },
-  {
-    "id": "q095",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "열 길 물속은 알아도",
-    "answer": "한 길 사람 속은 모른다",
-    "difficulty": 3
-  },
-  {
-    "id": "q096",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "범 없는 골에",
-    "answer": "토끼가 스승",
-    "difficulty": 3
-  },
-  {
-    "id": "q097",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "삼 년 가뭄에는 살아도",
-    "answer": "석 달 장마에는 못 산다",
-    "difficulty": 3
-  },
-  {
-    "id": "q098",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "외손뼉이",
-    "answer": "못 울고 한 다리로 가지 못한다",
-    "difficulty": 3
-  },
-  {
-    "id": "q099",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "아홉 가진 놈이",
-    "answer": "하나 가진 놈 부러워한다",
-    "difficulty": 3
-  },
-  {
-    "id": "q100",
-    "type": "complete",
-    "category": "이어 말하기",
-    "question": "개밥에",
-    "answer": "도토리",
-    "difficulty": 2
-  },
-  {
-    "id": "q101",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "대한민국의 수도는?",
-    "answer": "서울",
-    "difficulty": 1
-  },
-  {
-    "id": "q102",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "한글을 창제한 왕은?",
-    "answer": "세종대왕",
-    "difficulty": 1
-  },
-  {
-    "id": "q103",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "대한민국 국기의 이름은?",
-    "answer": "태극기",
-    "difficulty": 1
-  },
-  {
-    "id": "q104",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "대한민국 광복절은 몇 월 며칠?",
-    "answer": "8월 15일",
-    "difficulty": 1
-  },
-  {
-    "id": "q105",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "1킬로미터는 몇 미터?",
-    "answer": "1000미터",
-    "difficulty": 1
-  },
-  {
-    "id": "q106",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "물의 화학식은?",
-    "answer": "H2O",
-    "difficulty": 1
-  },
-  {
-    "id": "q107",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "지구에서 가장 큰 바다는?",
-    "answer": "태평양",
-    "difficulty": 1
-  },
-  {
-    "id": "q108",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "태양계에서 가장 큰 행성은?",
-    "answer": "목성",
-    "difficulty": 1
-  },
-  {
-    "id": "q109",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "태양계에서 태양과 가장 가까운 행성은?",
-    "answer": "수성",
-    "difficulty": 1
-  },
-  {
-    "id": "q110",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "달은 지구의 무엇일까?",
-    "answer": "위성",
-    "difficulty": 1
-  },
-  {
-    "id": "q111",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "피사의 사탑이 있는 나라는?",
-    "answer": "이탈리아",
-    "difficulty": 1
-  },
-  {
-    "id": "q112",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "에펠탑이 있는 도시는?",
-    "answer": "파리",
-    "difficulty": 1
-  },
-  {
-    "id": "q113",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "자유의 여신상이 있는 나라는?",
-    "answer": "미국",
-    "difficulty": 1
-  },
-  {
-    "id": "q114",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "세계에서 면적이 가장 넓은 나라는?",
-    "answer": "러시아",
-    "difficulty": 1
-  },
-  {
-    "id": "q115",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "세계에서 인구가 가장 많은 나라는?",
-    "answer": "인도",
-    "difficulty": 1
-  },
-  {
-    "id": "q116",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "산소의 원소 기호는?",
-    "answer": "O",
-    "difficulty": 1
-  },
-  {
-    "id": "q117",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "금의 원소 기호는?",
-    "answer": "Au",
-    "difficulty": 2
-  },
-  {
-    "id": "q118",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "소금의 주성분 화합물은?",
-    "answer": "염화나트륨",
-    "difficulty": 2
-  },
-  {
-    "id": "q119",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "컴퓨터에서 CPU는 주로 무엇을 담당할까?",
-    "answer": "연산 처리",
-    "difficulty": 1
-  },
-  {
-    "id": "q120",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "인터넷 주소에서 www는 무엇의 줄임말?",
-    "answer": "월드 와이드 웹",
-    "difficulty": 2
-  },
-  {
-    "id": "q121",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "사진의 빛 조절 구멍을 무엇이라 할까?",
-    "answer": "조리개",
-    "difficulty": 1
-  },
-  {
-    "id": "q122",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "우리 몸에서 피를 온몸으로 보내는 기관은?",
-    "answer": "심장",
-    "difficulty": 1
-  },
-  {
-    "id": "q123",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "숨을 쉴 때 산소 교환을 돕는 기관은?",
-    "answer": "폐",
-    "difficulty": 1
-  },
-  {
-    "id": "q124",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "뼈와 뼈가 만나는 부분은?",
-    "answer": "관절",
-    "difficulty": 1
-  },
-  {
-    "id": "q125",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "식물이 광합성에 주로 사용하는 빛의 원천은?",
-    "answer": "태양",
-    "difficulty": 1
-  },
-  {
-    "id": "q126",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "지구의 자전으로 생기는 대표 현상은?",
-    "answer": "낮과 밤",
-    "difficulty": 1
-  },
-  {
-    "id": "q127",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "지구의 공전으로 생기는 대표 현상은?",
-    "answer": "계절",
-    "difficulty": 1
-  },
-  {
-    "id": "q128",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "무지개는 보통 몇 가지 색으로 말할까?",
-    "answer": "7가지",
-    "difficulty": 1
-  },
-  {
-    "id": "q129",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "피아노 건반에서 도레미파솔라시 다음은?",
-    "answer": "도",
-    "difficulty": 1
-  },
-  {
-    "id": "q130",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "올림픽은 보통 몇 년마다 열릴까?",
-    "answer": "4년",
-    "difficulty": 1
-  },
-  {
-    "id": "q131",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "축구 한 팀의 경기장 선수 수는?",
-    "answer": "11명",
-    "difficulty": 1
-  },
-  {
-    "id": "q132",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "야구에서 한 팀의 수비 인원은?",
-    "answer": "9명",
-    "difficulty": 1
-  },
-  {
-    "id": "q133",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "농구에서 한 팀의 코트 위 선수 수는?",
-    "answer": "5명",
-    "difficulty": 1
-  },
-  {
-    "id": "q134",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "테니스에서 0점을 부르는 말은?",
-    "answer": "러브",
-    "difficulty": 1
-  },
-  {
-    "id": "q135",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "전기저항의 단위 기호 Ω는 무엇을 뜻할까?",
-    "answer": "옴",
-    "difficulty": 3
-  },
-  {
-    "id": "q136",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "지진의 크기를 나타내는 척도로 널리 알려진 이름은?",
-    "answer": "리히터 규모",
-    "difficulty": 3
-  },
-  {
-    "id": "q137",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "혈액 응고에 중요한 역할을 하는 비타민은?",
-    "answer": "비타민 K",
-    "difficulty": 3
-  },
-  {
-    "id": "q138",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "세계에서 가장 깊은 해구로 알려진 곳은?",
-    "answer": "마리아나 해구",
-    "difficulty": 3
-  },
-  {
-    "id": "q139",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "빛의 삼원색은 빨강, 초록, 그리고 무엇일까?",
-    "answer": "파랑",
-    "difficulty": 2
-  },
-  {
-    "id": "q140",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "갑자, 을축처럼 60년을 한 주기로 세는 전통 체계는?",
-    "answer": "육십갑자",
-    "difficulty": 3
-  },
-  {
-    "id": "q141",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "빛이 진공에서 1초 동안 이동하는 거리는 약 몇 km일까?",
-    "answer": "30만 km",
-    "difficulty": 3
-  },
-  {
-    "id": "q142",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "아보가드로 수는 약 얼마일까?",
-    "answer": "6.02×10^23",
-    "difficulty": 3
-  },
-  {
-    "id": "q143",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "주기율표에서 원자번호 79번 원소는?",
-    "answer": "금",
-    "difficulty": 3
-  },
-  {
-    "id": "q144",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "인체에서 가장 큰 내장 기관은?",
-    "answer": "간",
-    "difficulty": 2
-  },
-  {
-    "id": "q145",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "상대성 이론으로 유명한 공식 E=mc²에서 c는 무엇의 속도일까?",
-    "answer": "빛",
-    "difficulty": 3
-  },
-  {
-    "id": "q146",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "태양계에서 평균 표면 온도가 가장 높은 행성은?",
-    "answer": "금성",
-    "difficulty": 3
-  },
-  {
-    "id": "q147",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "세계 최초의 인공위성 이름은?",
-    "answer": "스푸트니크 1호",
-    "difficulty": 3
-  },
-  {
-    "id": "q148",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "절대영도는 섭씨로 약 몇 도일까?",
-    "answer": "-273.15도",
-    "difficulty": 3
-  },
-  {
-    "id": "q149",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "지구 대기에서 가장 많은 비율을 차지하는 기체는?",
-    "answer": "질소",
-    "difficulty": 2
-  },
-  {
-    "id": "q150",
-    "type": "commonSense",
-    "category": "상식",
-    "question": "피보나치 수열에서 1, 1, 2, 3, 5 다음 수는?",
-    "answer": "8",
-    "difficulty": 2
-  },
-  {
-    "id": "q151",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "세상에서 가장 뜨거운 바다는?",
-    "answer": "열바다",
-    "difficulty": 1
-  },
-  {
-    "id": "q152",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "왕이 넘어지면?",
-    "answer": "킹콩",
-    "difficulty": 1
-  },
-  {
-    "id": "q153",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "먹으면 죽는데 안 먹어도 죽는 것은?",
-    "answer": "나이",
-    "difficulty": 1
-  },
-  {
-    "id": "q154",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "오리가 얼면?",
-    "answer": "언덕",
-    "difficulty": 1
-  },
-  {
-    "id": "q155",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "자동차가 울면?",
-    "answer": "잉카",
-    "difficulty": 1
-  },
-  {
-    "id": "q156",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "소가 웃으면?",
-    "answer": "우하하",
-    "difficulty": 1
-  },
-  {
-    "id": "q157",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 차가운 전화는?",
-    "answer": "콜드콜",
-    "difficulty": 1
-  },
-  {
-    "id": "q158",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "불이 네 개면?",
-    "answer": "사파이어",
-    "difficulty": 1
-  },
-  {
-    "id": "q159",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "항상 미안해하는 동물은?",
-    "answer": "오소리",
-    "difficulty": 1
-  },
-  {
-    "id": "q160",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "바나나가 웃으면?",
-    "answer": "바나나킥",
-    "difficulty": 1
-  },
-  {
-    "id": "q161",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "세상에서 가장 쉬운 숫자는?",
-    "answer": "십",
-    "difficulty": 1
-  },
-  {
-    "id": "q162",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "빵이 목욕하면?",
-    "answer": "호빵",
-    "difficulty": 1
-  },
-  {
-    "id": "q163",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "딸기가 회사에서 잘리면?",
-    "answer": "딸기시럽",
-    "difficulty": 1
-  },
-  {
-    "id": "q164",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "물이 화나면?",
-    "answer": "워터파크",
-    "difficulty": 1
-  },
-  {
-    "id": "q165",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 오래된 파이는?",
-    "answer": "할아버지파이",
-    "difficulty": 1
-  },
-  {
-    "id": "q166",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "깨가 죽으면?",
-    "answer": "주근깨",
-    "difficulty": 1
-  },
-  {
-    "id": "q167",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "신발이 화내면?",
-    "answer": "신발끈",
-    "difficulty": 1
-  },
-  {
-    "id": "q168",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "도둑이 싫어하는 아이스크림은?",
-    "answer": "누가바",
-    "difficulty": 1
-  },
-  {
-    "id": "q169",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 지루한 중학교는?",
-    "answer": "로딩중",
-    "difficulty": 1
-  },
-  {
-    "id": "q170",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "사과가 웃으면?",
-    "answer": "풋사과",
-    "difficulty": 1
-  },
-  {
-    "id": "q171",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "검은색 자동차가 멈추면?",
-    "answer": "블랙박스",
-    "difficulty": 1
-  },
-  {
-    "id": "q172",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "바람이 귀여우면?",
-    "answer": "산들바람",
-    "difficulty": 1
-  },
-  {
-    "id": "q173",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "공이 화나면?",
-    "answer": "공격",
-    "difficulty": 2
-  },
-  {
-    "id": "q174",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "문이 노래하면?",
-    "answer": "문송",
-    "difficulty": 2
-  },
-  {
-    "id": "q175",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "책이 춤추면?",
-    "answer": "북댄스",
-    "difficulty": 2
-  },
-  {
-    "id": "q176",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 똑똑한 물은?",
-    "answer": "지식수",
-    "difficulty": 2
-  },
-  {
-    "id": "q177",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "라면이 화나면?",
-    "answer": "불라면",
-    "difficulty": 1
-  },
-  {
-    "id": "q178",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 빠른 떡은?",
-    "answer": "번개떡",
-    "difficulty": 1
-  },
-  {
-    "id": "q179",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "우유가 넘어지면?",
-    "answer": "아야우유",
-    "difficulty": 1
-  },
-  {
-    "id": "q180",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "시계가 배고프면?",
-    "answer": "시계밥",
-    "difficulty": 1
-  },
-  {
-    "id": "q181",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "눈이 바쁘면?",
-    "answer": "눈코 뜰 새 없다",
-    "difficulty": 2
-  },
-  {
-    "id": "q182",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "컴퓨터가 좋아하는 간식은?",
-    "answer": "칩",
-    "difficulty": 1
-  },
-  {
-    "id": "q183",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "연필이 화나면?",
-    "answer": "심통",
-    "difficulty": 1
-  },
-  {
-    "id": "q184",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 조용한 라면은?",
-    "answer": "잠잠면",
-    "difficulty": 2
-  },
-  {
-    "id": "q185",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 밝은 국수는?",
-    "answer": "전구국수",
-    "difficulty": 2
-  },
-  {
-    "id": "q186",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "비가 싫어하는 말은?",
-    "answer": "그만 내려",
-    "difficulty": 2
-  },
-  {
-    "id": "q187",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "소금이 좋아하는 요일은?",
-    "answer": "짠요일",
-    "difficulty": 2
-  },
-  {
-    "id": "q188",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 무거운 새는?",
-    "answer": "철새",
-    "difficulty": 2
-  },
-  {
-    "id": "q189",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "핸드폰이 자면?",
-    "answer": "슬립폰",
-    "difficulty": 2
-  },
-  {
-    "id": "q190",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "치즈가 슬프면?",
-    "answer": "눈물치즈",
-    "difficulty": 2
-  },
-  {
-    "id": "q191",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "커피가 놀라면?",
-    "answer": "아메리카노",
-    "difficulty": 2
-  },
-  {
-    "id": "q192",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "고추가 길을 잃으면?",
-    "answer": "고추장",
-    "difficulty": 2
-  },
-  {
-    "id": "q193",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "김밥이 노래하면?",
-    "answer": "김밥천국",
-    "difficulty": 2
-  },
-  {
-    "id": "q194",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "버스가 좋아하는 음식은?",
-    "answer": "정류장국",
-    "difficulty": 2
-  },
-  {
-    "id": "q195",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "계단이 화나면?",
-    "answer": "단계적 분노",
-    "difficulty": 3
-  },
-  {
-    "id": "q196",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "종이가 운동하면?",
-    "answer": "페이퍼워크",
-    "difficulty": 3
-  },
-  {
-    "id": "q197",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "사전이 웃으면?",
-    "answer": "낱말웃음",
-    "difficulty": 3
-  },
-  {
-    "id": "q198",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "라디오가 추우면?",
-    "answer": "FM",
-    "difficulty": 3
-  },
-  {
-    "id": "q199",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "달력이 뛰면?",
-    "answer": "날짜변경선",
-    "difficulty": 3
-  },
-  {
-    "id": "q200",
-    "type": "commonSense",
-    "category": "넌센스",
-    "question": "가장 깔끔한 국가는?",
-    "answer": "청소국",
-    "difficulty": 3
-  },
-  {
-    "id": "q201",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "김밥의 겉을 감싸는 검은 재료는?",
-    "answer": "김",
-    "difficulty": 1
-  },
-  {
-    "id": "q202",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "떡볶이의 대표적인 빨간 양념 재료는?",
-    "answer": "고추장",
-    "difficulty": 1
-  },
-  {
-    "id": "q203",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "비빔밥에 자주 올리는 매운 양념은?",
-    "answer": "고추장",
-    "difficulty": 1
-  },
-  {
-    "id": "q204",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "김치의 대표 발효 재료 중 하나인 채소는?",
-    "answer": "배추",
-    "difficulty": 1
-  },
-  {
-    "id": "q205",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "된장의 주재료가 되는 콩 발효 식품은?",
-    "answer": "메주",
-    "difficulty": 1
-  },
-  {
-    "id": "q206",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "간장의 기본 맛은 주로 어떤 맛일까?",
-    "answer": "짠맛",
-    "difficulty": 1
-  },
-  {
-    "id": "q207",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "불고기의 대표 조리 방식은?",
-    "answer": "양념한 고기 구이",
-    "difficulty": 1
-  },
-  {
-    "id": "q208",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "삼계탕에 들어가는 대표 곡물은?",
-    "answer": "찹쌀",
-    "difficulty": 1
-  },
-  {
-    "id": "q209",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "냉면 육수에 자주 쓰이는 차가운 액체는?",
-    "answer": "육수",
-    "difficulty": 1
-  },
-  {
-    "id": "q210",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "잡채의 주재료인 투명한 면은?",
-    "answer": "당면",
-    "difficulty": 1
-  },
-  {
-    "id": "q211",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "순두부찌개의 주재료는?",
-    "answer": "순두부",
-    "difficulty": 1
-  },
-  {
-    "id": "q212",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "부대찌개에 자주 들어가는 가공육은?",
-    "answer": "햄",
-    "difficulty": 1
-  },
-  {
-    "id": "q213",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "갈비탕의 주요 재료는?",
-    "answer": "갈비",
-    "difficulty": 1
-  },
-  {
-    "id": "q214",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "설렁탕과 함께 자주 나오는 깍두기는 어떤 채소로 만들까?",
-    "answer": "무",
-    "difficulty": 1
-  },
-  {
-    "id": "q215",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "해물파전의 이름에 들어가는 대표 채소는?",
-    "answer": "파",
-    "difficulty": 1
-  },
-  {
-    "id": "q216",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "라면을 끓일 때 가장 먼저 필요한 액체는?",
-    "answer": "물",
-    "difficulty": 1
-  },
-  {
-    "id": "q217",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "초밥에서 밥 위에 올라가는 재료를 보통 무엇이라 할까?",
-    "answer": "네타",
-    "difficulty": 1
-  },
-  {
-    "id": "q218",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "파스타를 삶을 때 넣는 대표 조미료는?",
-    "answer": "소금",
-    "difficulty": 1
-  },
-  {
-    "id": "q219",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "피자의 기본 바탕이 되는 빵 부분은?",
-    "answer": "도우",
-    "difficulty": 1
-  },
-  {
-    "id": "q220",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "햄버거에서 고기 패티를 끼우는 빵은?",
-    "answer": "번",
-    "difficulty": 1
-  },
-  {
-    "id": "q221",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "샌드위치의 기본 재료는?",
-    "answer": "빵",
-    "difficulty": 1
-  },
-  {
-    "id": "q222",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "카레의 노란색을 내는 대표 향신료는?",
-    "answer": "강황",
-    "difficulty": 2
-  },
-  {
-    "id": "q223",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "마라탕의 얼얼한 맛을 내는 향신료는?",
-    "answer": "화자오",
-    "difficulty": 2
-  },
-  {
-    "id": "q224",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "쌀을 씻어 물과 함께 끓이면 주로 무엇이 될까?",
-    "answer": "밥",
-    "difficulty": 1
-  },
-  {
-    "id": "q225",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "누룽지는 밥의 어느 부분이 눌어붙은 것일까?",
-    "answer": "바닥",
-    "difficulty": 1
-  },
-  {
-    "id": "q226",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "식혜의 단맛을 내는 발효 재료는?",
-    "answer": "엿기름",
-    "difficulty": 2
-  },
-  {
-    "id": "q227",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "수정과에 들어가는 대표 향신료는?",
-    "answer": "계피",
-    "difficulty": 2
-  },
-  {
-    "id": "q228",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "팥빙수의 대표 토핑은?",
-    "answer": "팥",
-    "difficulty": 1
-  },
-  {
-    "id": "q229",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "호떡 안에 들어가는 달콤한 속재료는?",
-    "answer": "설탕",
-    "difficulty": 1
-  },
-  {
-    "id": "q230",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "붕어빵의 대표 속재료는?",
-    "answer": "팥",
-    "difficulty": 1
-  },
-  {
-    "id": "q231",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "찐빵 속에 자주 들어가는 달콤한 재료는?",
-    "answer": "팥앙금",
-    "difficulty": 1
-  },
-  {
-    "id": "q232",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "치킨무의 주재료는?",
-    "answer": "무",
-    "difficulty": 1
-  },
-  {
-    "id": "q233",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "떡국에 들어가는 얇게 썬 떡은?",
-    "answer": "가래떡",
-    "difficulty": 1
-  },
-  {
-    "id": "q234",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "송편을 주로 먹는 명절은?",
-    "answer": "추석",
-    "difficulty": 1
-  },
-  {
-    "id": "q235",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "만두피 안에 넣는 재료를 통틀어 뭐라고 할까?",
-    "answer": "소",
-    "difficulty": 2
-  },
-  {
-    "id": "q236",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "어묵의 주재료는?",
-    "answer": "생선살",
-    "difficulty": 1
-  },
-  {
-    "id": "q237",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "우동의 대표 특징은 어떤 면일까?",
-    "answer": "굵은 면",
-    "difficulty": 1
-  },
-  {
-    "id": "q238",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "쫄면의 대표 식감은?",
-    "answer": "쫄깃함",
-    "difficulty": 1
-  },
-  {
-    "id": "q239",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "크루아상은 어느 나라 빵으로 널리 알려졌을까?",
-    "answer": "프랑스",
-    "difficulty": 2
-  },
-  {
-    "id": "q240",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "에스프레소에 물을 더한 커피는?",
-    "answer": "아메리카노",
-    "difficulty": 1
-  },
-  {
-    "id": "q241",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "커피 추출에서 압력을 이용해 짧은 시간에 뽑는 진한 원액은?",
-    "answer": "에스프레소",
-    "difficulty": 2
-  },
-  {
-    "id": "q242",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "프랑스식 기본 소스 중 우유와 루로 만드는 흰 소스는?",
-    "answer": "베샤멜 소스",
-    "difficulty": 3
-  },
-  {
-    "id": "q243",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "이탈리아식 쌀 요리 리소토에 자주 쓰이는 쌀 품종은?",
-    "answer": "아르보리오",
-    "difficulty": 3
-  },
-  {
-    "id": "q244",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "일식에서 가다랑어포를 뜻하는 말은?",
-    "answer": "가쓰오부시",
-    "difficulty": 3
-  },
-  {
-    "id": "q245",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "멕시코 요리 과카몰레의 주재료는?",
-    "answer": "아보카도",
-    "difficulty": 2
-  },
-  {
-    "id": "q246",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "인도 요리에서 기버터를 뜻하는 말은?",
-    "answer": "기",
-    "difficulty": 3
-  },
-  {
-    "id": "q247",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "중국 사천 요리의 얼얼한 맛을 내는 향신료는?",
-    "answer": "화자오",
-    "difficulty": 3
-  },
-  {
-    "id": "q248",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "스페인식 쌀 요리 파에야에 색과 향을 내는 고가의 향신료는?",
-    "answer": "사프란",
-    "difficulty": 3
-  },
-  {
-    "id": "q249",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "그리스식 요거트 소스 차지키에 들어가는 대표 채소는?",
-    "answer": "오이",
-    "difficulty": 3
-  },
+    "id": "dotnet001",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "C#에서 await가 아직 끝나지 않은 Task를 만났을 때 올바른 설명은?",
+    "options": [
+      "현재 스레드를 완료될 때까지 블로킹한다",
+      "async 메서드의 실행을 일시 중단하고 제어를 호출자에게 돌려준다",
+      "항상 새 OS 스레드를 생성한다",
+      "Task를 동기 메서드로 변환한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "Microsoft Learn: await operator",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/await"
+  },
+  {
+    "id": "dotnet002",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "I/O Bound 작업을 C# async/await로 처리할 때 기대하는 가장 중요한 효과는?",
+    "options": [
+      "UI/요청 처리 스레드를 기다림 동안 점유하지 않는다",
+      "CPU 연산 시간이 반드시 줄어든다",
+      "GC가 비활성화된다",
+      "모든 예외가 자동으로 무시된다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Microsoft Learn: async scenarios",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios"
+  },
+  {
+    "id": "dotnet003",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "C# value type과 reference type의 저장 의미 차이로 맞는 것은?",
+    "options": [
+      "value type 변수는 데이터를 직접 담고 reference type 변수는 객체 참조를 담는다",
+      "둘 다 항상 힙 주소만 담는다",
+      "reference type은 복사할 수 없다",
+      "value type은 null만 저장한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "C# language specification: Types",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types"
+  },
+  {
+    "id": "dotnet004",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "다음 중 C#의 값 타입으로 분류되는 것은?",
+    "options": [
+      "class Order",
+      "interface IDisposable",
+      "struct Point",
+      "string"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "Microsoft Learn: C# structs",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs"
+  },
+  {
+    "id": "dotnet005",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "sealed class의 핵심 효과는?",
+    "options": [
+      "인스턴스 생성을 금지한다",
+      "다른 클래스가 그 클래스를 상속하지 못하게 한다",
+      "필드를 모두 readonly로 만든다",
+      "인터페이스 구현을 자동 생성한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 1,
+    "sourceTitle": "Microsoft Learn: sealed modifier",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed"
+  },
+  {
+    "id": "dotnet006",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "override 메서드에 sealed를 붙이는 주된 목적은?",
+    "options": [
+      "해당 override를 하위 클래스에서 다시 override하지 못하게 한다",
+      "메서드를 static으로 만든다",
+      "메서드 호출을 비동기로 만든다",
+      "메서드 접근 제한자를 public으로 바꾼다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Microsoft Learn: sealed modifier",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed"
+  },
   {
-    "id": "q250",
-    "type": "commonSense",
-    "category": "음식",
-    "question": "포도주 맛을 표현할 때 떫은맛과 구조감을 주는 성분은?",
-    "answer": "탄닌",
-    "difficulty": 3
+    "id": "dotnet007",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "Task.Run의 일반적인 역할로 가장 적절한 것은?",
+    "options": [
+      "지정한 작업을 ThreadPool에서 실행하도록 큐에 넣는다",
+      "현재 Task를 즉시 취소한다",
+      "UI 스레드에서만 작업을 실행한다",
+      "컴파일 타임에 async 메서드를 만든다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Microsoft Learn: Task.Run",
+    "sourceUrl": "https://learn.microsoft.com/dotnet/api/system.threading.tasks.task.run"
+  },
+  {
+    "id": "dotnet008",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": ".NET GC가 컬렉션 중 회수 대상으로 판단하는 객체는?",
+    "options": [
+      "관리 힙에 있고 애플리케이션에서 더 이상 사용되지 않는 객체",
+      "모든 static 객체",
+      "스택의 모든 지역 변수",
+      "현재 실행 중인 모든 Task"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Microsoft Learn: Garbage collection",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/"
+  },
+  {
+    "id": "dotnet009",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "reference type 변수 두 개가 같은 객체를 가리킬 때 발생할 수 있는 일은?",
+    "options": [
+      "한 변수를 통해 바꾼 객체 상태가 다른 변수에서도 보인다",
+      "두 변수는 항상 독립 복사본을 가진다",
+      "컴파일 오류가 난다",
+      "값 타입으로 자동 변환된다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "C# language specification: Types",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types"
+  },
+  {
+    "id": "dotnet010",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "struct를 다른 변수에 대입할 때 일반적인 의미는?",
+    "options": [
+      "데이터가 복사되어 별도 인스턴스처럼 다뤄진다",
+      "항상 같은 힙 객체를 공유한다",
+      "대입이 금지된다",
+      "GC 루트가 반드시 생성된다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Microsoft Learn: C# structs",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs"
+  },
+  {
+    "id": "dotnet011",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "async 메서드에서 await 대상 Task가 예외를 발생시키면 await 표현식은 보통 어떻게 동작하는가?",
+    "options": [
+      "예외를 다시 throw한다",
+      "false를 반환한다",
+      "프로세스를 무조건 종료한다",
+      "예외를 문자열로 변환한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Microsoft Learn: await operator",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/await"
+  },
+  {
+    "id": "dotnet012",
+    "type": "multipleChoice",
+    "category": ".NET/C#",
+    "question": "C#에서 string에 대한 설명으로 가장 정확한 것은?",
+    "options": [
+      "reference type이지만 문자열 리터럴/불변성 등 특성이 있다",
+      "항상 value type이다",
+      "struct의 별칭이다",
+      "GC 대상이 될 수 없다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "C# language specification: Types",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types"
+  },
+  {
+    "id": "flutter001",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "Flutter Widget에 대한 설명으로 맞는 것은?",
+    "options": [
+      "UI 일부에 대한 immutable declaration이다",
+      "플랫폼 네이티브 View를 반드시 직접 감싼다",
+      "항상 mutable 상태를 내부 필드에 저장한다",
+      "렌더링 이후에는 Element가 된다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Flutter docs: Architectural overview",
+    "sourceUrl": "https://docs.flutter.dev/resources/architectural-overview"
+  },
+  {
+    "id": "flutter002",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "Flutter가 Android/iOS에서 일관된 UI를 제공하는 핵심 구조는?",
+    "options": [
+      "시스템 UI 위젯 라이브러리를 우회하고 자체 위젯 세트와 렌더링 파이프라인을 사용한다",
+      "HTML을 WebView로 렌더링한다",
+      "Android XML 레이아웃만 재사용한다",
+      "iOS UIKit 컴포넌트만 사용한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Flutter docs: Architectural overview",
+    "sourceUrl": "https://docs.flutter.dev/resources/architectural-overview"
+  },
+  {
+    "id": "flutter003",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "setState() 호출의 가장 직접적인 의미는?",
+    "options": [
+      "관련 State를 dirty로 표시해 다음 build에서 UI를 갱신하게 한다",
+      "앱 프로세스를 재시작한다",
+      "State 객체를 즉시 dispose한다",
+      "모든 라우트를 pop한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Flutter docs: Inside Flutter",
+    "sourceUrl": "https://docs.flutter.dev/resources/inside-flutter"
+  },
+  {
+    "id": "flutter004",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "FutureBuilder가 가장 잘 맞는 상황은?",
+    "options": [
+      "단발성 Future 결과에 따라 UI를 만든다",
+      "매 프레임 애니메이션 값을 계산한다",
+      "무한 스트림 이벤트를 직접 렌더링한다",
+      "라우팅 테이블을 생성한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Flutter API: FutureBuilder",
+    "sourceUrl": "https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html"
+  },
+  {
+    "id": "flutter005",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "FutureBuilder에 넘기는 Future를 build 메서드 안에서 매번 새로 만들면 생길 수 있는 문제는?",
+    "options": [
+      "부모 rebuild마다 비동기 작업이 다시 시작될 수 있다",
+      "컴파일이 항상 실패한다",
+      "Future가 Stream으로 바뀐다",
+      "StatefulWidget이 StatelessWidget으로 바뀐다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Flutter API: FutureBuilder",
+    "sourceUrl": "https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html"
+  },
+  {
+    "id": "flutter006",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "BuildContext를 설명한 것으로 가장 알맞은 것은?",
+    "options": [
+      "위젯 트리 안의 위치와 관련 API를 제공하는 객체",
+      "네트워크 요청 전용 클라이언트",
+      "이미지 캐시 저장소",
+      "Dart isolate 관리자"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Flutter API: BuildContext",
+    "sourceUrl": "https://api.flutter.dev/flutter/widgets/BuildContext-class.html"
+  },
+  {
+    "id": "flutter007",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "Element tree가 필요한 이유로 맞는 것은?",
+    "options": [
+      "immutable Widget 대신 상태와 render object 연결 정보를 보존한다",
+      "HTTP 캐시를 유지한다",
+      "앱 바이너리를 압축한다",
+      "Android Manifest를 생성한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "Flutter docs: Inside Flutter",
+    "sourceUrl": "https://docs.flutter.dev/resources/inside-flutter"
+  },
+  {
+    "id": "flutter008",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "Flutter에서 const Widget 사용이 성능에 도움이 되는 이유와 가장 가까운 것은?",
+    "options": [
+      "동일 Widget 인스턴스를 재사용해 불필요한 비교/생성을 줄일 수 있다",
+      "네트워크 응답을 자동 캐시한다",
+      "State를 영구 저장한다",
+      "GPU 셰이더를 미리 컴파일한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Flutter docs: Inside Flutter",
+    "sourceUrl": "https://docs.flutter.dev/resources/inside-flutter"
+  },
+  {
+    "id": "flutter009",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "Ephemeral state의 예로 가장 적절한 것은?",
+    "options": [
+      "BottomNavigationBar의 현재 선택 탭",
+      "사용자 로그인 토큰",
+      "서버에 저장된 장바구니",
+      "여러 화면이 공유하는 알림 목록"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Flutter docs: Ephemeral vs app state",
+    "sourceUrl": "https://docs.flutter.dev/data-and-backend/state-mgmt/ephemeral-vs-app"
+  },
+  {
+    "id": "flutter010",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "App state에 가까운 것은?",
+    "options": [
+      "여러 화면에서 공유되고 세션 간 유지하고 싶은 데이터",
+      "한 TextField의 커서 깜빡임 상태",
+      "한 애니메이션의 현재 프레임",
+      "PageView의 현재 페이지처럼 한 위젯 내부에 갇힌 상태"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Flutter docs: Ephemeral vs app state",
+    "sourceUrl": "https://docs.flutter.dev/data-and-backend/state-mgmt/ephemeral-vs-app"
+  },
+  {
+    "id": "flutter011",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "AnimationController를 사용할 때 Ticker의 역할과 가장 가까운 것은?",
+    "options": [
+      "프레임 타이밍에 맞춰 애니메이션 값을 갱신하도록 신호를 준다",
+      "HTTP 요청을 재시도한다",
+      "위젯 트리를 직렬화한다",
+      "Android Activity를 생성한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Flutter docs: Animations overview",
+    "sourceUrl": "https://docs.flutter.dev/ui/animations/overview"
+  },
+  {
+    "id": "flutter012",
+    "type": "multipleChoice",
+    "category": "Flutter",
+    "question": "Flutter의 build 메서드에 대한 좋은 가정은?",
+    "options": [
+      "매 프레임 호출될 수 있다고 보고 가볍게 작성한다",
+      "앱 실행 중 정확히 한 번만 호출된다",
+      "비동기 API 호출을 항상 그 안에서 시작해야 한다",
+      "호출되면 State가 반드시 dispose된다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Flutter API: FutureBuilder",
+    "sourceUrl": "https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html"
+  },
+  {
+    "id": "android001",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "Activity가 처음 생성될 때 반드시 구현하는 핵심 콜백은?",
+    "options": [
+      "onCreate()",
+      "onPause()",
+      "onStop()",
+      "onDestroy()"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: Activity lifecycle",
+    "sourceUrl": "https://developer.android.com/guide/components/activities/activity-lifecycle"
+  },
+  {
+    "id": "android002",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "Activity lifecycle의 주요 콜백 집합에 포함되지 않는 것은?",
+    "options": [
+      "onCreate()",
+      "onStart()",
+      "onResume()",
+      "onAttach()"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: Activity lifecycle",
+    "sourceUrl": "https://developer.android.com/guide/components/activities/activity-lifecycle"
+  },
+  {
+    "id": "android003",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "Activity A가 Activity B를 시작할 때 일반적인 순서로 맞는 것은?",
+    "options": [
+      "A onPause 후 B onCreate/onStart/onResume",
+      "B onDestroy 후 A onCreate",
+      "A onStop 후 B onPause",
+      "두 Activity가 동시에 onResume"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "Android Developers: Activity lifecycle",
+    "sourceUrl": "https://developer.android.com/guide/components/activities/activity-lifecycle"
+  },
+  {
+    "id": "android004",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "화면 회전 같은 configuration change가 기본적으로 유발할 수 있는 일은?",
+    "options": [
+      "Activity 재생성",
+      "앱 패키지 재설치",
+      "ViewModel 즉시 삭제",
+      "Manifest 자동 수정"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: Runtime changes",
+    "sourceUrl": "https://developer.android.com/guide/topics/resources/runtime-changes"
+  },
+  {
+    "id": "android005",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "ViewModel의 대표 장점은?",
+    "options": [
+      "configuration change 동안 UI 관련 데이터를 유지하기 좋다",
+      "모든 DB 트랜잭션을 자동 커밋한다",
+      "Activity 생성을 차단한다",
+      "Manifest 권한을 자동 추가한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: ViewModel overview",
+    "sourceUrl": "https://developer.android.com/topic/libraries/architecture/viewmodel"
+  },
+  {
+    "id": "android006",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "Activity scope의 ViewModel이 메모리에 남아있는 기간으로 가장 알맞은 것은?",
+    "options": [
+      "ViewModelStoreOwner가 사라질 때까지",
+      "onCreate()가 끝날 때까지만",
+      "매 recomposition마다",
+      "앱 설치가 해제될 때까지"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Android Developers: ViewModel overview",
+    "sourceUrl": "https://developer.android.com/topic/libraries/architecture/viewmodel"
+  },
+  {
+    "id": "android007",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "ANR이 발생하는 대표 원인은?",
+    "options": [
+      "UI thread가 너무 오래 차단됨",
+      "리소스 파일 이름이 길어짐",
+      "앱 아이콘 해상도가 낮음",
+      "패키지명이 길어짐"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: ANRs",
+    "sourceUrl": "https://developer.android.com/topic/performance/vitals/anr"
+  },
+  {
+    "id": "android008",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "입력 이벤트에 앱이 응답하지 않아 ANR로 이어질 수 있는 대표 시간 기준은?",
+    "options": [
+      "약 5초",
+      "약 50밀리초",
+      "약 1분",
+      "약 10분"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Android Developers: ANRs",
+    "sourceUrl": "https://developer.android.com/topic/performance/vitals/anr"
+  },
+  {
+    "id": "android009",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "ANR을 줄이기 위한 방향으로 가장 적절한 것은?",
+    "options": [
+      "느린 I/O나 긴 계산을 main thread 밖으로 옮긴다",
+      "모든 작업을 onClick에서 동기 실행한다",
+      "UI thread에서 네트워크를 기다린다",
+      "잠금을 오래 잡아 main thread를 보호한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: ANRs",
+    "sourceUrl": "https://developer.android.com/topic/performance/vitals/anr"
+  },
+  {
+    "id": "android010",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "android:launchMode의 기본값은?",
+    "options": [
+      "standard",
+      "singleTask",
+      "singleInstance",
+      "transparent"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: activity element",
+    "sourceUrl": "https://developer.android.com/guide/topics/manifest/activity-element"
+  },
+  {
+    "id": "android011",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "standard 또는 singleTop launch mode에 대한 설명으로 맞는 것은?",
+    "options": [
+      "Activity가 여러 번 인스턴스화될 수 있다",
+      "Activity 인스턴스가 시스템 전체에 하나만 존재한다",
+      "항상 새 task의 root가 된다",
+      "Fragment 전용 옵션이다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Android Developers: activity element",
+    "sourceUrl": "https://developer.android.com/guide/topics/manifest/activity-element"
+  },
+  {
+    "id": "android012",
+    "type": "multipleChoice",
+    "category": "Android",
+    "question": "Android에서 main thread가 담당하는 핵심 작업으로 가장 가까운 것은?",
+    "options": [
+      "UI 업데이트와 입력 이벤트 처리",
+      "APK 서명 키 생성",
+      "Gradle dependency 해석",
+      "Play Store 배포 승인"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Android Developers: Better performance through threading",
+    "sourceUrl": "https://developer.android.com/topic/performance/threads"
+  },
+  {
+    "id": "ios001",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Swift의 ARC는 무엇을 관리하기 위한 기능인가?",
+    "options": [
+      "앱 메모리 사용량 추적과 관리",
+      "네트워크 캐시 동기화",
+      "UI 제약 조건 자동 생성",
+      "앱 번들 서명"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Swift Book: Automatic Reference Counting",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+  },
+  {
+    "id": "ios002",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Strong reference cycle을 끊을 때 자주 사용하는 참조는?",
+    "options": [
+      "weak 또는 unowned",
+      "static 또는 final",
+      "async 또는 await",
+      "public 또는 private"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Swift Book: Automatic Reference Counting",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+  },
+  {
+    "id": "ios003",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "weak reference에 대한 설명으로 맞는 것은?",
+    "options": [
+      "참조 대상이 해제되면 자동으로 nil이 될 수 있어 Optional이다",
+      "항상 nil이 될 수 없어서 Non-Optional이다",
+      "값 타입에만 사용할 수 있다",
+      "ARC를 비활성화한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Swift Book: Automatic Reference Counting",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+  },
+  {
+    "id": "ios004",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "closure가 self를 캡처할 때 순환 참조를 줄이는 일반적 방법은?",
+    "options": [
+      "capture list에 [weak self] 또는 [unowned self]를 사용한다",
+      "closure를 전역 변수로 만든다",
+      "self를 문자열로 변환한다",
+      "ARC를 GC로 바꾼다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Swift Book: Automatic Reference Counting",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+  },
+  {
+    "id": "ios005",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Swift에서 structure와 enumeration은 일반적으로 어떤 타입인가?",
+    "options": [
+      "Value type",
+      "Reference type",
+      "Pointer type",
+      "Actor 전용 타입"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Swift Book: Structures and Classes",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/"
+  },
+  {
+    "id": "ios006",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Swift class instance의 일반적인 성격은?",
+    "options": [
+      "reference type으로 공유 참조될 수 있다",
+      "항상 value copy만 된다",
+      "함수를 가질 수 없다",
+      "ARC와 무관하다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Swift Book: Structures and Classes",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/"
+  },
+  {
+    "id": "ios007",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Swift의 기본 타입 Int, Bool, String, Array, Dictionary에 대한 설명으로 맞는 것은?",
+    "options": [
+      "많은 기본/컬렉션 타입은 value type으로 구현된다",
+      "모두 Objective-C class이다",
+      "모두 weak로 선언해야 한다",
+      "모두 nil만 저장한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Swift Book: Structures and Classes",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/"
+  },
+  {
+    "id": "ios008",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Swift Optional이 표현하는 것은?",
+    "options": [
+      "값이 있거나 없을 수 있음",
+      "항상 비동기 결과",
+      "항상 배열",
+      "클래스 전용 상속"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Swift Book: The Basics",
+    "sourceUrl": "https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html"
+  },
+  {
+    "id": "ios009",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Swift의 type safety에 대한 설명으로 맞는 것은?",
+    "options": [
+      "컴파일 시 타입 불일치를 오류로 잡아준다",
+      "모든 값을 자동으로 문자열로 변환한다",
+      "런타임에서만 타입을 검사한다",
+      "타입 선언을 금지한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Swift Book: The Basics",
+    "sourceUrl": "https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html"
+  },
+  {
+    "id": "ios010",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "Any 타입에 대한 설명으로 맞는 것은?",
+    "options": [
+      "다양한 타입의 값을 담을 수 있지만 사용 전 적절한 캐스팅이 필요하다",
+      "class 타입만 담는다",
+      "Int만 담는다",
+      "nil을 담을 수 없다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Swift Book: Types",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/types/"
+  },
+  {
+    "id": "ios011",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "@autoreleasepool 블록에 대한 설명으로 맞는 것은?",
+    "options": [
+      "NSAutoreleasePool 객체를 직접 쓰는 것보다 효율적이며 ARC 사용 여부와 무관하게 사용할 수 있다",
+      "ARC를 완전히 끈다",
+      "Swift Optional을 해제한다",
+      "UI 스레드를 생성한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "Apple Developer: NSAutoreleasePool",
+    "sourceUrl": "https://developer.apple.com/documentation/foundation/nsautoreleasepool"
+  },
+  {
+    "id": "ios012",
+    "type": "multipleChoice",
+    "category": "iOS",
+    "question": "unowned 참조가 적합한 경우로 가장 가까운 것은?",
+    "options": [
+      "참조 대상이 참조하는 쪽보다 먼저 해제되지 않는다고 논리적으로 보장되는 관계",
+      "참조 대상이 언제든 nil이 될 수 있는 관계",
+      "값 타입 복사를 막고 싶은 경우",
+      "비동기 Task를 취소하고 싶은 경우"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "Swift Book: Automatic Reference Counting",
+    "sourceUrl": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+  },
+  {
+    "id": "cs001",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP GET의 의미로 가장 적절한 것은?",
+    "options": [
+      "지정한 리소스의 표현을 요청한다",
+      "서버 상태 변경을 반드시 요청한다",
+      "연결을 터널링한다",
+      "리소스를 삭제한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "MDN: GET request method",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/GET"
+  },
+  {
+    "id": "cs002",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP GET 요청에 대한 설명으로 맞는 것은?",
+    "options": [
+      "데이터 조회 용도로 사용해야 하며 요청 본문을 요구하지 않는다",
+      "항상 서버 데이터를 수정해야 한다",
+      "항상 요청 body가 필수다",
+      "캐시될 수 없다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "MDN: GET request method",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/GET"
+  },
+  {
+    "id": "cs003",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Safe HTTP method의 의미는?",
+    "options": [
+      "클라이언트가 서버 상태 변경을 요청하지 않는 읽기 성격의 메서드",
+      "항상 암호화되는 메서드",
+      "항상 인증이 필요 없는 메서드",
+      "응답 본문이 없는 메서드"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Safe HTTP methods",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP"
+  },
+  {
+    "id": "cs004",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "다음 중 일반적으로 safe로 분류되는 HTTP 메서드는?",
+    "options": [
+      "GET",
+      "POST",
+      "PATCH",
+      "DELETE"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "MDN: HTTP request methods",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods"
+  },
+  {
+    "id": "cs005",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Binary Search가 전제로 하는 대표 조건은?",
+    "options": [
+      "검색 대상이 정렬되어 있어야 한다",
+      "모든 값이 문자열이어야 한다",
+      "데이터가 반드시 해시 테이블이어야 한다",
+      "중복 값이 절대 없어야 한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: binary search",
+    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/binarySearch.html"
+  },
+  {
+    "id": "cs006",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Binary Search의 핵심 아이디어는?",
+    "options": [
+      "검색 구간을 반복해서 절반으로 줄인다",
+      "모든 원소를 처음부터 끝까지 검사한다",
+      "무작위 위치만 검사한다",
+      "해시 함수를 반드시 사용한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: binary search",
+    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/binarySearch.html"
+  },
+  {
+    "id": "cs007",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Deadlock의 Coffman 조건에 포함되지 않는 것은?",
+    "options": [
+      "선점 가능(preemption allowed)",
+      "상호 배제(mutual exclusion)",
+      "점유와 대기(hold and wait)",
+      "순환 대기(circular wait)"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Wikipedia: Deadlock",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Deadlock_(computer_science)"
+  },
+  {
+    "id": "cs008",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Deadlock에서 circular wait가 의미하는 것은?",
+    "options": [
+      "각 프로세스가 다음 프로세스가 가진 자원을 기다리는 순환 구조",
+      "모든 프로세스가 CPU만 기다리는 상태",
+      "네트워크 요청이 모두 성공한 상태",
+      "스택이 비어 있는 상태"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Wikipedia: Deadlock",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Deadlock_(computer_science)"
+  },
+  {
+    "id": "cs009",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Hash table 검색 성능에 대한 설명으로 가장 알맞은 것은?",
+    "options": [
+      "충돌 관리가 잘 되면 평균적으로 O(1)에 가까운 조회를 기대할 수 있다",
+      "항상 O(n!)이다",
+      "정렬된 배열에서만 동작한다",
+      "LinkedList보다 항상 느리다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: hash table",
+    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/hashtab.html"
+  },
+  {
+    "id": "cs010",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Context switching 비용이 생기는 가장 직접적인 이유는?",
+    "options": [
+      "실행 중인 문맥을 저장하고 다른 문맥을 복원해야 하기 때문",
+      "CPU 클럭이 영구히 낮아지기 때문",
+      "메모리를 모두 삭제하기 때문",
+      "네트워크 연결을 다시 맺기 때문"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "Android Developers: Better performance through threading",
+    "sourceUrl": "https://developer.android.com/topic/performance/threads"
+  },
+  {
+    "id": "cs011",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "CPU-bound 작업을 설명한 것으로 가장 가까운 것은?",
+    "options": [
+      "주로 CPU 계산량이 병목인 작업",
+      "네트워크 응답 대기가 대부분인 작업",
+      "디스크 I/O 대기가 대부분인 작업",
+      "사용자 입력 대기가 대부분인 작업"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Microsoft Learn: async scenarios",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios"
+  },
+  {
+    "id": "cs012",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "I/O-bound 작업에 대한 설명으로 맞는 것은?",
+    "options": [
+      "네트워크, DB, 파일 같은 외부 작업 대기가 주요 병목이다",
+      "항상 CPU 코어를 100% 사용한다",
+      "반드시 GPU가 필요하다",
+      "정렬 알고리즘만 해당한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Microsoft Learn: async scenarios",
+    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios"
   }
 ]

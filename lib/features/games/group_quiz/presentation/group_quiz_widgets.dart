@@ -8,12 +8,14 @@ class GroupQuizSetupView extends StatelessWidget {
   const GroupQuizSetupView({
     super.key,
     required this.config,
+    required this.categories,
     required this.onConfigChanged,
     required this.onStart,
     required this.starting,
   });
 
   final GroupQuizConfig config;
+  final List<String> categories;
   final ValueChanged<GroupQuizConfig> onConfigChanged;
   final VoidCallback onStart;
   final bool starting;
@@ -50,7 +52,7 @@ class GroupQuizSetupView extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    '한 화면을 같이 보고 정답을 외치세요.',
+                    '카테고리를 고르고 객관식 정답을 맞히세요.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF18212F),
@@ -59,6 +61,15 @@ class GroupQuizSetupView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 22),
+                  _SetupSegment<String>(
+                    label: '카테고리',
+                    value: config.category,
+                    options: categories,
+                    labelBuilder: (value) => value,
+                    onChanged: (value) =>
+                        onConfigChanged(config.copyWith(category: value)),
+                  ),
+                  const SizedBox(height: 16),
                   _SetupSegment<int>(
                     label: '팀 수',
                     value: config.teamCount,
@@ -124,26 +135,20 @@ class GroupQuizPlayView extends StatelessWidget {
   const GroupQuizPlayView({
     super.key,
     required this.session,
-    required this.answerController,
-    required this.answerFocusNode,
     required this.selectedTeamId,
     required this.answerFeedback,
     required this.onAnswerTeamSelected,
     required this.onAnswerSubmitted,
     required this.onRevealAnswer,
-    required this.onAwardTeam,
     required this.onPassQuestion,
   });
 
   final GroupQuizSession session;
-  final TextEditingController answerController;
-  final FocusNode answerFocusNode;
   final int selectedTeamId;
   final String? answerFeedback;
   final ValueChanged<QuizTeam> onAnswerTeamSelected;
-  final VoidCallback onAnswerSubmitted;
+  final ValueChanged<int> onAnswerSubmitted;
   final VoidCallback onRevealAnswer;
-  final ValueChanged<QuizTeam> onAwardTeam;
   final VoidCallback onPassQuestion;
 
   @override
@@ -173,12 +178,11 @@ class GroupQuizPlayView extends StatelessWidget {
               ),
               const SizedBox(height: 14),
               if (!session.answerVisible) ...[
-                _AnswerInputPanel(
+                _MultipleChoicePanel(
+                  question: session.currentQuestion,
                   teams: session.teams,
                   selectedTeamId: selectedTeamId,
                   attemptsRemaining: session.attemptsRemaining,
-                  controller: answerController,
-                  focusNode: answerFocusNode,
                   feedback: answerFeedback,
                   onTeamSelected: onAnswerTeamSelected,
                   onSubmitted: onAnswerSubmitted,
@@ -186,7 +190,7 @@ class GroupQuizPlayView extends StatelessWidget {
                 const SizedBox(height: 14),
               ],
               if (session.answerVisible)
-                _AwardPanel(teams: session.teams, onAward: onAwardTeam)
+                _AnswerResultPanel(question: session.currentQuestion)
               else
                 FilledButton.icon(
                   onPressed: onRevealAnswer,
@@ -253,16 +257,19 @@ class _SetupSegment<T> extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        SegmentedButton<T>(
-          segments: [
-            for (final option in options)
-              ButtonSegment<T>(
-                value: option,
-                label: Text(labelBuilder(option)),
-              ),
-          ],
-          selected: {value},
-          onSelectionChanged: (selection) => onChanged(selection.first),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: SegmentedButton<T>(
+            segments: [
+              for (final option in options)
+                ButtonSegment<T>(
+                  value: option,
+                  label: Text(labelBuilder(option)),
+                ),
+            ],
+            selected: {value},
+            onSelectionChanged: (selection) => onChanged(selection.first),
+          ),
         ),
       ],
     );
@@ -391,26 +398,24 @@ class _StatusValue extends StatelessWidget {
   }
 }
 
-class _AnswerInputPanel extends StatelessWidget {
-  const _AnswerInputPanel({
+class _MultipleChoicePanel extends StatelessWidget {
+  const _MultipleChoicePanel({
+    required this.question,
     required this.teams,
     required this.selectedTeamId,
     required this.attemptsRemaining,
-    required this.controller,
-    required this.focusNode,
     required this.feedback,
     required this.onTeamSelected,
     required this.onSubmitted,
   });
 
+  final QuizQuestion question;
   final List<QuizTeam> teams;
   final int selectedTeamId;
   final int attemptsRemaining;
-  final TextEditingController controller;
-  final FocusNode focusNode;
   final String? feedback;
   final ValueChanged<QuizTeam> onTeamSelected;
-  final VoidCallback onSubmitted;
+  final ValueChanged<int> onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -452,64 +457,50 @@ class _AnswerInputPanel extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: controller,
-                    focusNode: focusNode,
-                    textInputAction: TextInputAction.done,
-                    onSubmitted: (_) => onSubmitted(),
-                    decoration: InputDecoration(
-                      hintText: '정답 입력',
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 13,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(color: Color(0xFFE1E7EF)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(color: Color(0xFFE1E7EF)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(
-                          color: Color(0xFF54C6EB),
-                          width: 2,
+                for (var index = 0; index < question.options.length; index++)
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: index == question.options.length - 1 ? 0 : 8,
+                    ),
+                    child: OutlinedButton(
+                      onPressed: attemptsRemaining > 0
+                          ? () => onSubmitted(index)
+                          : null,
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF18212F),
+                        disabledForegroundColor: const Color(0xFF8EA0AD),
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 14,
+                        ),
+                        side: const BorderSide(color: Color(0xFFD4DEE8)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                    ),
-                    style: const TextStyle(
-                      color: Color(0xFF18212F),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                FilledButton.icon(
-                  onPressed: attemptsRemaining > 0 ? onSubmitted : null,
-                  icon: const Icon(Icons.check_rounded),
-                  label: const Text('입력'),
-                  style: FilledButton.styleFrom(
-                    backgroundColor: const Color(0xFF2BB673),
-                    foregroundColor: Colors.white,
-                    disabledBackgroundColor: const Color(0xFF8EA0AD),
-                    disabledForegroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                      child: Row(
+                        children: [
+                          _OptionNumber(index: index),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              question.options[index],
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w900,
+                                height: 1.25,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -540,6 +531,36 @@ class _AnswerInputPanel extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OptionNumber extends StatelessWidget {
+  const _OptionNumber({required this.index});
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    const labels = ['①', '②', '③', '④'];
+    return SizedBox.square(
+      dimension: 28,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: const Color(0xFF18212F),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(
+          child: Text(
+            labels[index],
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
         ),
       ),
     );
@@ -619,7 +640,7 @@ class _QuestionPanel extends StatelessWidget {
               duration: const Duration(milliseconds: 180),
               child: answerVisible
                   ? Text(
-                      question.answer,
+                      '${question.answer} ${question.correctOption}',
                       key: ValueKey(question.id),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -629,7 +650,7 @@ class _QuestionPanel extends StatelessWidget {
                       ),
                     )
                   : const Text(
-                      '정답 대기 중',
+                      '보기를 선택하세요',
                       style: TextStyle(
                         color: Color(0xFF8A98A8),
                         fontSize: 16,
@@ -717,11 +738,10 @@ class _QuestionDifficultyStyle {
   }
 }
 
-class _AwardPanel extends StatelessWidget {
-  const _AwardPanel({required this.teams, required this.onAward});
+class _AnswerResultPanel extends StatelessWidget {
+  const _AnswerResultPanel({required this.question});
 
-  final List<QuizTeam> teams;
-  final ValueChanged<QuizTeam> onAward;
+  final QuizQuestion question;
 
   @override
   Widget build(BuildContext context) {
@@ -732,23 +752,22 @@ class _AwardPanel extends StatelessWidget {
         border: Border.all(color: const Color(0xFFFFD166)),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Wrap(
-          spacing: 8,
-          runSpacing: 8,
+        padding: const EdgeInsets.all(14),
+        child: Row(
           children: [
-            for (final team in teams)
-              FilledButton(
-                onPressed: () => onAward(team),
-                style: FilledButton.styleFrom(
-                  backgroundColor: team.color,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+            const Icon(Icons.check_circle_rounded, color: Color(0xFF147A45)),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                '정답: ${question.answer} ${question.correctOption}',
+                style: const TextStyle(
+                  color: Color(0xFF18212F),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                  height: 1.25,
                 ),
-                child: Text('${team.name} 정답'),
               ),
+            ),
           ],
         ),
       ),

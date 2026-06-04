@@ -26,8 +26,6 @@ class GroupQuizScreen extends ConsumerStatefulWidget {
 class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   Timer? _timer;
   final _questionRepository = GroupQuizQuestionRepository();
-  final _answerController = TextEditingController();
-  final _answerFocusNode = FocusNode();
 
   GroupQuizConfig _config = const GroupQuizConfig();
   late GroupQuizSession _session;
@@ -35,6 +33,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   bool _isLoadingQuestions = false;
   int _selectedTeamId = 0;
   String? _answerFeedback;
+  List<String> _categories = const [GroupQuizConfig.allCategory];
 
   @override
   void initState() {
@@ -43,13 +42,12 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       config: _config,
       teams: buildGroupQuizTeams(_config.teamCount),
     );
+    _loadCategories();
   }
 
   @override
   void dispose() {
     _timer?.cancel();
-    _answerController.dispose();
-    _answerFocusNode.dispose();
     super.dispose();
   }
 
@@ -66,6 +64,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     try {
       questionDeck = await _questionRepository.buildDeck(
         roundLimit: _config.roundLimit,
+        category: _config.category,
       );
     } catch (_) {
       if (!mounted) {
@@ -106,6 +105,28 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     }
   }
 
+  Future<void> _loadCategories() async {
+    try {
+      final categories = await _questionRepository.loadCategories();
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _categories = categories;
+        if (!categories.contains(_config.category)) {
+          _config = _config.copyWith(category: GroupQuizConfig.allCategory);
+          _session = GroupQuizSession.setup(
+            config: _config,
+            teams: buildGroupQuizTeams(_config.teamCount),
+          );
+        }
+      });
+    } catch (_) {
+      // The start flow already shows an error if the question pack cannot load.
+    }
+  }
+
   void _startTimer() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
@@ -133,11 +154,6 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     });
   }
 
-  void _awardTeam(QuizTeam team) {
-    final next = _session.awardTeam(team);
-    _handleAdvance(next);
-  }
-
   void _passQuestion() {
     final next = _session.passQuestion();
     _handleAdvance(next);
@@ -149,7 +165,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     });
   }
 
-  void _submitAnswer() {
+  void _submitAnswer(int optionIndex) {
     if (_session.answerVisible || _isSaving) {
       return;
     }
@@ -158,18 +174,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       (team) => team.id == _selectedTeamId,
       orElse: () => _session.teams.first,
     );
-    final submitted = _answerController.text.trim();
-    if (submitted.isEmpty) {
-      setState(() {
-        _answerFeedback = '정답을 입력해주세요.';
-      });
-      _answerFocusNode.requestFocus();
-      return;
-    }
-
-    if (_normalizeAnswer(submitted) ==
-        _normalizeAnswer(_session.currentQuestion.answer)) {
-      _answerController.clear();
+    if (optionIndex == _session.currentQuestion.answerIndex) {
       setState(() {
         _answerFeedback = '${selectedTeam.name} 정답!';
       });
@@ -179,7 +184,6 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     }
 
     final nextSession = _session.registerWrongAttempt();
-    _answerController.clear();
     setState(() {
       _session = nextSession;
       _answerFeedback = nextSession.answerVisible
@@ -190,14 +194,12 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     if (nextSession.answerVisible) {
       _timer?.cancel();
     }
-    _answerFocusNode.requestFocus();
   }
 
   void _handleAdvance(
     ({GroupQuizSession session, GroupQuizAdvanceResult result}) next,
   ) {
     _timer?.cancel();
-    _answerController.clear();
     setState(() {
       _session = next.session;
       _answerFeedback = null;
@@ -225,12 +227,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       );
       _selectedTeamId = 0;
       _answerFeedback = null;
-      _answerController.clear();
     });
-  }
-
-  String _normalizeAnswer(String value) {
-    return value.toLowerCase().replaceAll(RegExp(r'[\s\.\,\!\?\-_/·ㆍ]'), '');
   }
 
   Future<void> _finishGame() async {
@@ -274,6 +271,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
         'score': topTeam.score,
         'stats': {
           'quiz_rounds': _config.roundLimit,
+          'category': _config.category,
           'winning_team_count': _config.teamCount,
           'max_combo': _session.maxCombo,
           'difficulty_reached': _config.roundLimit,
@@ -307,6 +305,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   Widget _buildSetupView() {
     return GroupQuizSetupView(
       config: _config,
+      categories: _categories,
       onConfigChanged: _updateConfig,
       onStart: _startGame,
       starting: _isLoadingQuestions,
@@ -316,14 +315,11 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   Widget _buildPlayView() {
     return GroupQuizPlayView(
       session: _session,
-      answerController: _answerController,
-      answerFocusNode: _answerFocusNode,
       selectedTeamId: _selectedTeamId,
       answerFeedback: _answerFeedback,
       onAnswerTeamSelected: _selectAnswerTeam,
       onAnswerSubmitted: _submitAnswer,
       onRevealAnswer: _revealAnswer,
-      onAwardTeam: _awardTeam,
       onPassQuestion: _passQuestion,
     );
   }
