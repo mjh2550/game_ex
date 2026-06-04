@@ -819,58 +819,687 @@
     "id": "cs001",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "HTTP GET의 의미로 가장 적절한 것은?",
+    "question": "자료구조를 가장 잘 설명한 것은?",
     "options": [
-      "지정한 리소스의 표현을 요청한다",
-      "서버 상태 변경을 반드시 요청한다",
-      "연결을 터널링한다",
-      "리소스를 삭제한다"
+      "효율적인 연산을 위해 정보를 조직하는 방식",
+      "CPU 클럭을 높이는 장치",
+      "네트워크 패킷 암호화 방식",
+      "UI 색상 체계"
     ],
     "answerIndex": 0,
     "answer": "①",
     "difficulty": 1,
-    "sourceTitle": "MDN: GET request method",
-    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/GET"
+    "sourceTitle": "NIST DADS: data structure",
+    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/dataStructure.html"
   },
   {
     "id": "cs002",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "HTTP GET 요청에 대한 설명으로 맞는 것은?",
+    "question": "Stack의 대표적인 접근 규칙은?",
     "options": [
-      "데이터 조회 용도로 사용해야 하며 요청 본문을 요구하지 않는다",
-      "항상 서버 데이터를 수정해야 한다",
-      "항상 요청 body가 필수다",
-      "캐시될 수 없다"
+      "FIFO",
+      "무작위 접근만 허용",
+      "항상 정렬 유지",
+      "LIFO"
     ],
-    "answerIndex": 0,
-    "answer": "①",
+    "answerIndex": 3,
+    "answer": "④",
     "difficulty": 1,
-    "sourceTitle": "MDN: GET request method",
-    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/GET"
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
   },
   {
     "id": "cs003",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Safe HTTP method의 의미는?",
+    "question": "Queue의 대표적인 접근 규칙은?",
     "options": [
-      "클라이언트가 서버 상태 변경을 요청하지 않는 읽기 성격의 메서드",
-      "항상 암호화되는 메서드",
-      "항상 인증이 필요 없는 메서드",
-      "응답 본문이 없는 메서드"
+      "항상 이진 탐색",
+      "가장 큰 값 우선 삭제",
+      "FIFO",
+      "LIFO"
     ],
-    "answerIndex": 0,
-    "answer": "①",
-    "difficulty": 2,
-    "sourceTitle": "MDN: Safe HTTP methods",
-    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP"
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
   },
   {
     "id": "cs004",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "다음 중 일반적으로 safe로 분류되는 HTTP 메서드는?",
+    "question": "Priority Queue에서 우선순위를 빠르게 다루는 데 자주 쓰이는 구조는?",
+    "options": [
+      "정규 표현식",
+      "Heap",
+      "순수 배열만",
+      "단일 포인터"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs005",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Binary Search를 적용하기 위한 핵심 전제는?",
+    "options": [
+      "데이터가 정렬되어 있어야 한다",
+      "데이터가 반드시 문자열이어야 한다",
+      "중복이 절대 없어야 한다",
+      "데이터가 그래프여야 한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs006",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Binary Search의 핵심 아이디어는?",
+    "options": [
+      "모든 값을 순서대로 확인한다",
+      "해시 충돌을 만든다",
+      "무작위 위치만 확인한다",
+      "검색 범위를 반복해서 절반으로 줄인다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs007",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Hash Table 평균 조회 성능을 O(1)에 가깝게 만드는 핵심은?",
+    "options": [
+      "모든 노드를 선형 탐색한다",
+      "트리를 후위 순회한다",
+      "키를 해시 값으로 버킷 위치에 매핑한다",
+      "항상 모든 키를 정렬한다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs008",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Hash Collision은 무엇인가?",
+    "options": [
+      "스택이 비는 상황",
+      "서로 다른 키가 같은 해시 위치나 값을 갖는 상황",
+      "키가 삭제되는 상황",
+      "배열이 정렬되는 상황"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs009",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Linked List의 장점으로 가장 적절한 것은?",
+    "options": [
+      "중간 삽입/삭제에서 포인터 조정으로 처리할 수 있다",
+      "임의 인덱스 접근이 항상 O(1)이다",
+      "항상 메모리를 연속 배치한다",
+      "해시 충돌이 없다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs010",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Array의 큰 특징은?",
+    "options": [
+      "각 원소가 반드시 포인터 두 개를 가진다",
+      "항상 FIFO로만 접근한다",
+      "자동으로 균형 트리가 된다",
+      "연속된 위치 기반 접근에 유리하다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs011",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Tree 자료구조에서 root는?",
+    "options": [
+      "마지막으로 삽입된 값",
+      "간선의 개수",
+      "부모가 없는 최상위 노드",
+      "항상 가장 작은 값"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs012",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Binary Search Tree의 기본 성질은?",
+    "options": [
+      "간선에만 값이 있다",
+      "왼쪽 서브트리 값은 작고 오른쪽 서브트리 값은 큰 순서를 유지한다",
+      "모든 노드가 자식 3개를 가진다",
+      "삽입 순서를 그대로 보존한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs013",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Balanced Tree를 사용하는 주된 이유는?",
+    "options": [
+      "트리 높이를 관리해 탐색 성능 악화를 줄인다",
+      "네트워크 지연을 줄인다",
+      "모든 값을 해시한다",
+      "정렬을 금지한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs014",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Graph에서 vertex는 무엇인가?",
+    "options": [
+      "간선의 가중치",
+      "해시 버킷",
+      "스택 포인터",
+      "노드 또는 정점"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs015",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Graph에서 edge는 무엇인가?",
+    "options": [
+      "배열의 크기",
+      "힙의 루트 값",
+      "정점 사이의 연결",
+      "큐의 맨 앞 원소"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs016",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "DFS의 일반적인 탐색 방식은?",
+    "options": [
+      "정렬된 배열만 탐색한다",
+      "한 경로를 깊게 따라간 뒤 되돌아온다",
+      "현재 레벨을 모두 본 뒤 다음 레벨로 간다",
+      "항상 키를 해시한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs017",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "BFS의 일반적인 탐색 방식은?",
+    "options": [
+      "시작점에서 가까운 레벨부터 넓게 탐색한다",
+      "가장 깊은 노드만 탐색한다",
+      "힙의 최댓값만 본다",
+      "문자열 접두사만 비교한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs018",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Topological Sort가 필요한 대표 상황은?",
+    "options": [
+      "무작위 숫자 생성",
+      "이미지 압축",
+      "비밀번호 해싱",
+      "의존 관계가 있는 작업 순서 결정"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 3,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs019",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Big-O 표기법은 주로 무엇을 나타내는가?",
+    "options": [
+      "메모리 주소",
+      "컴파일러 버전",
+      "입력 크기 증가에 따른 알고리즘 비용의 성장률",
+      "정확한 실행 초 단위"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs020",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "O(1)의 의미로 가장 가까운 것은?",
+    "options": [
+      "항상 가장 빠른 실제 구현이다",
+      "입력 크기와 무관하게 일정한 비용에 가깝다",
+      "입력만큼 선형 증가한다",
+      "입력의 제곱으로 증가한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs021",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "O(n)의 의미로 가장 가까운 것은?",
+    "options": [
+      "입력 크기에 비례해 비용이 증가한다",
+      "항상 한 번만 실행된다",
+      "로그만큼만 증가한다",
+      "입력이 커질수록 비용이 줄어든다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs022",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "O(log n)이 자주 나타나는 대표 예는?",
+    "options": [
+      "단순 전체 순회",
+      "모든 쌍 비교",
+      "무한 루프",
+      "정렬된 데이터의 이진 탐색"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs023",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "O(n²)이 나타나기 쉬운 상황은?",
+    "options": [
+      "반씩 줄이는 탐색",
+      "상수 반환 함수",
+      "모든 원소 쌍을 중첩 반복으로 비교한다",
+      "한 번의 해시 조회"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs024",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Stable Sort의 의미는?",
+    "options": [
+      "중복 값을 삭제한다",
+      "동일한 키를 가진 원소들의 상대 순서를 유지한다",
+      "항상 O(1)이다",
+      "배열만 정렬한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs025",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "In-place 알고리즘에 가까운 설명은?",
+    "options": [
+      "추가 메모리를 적게 쓰며 입력 공간을 주로 활용한다",
+      "항상 네트워크에서 실행된다",
+      "정렬 결과를 버린다",
+      "반드시 재귀를 금지한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs026",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Recursion에서 base case의 역할은?",
+    "options": [
+      "항상 예외를 던진다",
+      "힙을 정렬한다",
+      "HTTP 요청을 보낸다",
+      "재귀 호출이 멈추는 조건을 제공한다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs027",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Divide and Conquer의 핵심은?",
+    "options": [
+      "항상 하나의 전역 변수만 쓴다",
+      "캐시를 삭제한다",
+      "문제를 작은 부분 문제로 나누고 결과를 합친다",
+      "모든 데이터를 무작위로 섞는다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs028",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Dynamic Programming이 효과적인 조건은?",
+    "options": [
+      "정렬이 금지된다",
+      "겹치는 부분 문제와 최적 부분 구조가 있다",
+      "문제가 항상 무작위이다",
+      "입력이 반드시 그래프가 아니다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 3,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs029",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Greedy 알고리즘의 특징은?",
+    "options": [
+      "각 단계에서 현재 가장 좋아 보이는 선택을 한다",
+      "항상 모든 조합을 완전 탐색한다",
+      "결과를 절대 반환하지 않는다",
+      "정규식만 사용한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs030",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Memoization의 목적은?",
+    "options": [
+      "모든 데이터를 암호화한다",
+      "HTTP 요청을 압축한다",
+      "트랜잭션을 롤백한다",
+      "이미 계산한 결과를 저장해 중복 계산을 줄인다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs031",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Heap 자료구조에서 루트는 일반적으로 무엇을 보장하는가?",
+    "options": [
+      "항상 null",
+      "가장 긴 문자열",
+      "최소 힙/최대 힙 기준의 우선순위 원소",
+      "가장 최근 삽입 원소"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs032",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Trie가 특히 잘 맞는 문제는?",
+    "options": [
+      "이미지 렌더링만",
+      "문자열 접두사 기반 검색",
+      "실수 행렬 곱셈만",
+      "CPU 스케줄링만"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 3,
+    "sourceTitle": "NIST DADS: Dictionary of Algorithms and Data Structures",
+    "sourceUrl": "https://xlinux.nist.gov/dads/"
+  },
+  {
+    "id": "cs033",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Set 자료구조의 핵심 성질은?",
+    "options": [
+      "중복 없는 원소 집합을 표현한다",
+      "항상 삽입 순서만 보장한다",
+      "키-값 쌍만 저장한다",
+      "반드시 FIFO이다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "Python Docs: Data Structures",
+    "sourceUrl": "https://docs.python.org/3/tutorial/datastructures.html"
+  },
+  {
+    "id": "cs034",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Dictionary/Map의 핵심 사용처는?",
+    "options": [
+      "항상 정렬된 리스트를 만든다",
+      "스레드를 생성한다",
+      "그래픽을 그린다",
+      "키를 이용해 값을 찾는다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "Python Docs: Data Structures",
+    "sourceUrl": "https://docs.python.org/3/tutorial/datastructures.html"
+  },
+  {
+    "id": "cs035",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Immutable tuple 같은 구조를 쓰는 이유로 적절한 것은?",
+    "options": [
+      "모든 타입 검사를 없앤다",
+      "항상 힙을 정렬한다",
+      "생성 후 값 변경을 막아 안정적인 묶음을 표현한다",
+      "네트워크 속도를 높인다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "Python Docs: Data Structures",
+    "sourceUrl": "https://docs.python.org/3/tutorial/datastructures.html"
+  },
+  {
+    "id": "cs036",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP GET의 주된 의미는?",
+    "options": [
+      "TCP 터널을 만든다",
+      "리소스의 표현을 조회한다",
+      "리소스를 반드시 생성한다",
+      "서버 상태를 반드시 삭제한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 1,
+    "sourceTitle": "MDN: HTTP request methods",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods"
+  },
+  {
+    "id": "cs037",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP POST의 일반적인 의미는?",
+    "options": [
+      "서버가 처리할 데이터를 제출한다",
+      "항상 안전한 조회만 수행한다",
+      "항상 캐시만 비운다",
+      "항상 연결을 닫는다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "MDN: HTTP request methods",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods"
+  },
+  {
+    "id": "cs038",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP PUT의 멱등성 설명으로 맞는 것은?",
+    "options": [
+      "항상 안전한 메서드이다",
+      "본문을 가질 수 없다",
+      "응답이 항상 204이다",
+      "같은 요청을 여러 번 보내도 의도한 효과가 한 번과 같다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs039",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP DELETE가 멱등으로 분류되는 이유와 가장 가까운 것은?",
+    "options": [
+      "서버 상태를 절대 바꾸지 않는다",
+      "본문이 필수다",
+      "같은 삭제 요청을 반복해도 의도한 최종 상태가 같다",
+      "항상 캐시된다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs040",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP safe method의 의미는?",
+    "options": [
+      "응답 본문이 없다",
+      "클라이언트가 서버 상태 변경을 요청하지 않는다",
+      "항상 TLS를 사용한다",
+      "항상 인증이 필요 없다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Safe HTTP methods",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP"
+  },
+  {
+    "id": "cs041",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "다음 중 일반적으로 safe method인 것은?",
     "options": [
       "GET",
       "POST",
@@ -880,143 +1509,1010 @@
     "answerIndex": 0,
     "answer": "①",
     "difficulty": 1,
-    "sourceTitle": "MDN: HTTP request methods",
-    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods"
+    "sourceTitle": "MDN: Safe HTTP methods",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP"
   },
   {
-    "id": "cs005",
+    "id": "cs042",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Binary Search가 전제로 하는 대표 조건은?",
+    "question": "다음 중 일반적으로 멱등이지만 safe는 아닌 메서드는?",
     "options": [
-      "검색 대상이 정렬되어 있어야 한다",
-      "모든 값이 문자열이어야 한다",
-      "데이터가 반드시 해시 테이블이어야 한다",
-      "중복 값이 절대 없어야 한다"
+      "POST",
+      "CONNECT",
+      "PATCH",
+      "PUT"
     ],
-    "answerIndex": 0,
-    "answer": "①",
-    "difficulty": 1,
-    "sourceTitle": "NIST DADS: binary search",
-    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/binarySearch.html"
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs006",
+    "id": "cs043",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Binary Search의 핵심 아이디어는?",
+    "question": "HTTP 200 상태 코드의 대표 의미는?",
     "options": [
-      "검색 구간을 반복해서 절반으로 줄인다",
-      "모든 원소를 처음부터 끝까지 검사한다",
-      "무작위 위치만 검사한다",
-      "해시 함수를 반드시 사용한다"
+      "인증이 필요하다",
+      "서버 오류다",
+      "요청이 성공했다",
+      "리소스가 없다"
     ],
-    "answerIndex": 0,
-    "answer": "①",
+    "answerIndex": 2,
+    "answer": "③",
     "difficulty": 1,
-    "sourceTitle": "NIST DADS: binary search",
-    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/binarySearch.html"
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs007",
+    "id": "cs044",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Deadlock의 Coffman 조건에 포함되지 않는 것은?",
+    "question": "HTTP 201 상태 코드가 어울리는 상황은?",
     "options": [
-      "선점 가능(preemption allowed)",
-      "상호 배제(mutual exclusion)",
-      "점유와 대기(hold and wait)",
-      "순환 대기(circular wait)"
+      "메서드가 금지되었다",
+      "새 리소스가 생성되었다",
+      "캐시가 만료되었다",
+      "권한이 없다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs045",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP 204 상태 코드의 특징은?",
+    "options": [
+      "성공했지만 응답 본문이 없다",
+      "항상 리다이렉트다",
+      "항상 서버 오류다",
+      "항상 인증 실패다"
     ],
     "answerIndex": 0,
     "answer": "①",
     "difficulty": 2,
-    "sourceTitle": "Wikipedia: Deadlock",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Deadlock_(computer_science)"
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs008",
+    "id": "cs046",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Deadlock에서 circular wait가 의미하는 것은?",
+    "question": "HTTP 301/308 계열 리다이렉트에서 핵심 의미는?",
     "options": [
-      "각 프로세스가 다음 프로세스가 가진 자원을 기다리는 순환 구조",
-      "모든 프로세스가 CPU만 기다리는 상태",
-      "네트워크 요청이 모두 성공한 상태",
-      "스택이 비어 있는 상태"
+      "요청 본문이 너무 크다",
+      "서버가 다운됐다",
+      "쿠키가 만료됐다",
+      "리소스 위치가 영구적으로 이동했다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs047",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP 400 상태 코드에 가까운 의미는?",
+    "options": [
+      "성공",
+      "캐시 사용",
+      "클라이언트 요청이 잘못되었다",
+      "서버 내부 오류"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs048",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP 401 상태 코드에 가까운 의미는?",
+    "options": [
+      "리소스 생성",
+      "인증이 필요하거나 실패했다",
+      "권한은 있으나 숨김",
+      "요청 성공"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 1,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs049",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP 403 상태 코드에 가까운 의미는?",
+    "options": [
+      "서버가 요청을 이해했지만 허용하지 않는다",
+      "인증 헤더 문법 오류만",
+      "항상 리다이렉트",
+      "항상 성공"
     ],
     "answerIndex": 0,
     "answer": "①",
     "difficulty": 2,
-    "sourceTitle": "Wikipedia: Deadlock",
-    "sourceUrl": "https://en.wikipedia.org/wiki/Deadlock_(computer_science)"
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs009",
+    "id": "cs050",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Hash table 검색 성능에 대한 설명으로 가장 알맞은 것은?",
+    "question": "HTTP 404 상태 코드에 가까운 의미는?",
     "options": [
-      "충돌 관리가 잘 되면 평균적으로 O(1)에 가까운 조회를 기대할 수 있다",
-      "항상 O(n!)이다",
-      "정렬된 배열에서만 동작한다",
-      "LinkedList보다 항상 느리다"
+      "요청 성공",
+      "서버가 응답을 캐시했다",
+      "메서드가 안전하다",
+      "요청한 리소스를 찾을 수 없다"
     ],
-    "answerIndex": 0,
-    "answer": "①",
-    "difficulty": 2,
-    "sourceTitle": "NIST DADS: hash table",
-    "sourceUrl": "https://xlinux.nist.gov/dads/HTML/hashtab.html"
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs010",
+    "id": "cs051",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "Context switching 비용이 생기는 가장 직접적인 이유는?",
+    "question": "HTTP 409 상태 코드가 어울리는 상황은?",
     "options": [
-      "실행 중인 문맥을 저장하고 다른 문맥을 복원해야 하기 때문",
-      "CPU 클럭이 영구히 낮아지기 때문",
-      "메모리를 모두 삭제하기 때문",
-      "네트워크 연결을 다시 맺기 때문"
+      "본문 없음 성공",
+      "프로토콜 업그레이드",
+      "현재 리소스 상태와 요청이 충돌한다",
+      "인증 성공"
     ],
-    "answerIndex": 0,
-    "answer": "①",
-    "difficulty": 2,
-    "sourceTitle": "Android Developers: Better performance through threading",
-    "sourceUrl": "https://developer.android.com/topic/performance/threads"
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 3,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs011",
+    "id": "cs052",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "CPU-bound 작업을 설명한 것으로 가장 가까운 것은?",
+    "question": "HTTP 429 상태 코드가 나타내는 것은?",
     "options": [
-      "주로 CPU 계산량이 병목인 작업",
-      "네트워크 응답 대기가 대부분인 작업",
-      "디스크 I/O 대기가 대부분인 작업",
-      "사용자 입력 대기가 대부분인 작업"
+      "쿠키 생성 성공",
+      "요청을 너무 많이 보냈다",
+      "서버가 영구 이동했다",
+      "문법이 올바르다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  {
+    "id": "cs053",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "HTTP 500 상태 코드의 의미로 맞는 것은?",
+    "options": [
+      "서버 내부 오류",
+      "클라이언트 문법 오류",
+      "새 리소스 생성",
+      "캐시 재사용"
     ],
     "answerIndex": 0,
     "answer": "①",
     "difficulty": 1,
-    "sourceTitle": "Microsoft Learn: async scenarios",
-    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios"
+    "sourceTitle": "RFC 9110: HTTP Semantics",
+    "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9110"
   },
   {
-    "id": "cs012",
+    "id": "cs054",
     "type": "multipleChoice",
     "category": "CS 지식",
-    "question": "I/O-bound 작업에 대한 설명으로 맞는 것은?",
+    "question": "HTTP Cache-Control: no-store의 의도는?",
     "options": [
-      "네트워크, DB, 파일 같은 외부 작업 대기가 주요 병목이다",
-      "항상 CPU 코어를 100% 사용한다",
-      "반드시 GPU가 필요하다",
-      "정렬 알고리즘만 해당한다"
+      "무조건 장기 캐시",
+      "요청을 POST로 변경",
+      "CORS 허용",
+      "응답을 저장하지 말라는 지시"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "MDN: HTTP caching",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching"
+  },
+  {
+    "id": "cs055",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "ETag의 대표 용도는?",
+    "options": [
+      "HTML 파싱",
+      "DNS 질의",
+      "리소스 버전 검증과 조건부 요청",
+      "쿠키 암호화"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "MDN: HTTP caching",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching"
+  },
+  {
+    "id": "cs056",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "CORS의 주된 목적은?",
+    "options": [
+      "이미지를 압축한다",
+      "브라우저가 허용된 교차 출처 접근을 제어하게 한다",
+      "서버 간 TCP 연결을 암호화한다",
+      "SQL 쿼리를 최적화한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Cross-Origin Resource Sharing",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+  },
+  {
+    "id": "cs057",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Same-Origin Policy가 비교하는 origin 구성 요소는?",
+    "options": [
+      "스킴, 호스트, 포트",
+      "경로, 쿼리, fragment",
+      "쿠키 이름, 값, 만료일",
+      "HTML, CSS, JS"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Same-origin policy",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "cs058",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "CORS preflight 요청에 주로 쓰이는 HTTP 메서드는?",
+    "options": [
+      "GET",
+      "DELETE",
+      "TRACE",
+      "OPTIONS"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "MDN: CORS preflight request",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request"
+  },
+  {
+    "id": "cs059",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Access-Control-Allow-Origin 헤더의 역할은?",
+    "options": [
+      "HTML을 압축한다",
+      "DB 트랜잭션을 커밋한다",
+      "응답을 읽을 수 있는 출처를 알려준다",
+      "비밀번호를 해싱한다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Cross-Origin Resource Sharing",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+  },
+  {
+    "id": "cs060",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "SameSite 쿠키 속성의 주된 목적은?",
+    "options": [
+      "자바스크립트를 번들링한다",
+      "교차 사이트 요청에서 쿠키 전송 범위를 제한한다",
+      "이미지 크기를 줄인다",
+      "SQL 인덱스를 만든다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "MDN: HTTP cookies",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies"
+  },
+  {
+    "id": "cs061",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "SQL Injection의 핵심 원인은?",
+    "options": [
+      "신뢰하지 않은 입력이 쿼리 구조로 해석된다",
+      "이미지가 너무 크다",
+      "CSS가 늦게 로드된다",
+      "DNS TTL이 짧다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Injection",
+    "sourceUrl": "https://owasp.org/Top10/A03_2021-Injection/"
+  },
+  {
+    "id": "cs062",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "SQL Injection 방어에 가장 적절한 것은?",
+    "options": [
+      "문자열 더하기로 쿼리 생성",
+      "에러 메시지 자세히 노출",
+      "관리자 권한 DB 계정 사용",
+      "파라미터화된 쿼리 사용"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "OWASP Top 10: Injection",
+    "sourceUrl": "https://owasp.org/Top10/A03_2021-Injection/"
+  },
+  {
+    "id": "cs063",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "XSS의 핵심 위험은?",
+    "options": [
+      "CPU 캐시 미스만 발생",
+      "DB 인덱스 자동 삭제",
+      "공격자 스크립트가 사용자의 브라우저에서 실행될 수 있다",
+      "디스크 조각 모음 실패"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "OWASP: Cross Site Scripting",
+    "sourceUrl": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "cs064",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Reflected XSS에 가까운 설명은?",
+    "options": [
+      "서버 로그가 압축된다",
+      "요청에 포함된 악성 입력이 응답에 바로 반사된다",
+      "DB에 저장된 스크립트가 나중에 실행된다",
+      "비밀번호 해시가 느리다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "OWASP: Cross Site Scripting",
+    "sourceUrl": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "cs065",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Stored XSS에 가까운 설명은?",
+    "options": [
+      "악성 스크립트가 서버에 저장되어 여러 사용자에게 전달된다",
+      "한 번의 GET만 실패한다",
+      "브라우저 캐시만 비워진다",
+      "트랜잭션이 롤백된다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "OWASP: Cross Site Scripting",
+    "sourceUrl": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "cs066",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "XSS 완화에 중요한 기본 원칙은?",
+    "options": [
+      "모든 입력을 GET으로 변경",
+      "쿠키 만료 제거",
+      "DB 인덱스 삭제",
+      "출력 컨텍스트에 맞는 인코딩과 검증"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "OWASP: Cross Site Scripting",
+    "sourceUrl": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "cs067",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "CSRF 공격의 핵심은?",
+    "options": [
+      "이미지를 손상시킨다",
+      "해시 충돌만 만든다",
+      "인증된 사용자의 브라우저가 원치 않는 요청을 보내게 한다",
+      "서버 CPU를 오버클럭한다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "OWASP: Cross-Site Request Forgery",
+    "sourceUrl": "https://owasp.org/www-community/attacks/csrf"
+  },
+  {
+    "id": "cs068",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "CSRF 방어에 흔히 쓰이는 것은?",
+    "options": [
+      "평문 비밀번호 저장",
+      "예측 불가능한 CSRF 토큰",
+      "SQL 문자열 연결",
+      "디렉터리 목록 공개"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "OWASP: Cross-Site Request Forgery",
+    "sourceUrl": "https://owasp.org/www-community/attacks/csrf"
+  },
+  {
+    "id": "cs069",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Broken Access Control의 예로 적절한 것은?",
+    "options": [
+      "권한 없는 사용자가 다른 사용자의 리소스를 조회한다",
+      "CSS 파일이 늦게 로드된다",
+      "캐시 TTL이 길다",
+      "정렬 알고리즘이 느리다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Broken Access Control",
+    "sourceUrl": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "id": "cs070",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "접근 제어에서 서버 측 검증이 중요한 이유는?",
+    "options": [
+      "클라이언트는 항상 신뢰 가능하기 때문",
+      "HTTP는 상태 코드가 없기 때문",
+      "브라우저가 SQL을 실행하기 때문",
+      "클라이언트 조작만으로 권한 우회를 막을 수 없기 때문"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Broken Access Control",
+    "sourceUrl": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "id": "cs071",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Cryptographic Failures의 대표 위험은?",
+    "options": [
+      "HTML 태그가 닫히지 않는다",
+      "CPU가 쉬지 않는다",
+      "민감 데이터가 적절히 보호되지 않는다",
+      "배열이 정렬되지 않는다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Cryptographic Failures",
+    "sourceUrl": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/"
+  },
+  {
+    "id": "cs072",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "비밀번호 저장에 적절한 방식은?",
+    "options": [
+      "클라이언트 localStorage에만 저장",
+      "salt를 사용한 느린 단방향 해시",
+      "평문 저장",
+      "Base64만 적용"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Cryptographic Failures",
+    "sourceUrl": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/"
+  },
+  {
+    "id": "cs073",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "TLS의 주된 목적과 가장 가까운 것은?",
+    "options": [
+      "전송 중 데이터 기밀성과 무결성을 보호한다",
+      "DB 정규화를 수행한다",
+      "정렬을 빠르게 한다",
+      "HTML을 렌더링한다"
     ],
     "answerIndex": 0,
     "answer": "①",
     "difficulty": 1,
-    "sourceTitle": "Microsoft Learn: async scenarios",
-    "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios"
+    "sourceTitle": "OWASP Top 10: Cryptographic Failures",
+    "sourceUrl": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/"
+  },
+  {
+    "id": "cs074",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "인증(Authentication)의 의미는?",
+    "options": [
+      "무엇을 할 수 있는지 결정한다",
+      "데이터를 정렬한다",
+      "HTTP 캐시를 비운다",
+      "사용자가 누구인지 확인한다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 1,
+    "sourceTitle": "OWASP Top 10: Broken Access Control",
+    "sourceUrl": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "id": "cs075",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "인가(Authorization)의 의미는?",
+    "options": [
+      "사용자 신원을 증명한다",
+      "HTML을 파싱한다",
+      "확인된 주체가 어떤 행동을 할 수 있는지 결정한다",
+      "비밀번호를 입력받는다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "OWASP Top 10: Broken Access Control",
+    "sourceUrl": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "id": "cs076",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Principle of Least Privilege의 의미는?",
+    "options": [
+      "로그를 남기지 않는다",
+      "필요한 최소 권한만 부여한다",
+      "모든 사용자에게 관리자 권한 부여",
+      "권한 검사를 클라이언트에만 둔다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Broken Access Control",
+    "sourceUrl": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "id": "cs077",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Content Security Policy의 주된 목적은?",
+    "options": [
+      "허용된 스크립트/리소스 출처를 제한해 XSS 피해를 줄인다",
+      "DB 트랜잭션을 빠르게 한다",
+      "HTTP 메서드를 모두 POST로 바꾼다",
+      "이미지 색상을 보정한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "MDN: Content Security Policy",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP"
+  },
+  {
+    "id": "cs078",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "민감한 오류 메시지를 그대로 노출하면 위험한 이유는?",
+    "options": [
+      "브라우저가 렌더링을 멈춘다",
+      "HTTP가 TCP를 쓰지 않는다",
+      "정렬이 불가능해진다",
+      "공격자에게 내부 구조 단서를 줄 수 있다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Injection",
+    "sourceUrl": "https://owasp.org/Top10/A03_2021-Injection/"
+  },
+  {
+    "id": "cs079",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "입력 검증의 목적과 가장 가까운 것은?",
+    "options": [
+      "비밀번호를 평문으로 바꾼다",
+      "서버 로그를 삭제한다",
+      "허용된 형식과 범위의 데이터만 처리한다",
+      "모든 요청을 성공 처리한다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "OWASP Top 10: Injection",
+    "sourceUrl": "https://owasp.org/Top10/A03_2021-Injection/"
+  },
+  {
+    "id": "cs080",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Rate limiting이 줄이는 데 도움이 되는 위험은?",
+    "options": [
+      "HTML 태그 중첩",
+      "무차별 대입과 과도한 요청",
+      "CSS 파싱",
+      "정렬 안정성"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "OWASP Top 10: Broken Access Control",
+    "sourceUrl": "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+  },
+  {
+    "id": "cs081",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "트랜잭션의 Atomicity 의미는?",
+    "options": [
+      "작업이 모두 반영되거나 모두 반영되지 않는다",
+      "항상 가장 빠르게 실행된다",
+      "권한을 자동 부여한다",
+      "HTML을 원자적으로 파싱한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "PostgreSQL Docs: Transactions",
+    "sourceUrl": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+  },
+  {
+    "id": "cs082",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "트랜잭션의 Consistency 의미와 가까운 것은?",
+    "options": [
+      "항상 캐시된다",
+      "항상 병렬 실행된다",
+      "항상 메모리만 사용한다",
+      "트랜잭션 전후 데이터가 정의된 제약을 만족해야 한다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "PostgreSQL Docs: Transactions",
+    "sourceUrl": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+  },
+  {
+    "id": "cs083",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "트랜잭션의 Isolation 의미는?",
+    "options": [
+      "HTTP 헤더를 압축한다",
+      "배열을 정렬한다",
+      "동시 실행 트랜잭션이 서로 끼치는 영향을 제어한다",
+      "비밀번호를 숨긴다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "PostgreSQL Docs: Transaction Isolation",
+    "sourceUrl": "https://www.postgresql.org/docs/current/transaction-iso.html"
+  },
+  {
+    "id": "cs084",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "트랜잭션의 Durability 의미는?",
+    "options": [
+      "요청을 캐시하지 않는다",
+      "커밋된 결과는 장애 후에도 보존되어야 한다",
+      "커밋 전 결과를 모두 공개한다",
+      "메모리에서만 유지한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "PostgreSQL Docs: Transactions",
+    "sourceUrl": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+  },
+  {
+    "id": "cs085",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "MVCC의 핵심 아이디어는?",
+    "options": [
+      "여러 버전으로 동시 읽기/쓰기를 조율한다",
+      "모든 트랜잭션을 한 줄로만 실행한다",
+      "인덱스를 금지한다",
+      "SQL을 HTML로 바꾼다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "PostgreSQL Docs: Concurrency Control",
+    "sourceUrl": "https://www.postgresql.org/docs/current/mvcc.html"
+  },
+  {
+    "id": "cs086",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Read Committed 격리 수준에서 일반적으로 보장하는 것은?",
+    "options": [
+      "트랜잭션 전체가 항상 같은 스냅샷만 본다",
+      "직렬 실행과 완전히 동일하다",
+      "모든 쓰기를 금지한다",
+      "각 문장이 커밋된 데이터만 본다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 3,
+    "sourceTitle": "PostgreSQL Docs: Transaction Isolation",
+    "sourceUrl": "https://www.postgresql.org/docs/current/transaction-iso.html"
+  },
+  {
+    "id": "cs087",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Repeatable Read가 줄이려는 대표 현상은?",
+    "options": [
+      "HTML 파싱 오류",
+      "DNS 캐시 만료",
+      "같은 트랜잭션 안에서 같은 조회 결과가 달라지는 현상",
+      "디스크 용량 증가"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 3,
+    "sourceTitle": "PostgreSQL Docs: Transaction Isolation",
+    "sourceUrl": "https://www.postgresql.org/docs/current/transaction-iso.html"
+  },
+  {
+    "id": "cs088",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Serializable 격리 수준의 목표는?",
+    "options": [
+      "HTTP 요청 병합",
+      "동시 실행 결과가 어떤 직렬 실행 결과와 같게 보이도록 한다",
+      "모든 쿼리를 문자열로 저장",
+      "인덱스 제거"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 3,
+    "sourceTitle": "PostgreSQL Docs: Transaction Isolation",
+    "sourceUrl": "https://www.postgresql.org/docs/current/transaction-iso.html"
+  },
+  {
+    "id": "cs089",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Database index의 주된 목적은?",
+    "options": [
+      "검색 조건에 맞는 행을 더 빠르게 찾게 한다",
+      "항상 저장 공간을 줄인다",
+      "권한을 자동 부여한다",
+      "트랜잭션을 삭제한다"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 1,
+    "sourceTitle": "PostgreSQL Docs: Indexes",
+    "sourceUrl": "https://www.postgresql.org/docs/current/indexes.html"
+  },
+  {
+    "id": "cs090",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "인덱스 사용의 trade-off로 맞는 것은?",
+    "options": [
+      "항상 모든 쿼리를 느리게 한다",
+      "데이터 무결성을 없앤다",
+      "SQL Injection을 자동 방어한다",
+      "조회는 빨라질 수 있지만 쓰기/저장 비용이 늘 수 있다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "PostgreSQL Docs: Indexes",
+    "sourceUrl": "https://www.postgresql.org/docs/current/indexes.html"
+  },
+  {
+    "id": "cs091",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Critical Rendering Path는 무엇인가?",
+    "options": [
+      "해시 테이블이 충돌하는 단계",
+      "CPU가 스레드를 생성하는 단계",
+      "브라우저가 HTML/CSS/JS를 화면 픽셀로 바꾸는 단계",
+      "DB가 트랜잭션을 커밋하는 단계"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Critical rendering path",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path"
+  },
+  {
+    "id": "cs092",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "DOM은 무엇을 표현하는가?",
+    "options": [
+      "DB 인덱스 루트",
+      "HTML 문서의 객체 모델",
+      "CSS만의 색상표",
+      "HTTP 캐시 엔트리"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 1,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs093",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "CSSOM은 무엇과 관련 있는가?",
+    "options": [
+      "CSS 규칙을 브라우저가 이해하는 객체 모델",
+      "SQL 실행 계획",
+      "TLS 인증서",
+      "스택 프레임"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 2,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs094",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Render tree는 주로 무엇으로부터 만들어지는가?",
+    "options": [
+      "HTTP 쿠키와 ETag",
+      "SQL 테이블과 인덱스",
+      "스택과 큐",
+      "DOM과 CSSOM"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs095",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Layout 단계의 역할은?",
+    "options": [
+      "GET을 POST로 변환한다",
+      "DB를 백업한다",
+      "각 요소의 위치와 크기를 계산한다",
+      "비밀번호를 해싱한다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 1,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs096",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Paint 단계의 역할은?",
+    "options": [
+      "큐를 비운다",
+      "요소를 픽셀로 그린다",
+      "트랜잭션을 직렬화한다",
+      "쿠키를 암호화한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 1,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs097",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "렌더링을 막는 CSS가 성능에 영향을 주는 이유는?",
+    "options": [
+      "CSSOM이 준비되어야 올바른 렌더 트리를 만들 수 있다",
+      "CSS가 SQL을 실행하기 때문",
+      "CSS는 항상 네트워크를 끊기 때문",
+      "CSS는 쿠키를 삭제하기 때문"
+    ],
+    "answerIndex": 0,
+    "answer": "①",
+    "difficulty": 3,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs098",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Parser-blocking JavaScript가 문제가 되는 이유는?",
+    "options": [
+      "DB 인덱스를 삭제한다",
+      "TLS를 비활성화한다",
+      "해시 충돌을 만든다",
+      "HTML 파싱과 초기 렌더링을 지연시킬 수 있다"
+    ],
+    "answerIndex": 3,
+    "answer": "④",
+    "difficulty": 2,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs099",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Progressive rendering의 장점은?",
+    "options": [
+      "정렬을 불가능하게 한다",
+      "트랜잭션 격리를 없앤다",
+      "가능한 콘텐츠를 점진적으로 보여줄 수 있다",
+      "모든 요청을 서버에서 차단한다"
+    ],
+    "answerIndex": 2,
+    "answer": "③",
+    "difficulty": 2,
+    "sourceTitle": "web.dev: Understand the critical path",
+    "sourceUrl": "https://web.dev/learn/performance/understanding-the-critical-path"
+  },
+  {
+    "id": "cs100",
+    "type": "multipleChoice",
+    "category": "CS 지식",
+    "question": "Critical Rendering Path 최적화의 목표는?",
+    "options": [
+      "HTTP 상태 코드를 없앤다",
+      "초기 렌더링을 막는 중요한 리소스와 작업을 줄인다",
+      "모든 보안 검사를 제거한다",
+      "모든 데이터를 평문으로 저장한다"
+    ],
+    "answerIndex": 1,
+    "answer": "②",
+    "difficulty": 2,
+    "sourceTitle": "MDN: Critical rendering path",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path"
   }
 ]
