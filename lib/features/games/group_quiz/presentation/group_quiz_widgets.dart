@@ -157,6 +157,7 @@ class GroupQuizPlayView extends StatelessWidget {
     required this.onAnswerSubmitted,
     required this.onRevealAnswer,
     required this.onPassQuestion,
+    required this.onAdvanceVisibleQuestion,
   });
 
   final GroupQuizSession session;
@@ -166,6 +167,7 @@ class GroupQuizPlayView extends StatelessWidget {
   final ValueChanged<int> onAnswerSubmitted;
   final VoidCallback onRevealAnswer;
   final VoidCallback onPassQuestion;
+  final VoidCallback onAdvanceVisibleQuestion;
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +210,10 @@ class GroupQuizPlayView extends StatelessWidget {
                 const SizedBox(height: 14),
               ],
               if (session.answerVisible)
-                _AnswerResultPanel(question: session.currentQuestion)
+                _AnswerResultPanel(
+                  question: session.currentQuestion,
+                  feedback: answerFeedback,
+                )
               else
                 FilledButton.icon(
                   onPressed: onRevealAnswer,
@@ -224,18 +229,33 @@ class GroupQuizPlayView extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 10),
-              OutlinedButton.icon(
-                onPressed: onPassQuestion,
-                icon: const Icon(Icons.skip_next_rounded),
-                label: const Text('패스'),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color(0xFF18212F),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              if (session.answerVisible)
+                FilledButton.icon(
+                  onPressed: onAdvanceVisibleQuestion,
+                  icon: const Icon(Icons.arrow_forward_rounded),
+                  label: Text(session.isLastRound ? '결과 보기' : '다음 문제'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFF2BB673),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                )
+              else
+                OutlinedButton.icon(
+                  onPressed: onPassQuestion,
+                  icon: const Icon(Icons.skip_next_rounded),
+                  label: const Text('패스'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF18212F),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
-              ),
               const SizedBox(height: 14),
               _ScoreBoard(teams: session.teams),
             ],
@@ -774,9 +794,10 @@ class _QuestionDifficultyStyle {
 }
 
 class _AnswerResultPanel extends StatelessWidget {
-  const _AnswerResultPanel({required this.question});
+  const _AnswerResultPanel({required this.question, required this.feedback});
 
   final QuizQuestion question;
+  final String? feedback;
 
   @override
   Widget build(BuildContext context) {
@@ -788,19 +809,37 @@ class _AnswerResultPanel extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.check_circle_rounded, color: Color(0xFF147A45)),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                '정답: ${question.answer} ${question.correctOption}',
-                style: const TextStyle(
-                  color: Color(0xFF18212F),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w900,
-                  height: 1.25,
+            Row(
+              children: [
+                const Icon(
+                  Icons.check_circle_rounded,
+                  color: Color(0xFF147A45),
                 ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    feedback ?? '정답을 확인하세요.',
+                    style: const TextStyle(
+                      color: Color(0xFF18212F),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                      height: 1.25,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '정답: ${question.answer} ${question.correctOption}',
+              style: const TextStyle(
+                color: Color(0xFF9A4F00),
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                height: 1.25,
               ),
             ),
           ],

@@ -31,6 +31,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   late GroupQuizSession _session;
   bool _isSaving = false;
   bool _isLoadingQuestions = false;
+  bool _roundScored = false;
   int _selectedTeamId = 0;
   String? _answerFeedback;
   List<String> _categories = const [GroupQuizConfig.allCategory];
@@ -93,6 +94,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
 
     setState(() {
       _isLoadingQuestions = false;
+      _roundScored = false;
       _selectedTeamId = 0;
       _answerFeedback = null;
       _session = _session.start(
@@ -142,6 +144,10 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
 
       if (_session.answerVisible) {
         _timer?.cancel();
+        setState(() {
+          _answerFeedback = '시간 종료! 정답을 확인하세요.';
+          _roundScored = false;
+        });
       }
     });
   }
@@ -150,12 +156,20 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     _timer?.cancel();
     setState(() {
       _session = _session.revealAnswer();
-      _answerFeedback = null;
+      _answerFeedback = '정답을 공개했어요.';
+      _roundScored = false;
     });
   }
 
   void _passQuestion() {
     final next = _session.passQuestion();
+    _handleAdvance(next);
+  }
+
+  void _advanceVisibleQuestion() {
+    final next = _roundScored
+        ? _session.advanceRound()
+        : _session.passQuestion();
     _handleAdvance(next);
   }
 
@@ -175,27 +189,21 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       orElse: () => _session.teams.first,
     );
     if (optionIndex == _session.currentQuestion.answerIndex) {
+      _timer?.cancel();
       setState(() {
         _answerFeedback = '${selectedTeam.name} 정답!';
+        _roundScored = true;
+        _session = _session.scoreTeam(selectedTeam).revealAnswer();
       });
-      final next = _session.awardTeam(selectedTeam);
-      _handleAdvance(next);
       return;
     }
 
-    final nextSession = _session.registerWrongAttempt();
+    _timer?.cancel();
     setState(() {
-      _session = nextSession;
-      _answerFeedback = !nextSession.hasAttemptLimit
-          ? '오답입니다. 계속 도전할 수 있어요.'
-          : nextSession.answerVisible
-          ? '시도 횟수를 모두 사용했어요.'
-          : '오답입니다. ${nextSession.attemptsRemaining}번 남았어요.';
+      _roundScored = false;
+      _session = _session.revealAnswer();
+      _answerFeedback = '오답입니다. 정답을 확인하세요.';
     });
-
-    if (nextSession.answerVisible) {
-      _timer?.cancel();
-    }
   }
 
   void _handleAdvance(
@@ -204,6 +212,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     _timer?.cancel();
     setState(() {
       _session = next.session;
+      _roundScored = false;
       _answerFeedback = null;
       if (next.session.teams.every((team) => team.id != _selectedTeamId)) {
         _selectedTeamId = next.session.teams.first.id;
@@ -227,6 +236,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
         config: config,
         teams: buildGroupQuizTeams(config.teamCount),
       );
+      _roundScored = false;
       _selectedTeamId = 0;
       _answerFeedback = null;
     });
@@ -323,6 +333,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       onAnswerSubmitted: _submitAnswer,
       onRevealAnswer: _revealAnswer,
       onPassQuestion: _passQuestion,
+      onAdvanceVisibleQuestion: _advanceVisibleQuestion,
     );
   }
 }

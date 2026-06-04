@@ -116,6 +116,10 @@ class GroupQuizSession {
   ({GroupQuizSession session, GroupQuizAdvanceResult result}) awardTeam(
     QuizTeam team,
   ) {
+    return scoreTeam(team).advanceRound();
+  }
+
+  GroupQuizSession scoreTeam(QuizTeam team) {
     final timeBonus = config.hasTimeLimit ? remainingSeconds * 10 : 0;
     final earnedScore = 100 + timeBonus + (team.combo * 20);
     final nextCombo = team.combo + 1;
@@ -126,10 +130,7 @@ class GroupQuizSession {
             : item.copyWith(combo: 0),
     ];
 
-    return copyWith(
-      teams: nextTeams,
-      maxCombo: max(maxCombo, nextCombo),
-    ).advanceRound();
+    return copyWith(teams: nextTeams, maxCombo: max(maxCombo, nextCombo));
   }
 
   ({GroupQuizSession session, GroupQuizAdvanceResult result}) passQuestion() {
