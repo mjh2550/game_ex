@@ -25,6 +25,7 @@ class GroupQuizScreen extends ConsumerStatefulWidget {
 
 class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   Timer? _timer;
+  Timer? _autoAdvanceTimer;
   final _questionRepository = GroupQuizQuestionRepository();
 
   GroupQuizConfig _config = const GroupQuizConfig();
@@ -49,6 +50,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    _autoAdvanceTimer?.cancel();
     super.dispose();
   }
 
@@ -60,6 +62,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     setState(() {
       _isLoadingQuestions = true;
     });
+    _autoAdvanceTimer?.cancel();
 
     final List<QuizQuestion> questionDeck;
     try {
@@ -152,6 +155,17 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     });
   }
 
+  void _scheduleAutoAdvance() {
+    _autoAdvanceTimer?.cancel();
+    _autoAdvanceTimer = Timer(const Duration(milliseconds: 1600), () {
+      if (!mounted || !_session.answerVisible || _isSaving) {
+        return;
+      }
+
+      _advanceVisibleQuestion();
+    });
+  }
+
   void _revealAnswer() {
     _timer?.cancel();
     setState(() {
@@ -162,11 +176,13 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   }
 
   void _passQuestion() {
+    _autoAdvanceTimer?.cancel();
     final next = _session.passQuestion();
     _handleAdvance(next);
   }
 
   void _advanceVisibleQuestion() {
+    _autoAdvanceTimer?.cancel();
     final next = _roundScored
         ? _session.advanceRound()
         : _session.passQuestion();
@@ -195,6 +211,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
         _roundScored = true;
         _session = _session.scoreTeam(selectedTeam).revealAnswer();
       });
+      _scheduleAutoAdvance();
       return;
     }
 
@@ -204,12 +221,14 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       _session = _session.revealAnswer();
       _answerFeedback = '오답입니다. 정답을 확인하세요.';
     });
+    _scheduleAutoAdvance();
   }
 
   void _handleAdvance(
     ({GroupQuizSession session, GroupQuizAdvanceResult result}) next,
   ) {
     _timer?.cancel();
+    _autoAdvanceTimer?.cancel();
     setState(() {
       _session = next.session;
       _roundScored = false;
@@ -230,6 +249,7 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   }
 
   void _updateConfig(GroupQuizConfig config) {
+    _autoAdvanceTimer?.cancel();
     setState(() {
       _config = config;
       _session = GroupQuizSession.setup(
