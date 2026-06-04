@@ -145,9 +145,9 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
       if (_session.answerVisible) {
         _timer?.cancel();
         setState(() {
-          _answerFeedback = '시간 종료! 정답을 확인하세요.';
+          _answerFeedback = '시간 종료! 맞힌 팀이 있으면 선택하세요.';
           _roundScored = false;
-          _awaitingCorrectTeam = false;
+          _awaitingCorrectTeam = true;
         });
       }
     });
@@ -157,9 +157,9 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     _timer?.cancel();
     setState(() {
       _session = _session.revealAnswer();
-      _answerFeedback = '정답을 공개했어요.';
+      _answerFeedback = '정답을 공개했어요. 맞힌 팀이 있으면 선택하세요.';
       _roundScored = false;
-      _awaitingCorrectTeam = false;
+      _awaitingCorrectTeam = true;
     });
   }
 
@@ -169,10 +169,6 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
   }
 
   void _advanceVisibleQuestion() {
-    if (_awaitingCorrectTeam) {
-      return;
-    }
-
     final next = _roundScored
         ? _session.advanceRound()
         : _session.passQuestion();

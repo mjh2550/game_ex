@@ -227,9 +227,31 @@ class GroupQuizPlayView extends StatelessWidget {
                 ),
               const SizedBox(height: 10),
               if (correctAnswerPendingAward)
-                _CorrectTeamPanel(
-                  teams: session.teams,
-                  onTeamSelected: onCorrectTeamSelected,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _CorrectTeamPanel(
+                      teams: session.teams,
+                      onTeamSelected: onCorrectTeamSelected,
+                    ),
+                    const SizedBox(height: 10),
+                    OutlinedButton.icon(
+                      onPressed: onAdvanceVisibleQuestion,
+                      icon: const Icon(Icons.arrow_forward_rounded),
+                      label: Text(
+                        session.isLastRound
+                            ? '정답자 없음 / 결과 보기'
+                            : '정답자 없음 / 다음 문제',
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF18212F),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               else if (session.answerVisible)
                 FilledButton.icon(
