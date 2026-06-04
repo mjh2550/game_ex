@@ -186,7 +186,9 @@ class _GroupQuizScreenState extends ConsumerState<GroupQuizScreen> {
     final nextSession = _session.registerWrongAttempt();
     setState(() {
       _session = nextSession;
-      _answerFeedback = nextSession.answerVisible
+      _answerFeedback = !nextSession.hasAttemptLimit
+          ? '오답입니다. 계속 도전할 수 있어요.'
+          : nextSession.answerVisible
           ? '시도 횟수를 모두 사용했어요.'
           : '오답입니다. ${nextSession.attemptsRemaining}번 남았어요.';
     });

@@ -44,7 +44,9 @@ class GroupQuizSession {
 
   QuizQuestion get currentQuestion => questions[roundIndex];
 
-  int get attemptLimit => attemptsForDifficulty(currentQuestion.difficulty);
+  int get attemptLimit => attemptLimitForQuestion(currentQuestion);
+
+  bool get hasAttemptLimit => config.hasAttemptLimit;
 
   int get round => roundIndex + 1;
 
@@ -72,7 +74,7 @@ class GroupQuizSession {
       questions: questionDeck,
       roundIndex: 0,
       remainingSeconds: config.secondsPerRound,
-      attemptsRemaining: attemptsForDifficulty(questionDeck.first.difficulty),
+      attemptsRemaining: attemptLimitForQuestion(questionDeck.first),
       maxCombo: 0,
       started: true,
       answerVisible: false,
@@ -97,6 +99,10 @@ class GroupQuizSession {
 
   GroupQuizSession registerWrongAttempt() {
     if (answerVisible) {
+      return this;
+    }
+
+    if (!hasAttemptLimit) {
       return this;
     }
 
@@ -144,9 +150,7 @@ class GroupQuizSession {
       session: copyWith(
         roundIndex: nextRoundIndex,
         remainingSeconds: config.secondsPerRound,
-        attemptsRemaining: attemptsForDifficulty(
-          questions[nextRoundIndex].difficulty,
-        ),
+        attemptsRemaining: attemptLimitForQuestion(questions[nextRoundIndex]),
         answerVisible: false,
       ),
       result: const GroupQuizAdvanceResult(finished: false),
@@ -179,5 +183,15 @@ class GroupQuizSession {
 
   static int attemptsForDifficulty(int difficulty) {
     return difficulty >= 3 ? 5 : 3;
+  }
+
+  int attemptLimitForQuestion(QuizQuestion question) {
+    return switch (config.attemptLimit) {
+      GroupQuizConfig.adaptiveAttempts => attemptsForDifficulty(
+        question.difficulty,
+      ),
+      GroupQuizConfig.unlimitedAttempts => 0,
+      _ => config.attemptLimit,
+    };
   }
 }

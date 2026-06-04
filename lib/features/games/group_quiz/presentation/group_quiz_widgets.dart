@@ -82,7 +82,7 @@ class GroupQuizSetupView extends StatelessWidget {
                   _SetupSegment<int>(
                     label: '라운드',
                     value: config.roundLimit,
-                    options: const [5, 10, 15],
+                    options: const [5, 10, 15, 30, 60, 100],
                     labelBuilder: (value) => '$value문제',
                     onChanged: (value) =>
                         onConfigChanged(config.copyWith(roundLimit: value)),
@@ -96,6 +96,22 @@ class GroupQuizSetupView extends StatelessWidget {
                     onChanged: (value) => onConfigChanged(
                       config.copyWith(secondsPerRound: value),
                     ),
+                  ),
+                  const SizedBox(height: 16),
+                  _SetupSegment<int>(
+                    label: '목숨',
+                    value: config.attemptLimit,
+                    options: const [
+                      GroupQuizConfig.adaptiveAttempts,
+                      GroupQuizConfig.unlimitedAttempts,
+                      1,
+                      3,
+                      5,
+                      10,
+                    ],
+                    labelBuilder: _attemptLimitLabel,
+                    onChanged: (value) =>
+                        onConfigChanged(config.copyWith(attemptLimit: value)),
                   ),
                   const SizedBox(height: 22),
                   FilledButton.icon(
@@ -169,6 +185,7 @@ class GroupQuizPlayView extends StatelessWidget {
                 attemptsRemaining: session.attemptsRemaining,
                 attemptLimit: session.attemptLimit,
                 hasTimeLimit: session.config.hasTimeLimit,
+                hasAttemptLimit: session.hasAttemptLimit,
                 danger: session.isTimerDanger,
               ),
               const SizedBox(height: 14),
@@ -183,6 +200,7 @@ class GroupQuizPlayView extends StatelessWidget {
                   teams: session.teams,
                   selectedTeamId: selectedTeamId,
                   attemptsRemaining: session.attemptsRemaining,
+                  hasAttemptLimit: session.hasAttemptLimit,
                   feedback: answerFeedback,
                   onTeamSelected: onAnswerTeamSelected,
                   onSubmitted: onAnswerSubmitted,
@@ -226,6 +244,14 @@ class GroupQuizPlayView extends StatelessWidget {
       ),
     );
   }
+}
+
+String _attemptLimitLabel(int value) {
+  return switch (value) {
+    GroupQuizConfig.adaptiveAttempts => '난이도별',
+    GroupQuizConfig.unlimitedAttempts => '무제한',
+    _ => '$value개',
+  };
 }
 
 class _SetupSegment<T> extends StatelessWidget {
@@ -285,6 +311,7 @@ class _QuizStatusPanel extends StatelessWidget {
     required this.attemptsRemaining,
     required this.attemptLimit,
     required this.hasTimeLimit,
+    required this.hasAttemptLimit,
     required this.danger,
   });
 
@@ -295,6 +322,7 @@ class _QuizStatusPanel extends StatelessWidget {
   final int attemptsRemaining;
   final int attemptLimit;
   final bool hasTimeLimit;
+  final bool hasAttemptLimit;
   final bool danger;
 
   @override
@@ -317,7 +345,9 @@ class _QuizStatusPanel extends StatelessWidget {
                 ),
                 _StatusValue(
                   label: 'Try',
-                  value: '$attemptsRemaining/$attemptLimit',
+                  value: hasAttemptLimit
+                      ? '$attemptsRemaining/$attemptLimit'
+                      : '∞',
                 ),
               ],
             ),
@@ -404,6 +434,7 @@ class _MultipleChoicePanel extends StatelessWidget {
     required this.teams,
     required this.selectedTeamId,
     required this.attemptsRemaining,
+    required this.hasAttemptLimit,
     required this.feedback,
     required this.onTeamSelected,
     required this.onSubmitted,
@@ -413,6 +444,7 @@ class _MultipleChoicePanel extends StatelessWidget {
   final List<QuizTeam> teams;
   final int selectedTeamId;
   final int attemptsRemaining;
+  final bool hasAttemptLimit;
   final String? feedback;
   final ValueChanged<QuizTeam> onTeamSelected;
   final ValueChanged<int> onSubmitted;
@@ -466,7 +498,7 @@ class _MultipleChoicePanel extends StatelessWidget {
                       bottom: index == question.options.length - 1 ? 0 : 8,
                     ),
                     child: OutlinedButton(
-                      onPressed: attemptsRemaining > 0
+                      onPressed: !hasAttemptLimit || attemptsRemaining > 0
                           ? () => onSubmitted(index)
                           : null,
                       style: OutlinedButton.styleFrom(
@@ -507,10 +539,10 @@ class _MultipleChoicePanel extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  attemptsRemaining > 1
+                  !hasAttemptLimit || attemptsRemaining > 1
                       ? Icons.favorite_rounded
                       : Icons.warning_amber_rounded,
-                  color: attemptsRemaining > 1
+                  color: !hasAttemptLimit || attemptsRemaining > 1
                       ? const Color(0xFF2BB673)
                       : const Color(0xFFE56B1F),
                   size: 17,
@@ -518,7 +550,10 @@ class _MultipleChoicePanel extends StatelessWidget {
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    feedback ?? '문제당 입력 기회 $attemptsRemaining번',
+                    feedback ??
+                        (hasAttemptLimit
+                            ? '문제당 입력 기회 $attemptsRemaining번'
+                            : '문제당 입력 기회 무제한'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
